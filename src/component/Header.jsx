@@ -1,8 +1,8 @@
 import logo from "../assets/imgs/logo.png";
 
 //icons
-import { FaRegHeart } from "react-icons/fa";
-import { IoPersonOutline } from "react-icons/io5";
+import { HiOutlineHeart } from "react-icons/hi2";
+import { BsPerson } from "react-icons/bs";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { IoIosSearch } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -21,11 +21,15 @@ export default function Header() {
 
   const linkStyle =
     "relative  before:absolute before:left-0 before:-bottom-2 before:w-0 before:h-[4px] before:bg-black before:transition-all before:duration-300 hover:before:w-full";
+
+  const iconsStyle =
+    "cursor-pointer transition-all duration-300 hover:text-gray-400";
+
   return (
     <>
       {deviceWidth < 450 ? (
         /* ****** Start Mobile ******* */
-        <div className="header  border-b-1 border-gray-200 relative">
+        <div className="header  border-b-1 border-gray-200 absolute w-full bg-white z-999">
           <div className="flex items-center justify-between pr-2">
             <div className="logo ">
               <img
@@ -35,7 +39,7 @@ export default function Header() {
               />
             </div>
             <div className="flex items-center gap-2">
-              <IoPersonOutline size={25} className="cursor-pointer" />
+              <BsPerson size={25} className="cursor-pointer" />
 
               <RxHamburgerMenu
                 size={30}
@@ -44,7 +48,7 @@ export default function Header() {
             </div>
           </div>
           {showMenu ? (
-            <ul className="absolute top-10 left-0 flex flex-col items-center justify-center gap-4 text-xl font-medium cursor-pointer bg-black/60 w-full z-99 text-white py-5">
+            <ul className="absolute top-20 left-0 flex flex-col items-center justify-center gap-4 text-xl font-medium cursor-pointer bg-black/50 w-full z-99 text-white py-5">
               <li>
                 <a href="#men" className={linkStyle}>
                   Men
@@ -91,7 +95,10 @@ export default function Header() {
                 <HiOutlineShoppingBag size={20} className="cursor-pointer" />
               </span>
               <span className="favorite">
-                <FaRegHeart size={20} className=" cursor-pointer" />
+                <HiOutlineHeart
+                  size={20}
+                  className=" cursor-pointer hover:bg-gray-300"
+                />
               </span>
             </div>
           </div>
@@ -100,7 +107,7 @@ export default function Header() {
         /* ****** End Mobile ******* */
 
         /* ======= start Web ========= */
-        <div className="header flex items-center justify-between px-5 border-b-1 border-gray-200">
+        <div className="header flex items-center justify-between px-5 border-b-1 border-gray-200 fixed w-full bg-white z-99">
           <div className="logo w-[200px]">
             <img
               src={logo}
@@ -149,12 +156,12 @@ export default function Header() {
             </div>
 
             <span className=" shopping-bag">
-              <HiOutlineShoppingBag size={25} className="cursor-pointer" />
+              <HiOutlineShoppingBag size={25} className={iconsStyle} />
             </span>
             <span className="favorite">
-              <FaRegHeart size={25} className="cursor-pointer" />
+              <HiOutlineHeart size={25} className={iconsStyle} />
             </span>
-            <IoPersonOutline size={25} className="cursor-pointer" />
+            <BsPerson size={30} className={iconsStyle} />
           </div>
         </div>
 
