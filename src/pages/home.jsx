@@ -3,6 +3,11 @@ import product3 from "../assets/imgs/product3.jpg";
 import product4 from "../assets/imgs/product4.jpg";
 import product6 from "../assets/imgs/product6.jpg";
 import product7 from "../assets/imgs/product7.jpg";
+import masterCard from "../assets/imgs/master-card.png";
+import visa from "../assets/imgs/visa.png";
+import gPay from "../assets/imgs/google-pay.png";
+import aPay from "../assets/imgs/apple-pay.png";
+import paypal from "../assets/imgs/paypal.png";
 
 //review avatars
 import ravt1 from "../assets/imgs/r-avt1.jpeg";
@@ -13,11 +18,15 @@ import ravt3 from "../assets/imgs/r-avt3.jpg";
 import { IoIosStar } from "react-icons/io";
 import { IoIosArrowDropright } from "react-icons/io";
 import { IoIosArrowDropleft } from "react-icons/io";
+import { FaXTwitter } from "react-icons/fa6";
+import { FaFacebookF } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
+import { FaLinkedinIn } from "react-icons/fa";
 
 export default function Home() {
   return (
     <>
-      <div className="home flex items-center justify-center bg-center h-[100vh] w-[100vw] ">
+      <div className="home flex items-center justify-center bg-center h-[100vh]  ">
         <div className="banner w-fit text-center mt-[84px] md:mt-[61px]  ">
           <img src="b" alt="" />
           <div className="text">
@@ -147,25 +156,29 @@ export default function Home() {
             </div>
           </div>
           <ul className="flex gap-5 mx-auto  w-fit mt-10 py-10">
-            <li className="bg-black  text-center w-fit p-3 md:p-4 rounded-md min-w-[100px] md:min-w-[121px]">
+            <li className="bg-black  text-center w-fit p-3 md:p-4 rounded-md min-w-[90px] md:min-w-[121px]">
               <span className="block text-white text-3xl md:text-4xl font-bold ">
                 23
               </span>
-              <span className="text-gray-300 text-2xl ">Hours</span>
+              <span className="text-gray-300 text-xl md:text-2xl ">Hours</span>
             </li>
 
-            <li className="bg-black  text-center w-fit p-3 md:p-4 rounded-md min-w-[100px] md:min-w-[121px]">
+            <li className="bg-black  text-center w-fit p-3 md:p-4 rounded-md min-w-[90px] md:min-w-[121px]">
               <span className="block text-white text-3xl md:text-4xl font-bold ">
                 59
               </span>
-              <span className="text-gray-300 text-2xl ">Minutes</span>
+              <span className="text-gray-300 text-xl md:text-2xl ">
+                Minutes
+              </span>
             </li>
 
-            <li className="bg-black  text-center w-fit p-3 md:p-4 rounded-md min-w-[100px] md:min-w-[121px]">
+            <li className="bg-black  text-center w-fit p-3 md:p-4 rounded-md min-w-[90px] md:min-w-[121px]">
               <span className="block text-white text-3xl md:text-4xl font-bold ">
                 46
               </span>
-              <span className="text-gray-300 text-2xl ">Seconds</span>
+              <span className="text-gray-300 text-xl md:text-2xl ">
+                Seconds
+              </span>
             </li>
           </ul>
         </div>
@@ -242,7 +255,7 @@ export default function Home() {
       </div>
       {/* ============= end reviews ============ */}
 
-      {/* start form */}
+      {/* ============= start form=============  */}
       <div className="form py-10">
         <div className="container">
           <h1 className="text-center  text-3xl md:text-4xl font-bold mb-3">
@@ -255,25 +268,147 @@ export default function Home() {
           <div className="mx-auto w-fit mt-10">
             <div className="flex">
               <input
-                className="border-1 border-gray-400/60 rounded-md py-2 px-6 w-[250px] md:w-[400px]"
+                className="border-1 border-gray-400/60 rounded-md  py-1 md:py-2  px-4 md:px-6 w-[240px] md:w-[400px]"
                 type="email"
                 placeholder="Enter Your Email"
               />
-              <button className="ml-4 py-2 px-3 bg-black text-white text-xl font-medium rounded-md cursor-pointer">
+              <button className="ml-4 py:1 md:py-2  px-2 md:px-3 bg-black text-white text-lg md:text-xl font-medium rounded-md cursor-pointer">
                 Subscribe
               </button>
             </div>
             <div className="flex gap-2 mt-5  justify-center">
               <input type="checkbox" />
-              <p className=" text-md md:text-lg">
-                {" "}
+              <p className=" text-sm md:text-lg w-fit">
                 I agree to receive exclusive offers and promotions.
               </p>
             </div>
           </div>
         </div>
       </div>
-      {/* end form */}
+      {/* ============= end form=============  */}
+
+      {/* ========= start footer ============ */}
+      <div className="footer pt-10 border-t-1 border-black/20">
+        <div className="container text-center md:text-start">
+          <div className="wrapper grid grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))] gap-6 ">
+            <div className="mx-auto w-fit">
+              <h1 className="text-xl font-medium mb-4">About The Brand</h1>
+              <p className="text-md font-[400]">
+                FashionForward is your destination for modern, stylish apparel.
+                We believe in elevating everyday style with quality pieces that
+                inspire confidence.
+              </p>
+            </div>
+
+            <div className="mx-auto w-fit">
+              <h1 className="text-xl font-medium mb-4">Quick Links</h1>
+              <ul className="text-lg font-[400]">
+                <li>
+                  <a href="#">Shop</a>
+                </li>
+
+                <li>
+                  <a href="#">Returns</a>
+                </li>
+
+                <li>
+                  <a href="#">FAQ</a>
+                </li>
+
+                <li>
+                  <a href="#">Careers</a>
+                </li>
+              </ul>
+            </div>
+
+            <div className="mx-auto w-fit">
+              <h1 className="text-xl font-medium mb-4">Customer Service</h1>
+              <ul className="text-lg font-[400]">
+                <li>
+                  <a href="#">Contact Us</a>
+                </li>
+
+                <li>
+                  <a href="#">Shipping Information</a>
+                </li>
+
+                <li>
+                  <a href="#">Track Order</a>
+                </li>
+
+                <li>
+                  <a href="#">Size Guide</a>
+                </li>
+              </ul>
+            </div>
+
+            <div className="mx-auto w-fit ">
+              <h1 className="text-xl font-medium mb-4">Follow US</h1>
+              <ul className="flex gap-2 justify-center md:justify-start  ">
+                <li>
+                  <a href="#">
+                    <FaXTwitter size={20} />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <FaFacebookF size={20} />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <FaInstagram size={20} />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <FaLinkedinIn size={20} />
+                  </a>
+                </li>
+              </ul>
+              <h1 className="text-xl font-medium mt-4 mb-4">Secure Payment</h1>
+              <div className="flex item-center gap-2">
+                <ul className="flex items-center gap-2">
+                  <li>
+                    <img
+                      src={masterCard}
+                      className="w-[60px] shadow-sm shadow-black/20"
+                    />
+                  </li>
+                  <li>
+                    <img
+                      src={visa}
+                      className="w-[60px] shadow-sm shadow-black/20"
+                    />
+                  </li>
+                  <li>
+                    <img
+                      src={gPay}
+                      className="w-[60px] shadow-sm shadow-black/20"
+                    />
+                  </li>
+                  <li>
+                    <img
+                      src={aPay}
+                      className="w-[60px] shadow-sm shadow-black/20"
+                    />
+                  </li>
+                  <li>
+                    <img
+                      src={paypal}
+                      className="w-[60px] shadow-sm shadow-black/20"
+                    />
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p className="w-fit mx-auto mt-6 py-4 text-lg">
+          © 2025 StyleHub. All rights reserved.
+        </p>
+      </div>
+      {/* ========= end footer ============ */}
     </>
   );
 }

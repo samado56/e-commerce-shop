@@ -30,7 +30,7 @@ export default function Header() {
       {deviceWidth < 450 ? (
         /* ****** Start Mobile ******* */
         <div className="header  border-b-1 border-gray-200 absolute w-full bg-white z-999">
-          <div className="flex items-center justify-between pr-2">
+          <div className="flex items-center justify-between pr-2 border-b-1 border-black/20">
             <div className="logo ">
               <img
                 src={logo}
@@ -48,7 +48,7 @@ export default function Header() {
             </div>
           </div>
           {showMenu ? (
-            <ul className="absolute top-20 left-0 flex flex-col items-center justify-center gap-4 text-xl font-medium cursor-pointer bg-black/50 w-full z-99 text-white py-5">
+            <ul className="absolute top-25 left-0 flex flex-col items-center justify-center gap-4 text-xl font-medium cursor-pointer bg-black/50 w-full z-99 text-white py-5">
               <li>
                 <a href="#men" className={linkStyle}>
                   Men
@@ -72,7 +72,7 @@ export default function Header() {
             </ul>
           ) : null}
 
-          <div className="items flex items-center justify-between px-2">
+          <div className="items flex items-center justify-between p-2">
             <div className="search flex items-center">
               <input
                 type="search"
