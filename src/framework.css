@@ -1,3 +1,41 @@
+.container {
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.parent {
+  background-color: red;
+}
+
+/* mobil */
+@media (min-width: 430px) {
+  .container {
+    width: 420px;
+  }
+  .usable {
+    font-size: 80px;
+  }
+}
+
+/* small */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+/* medium */
+@media (min-width: 992px) {
+  .container {
+    width: 930px;
+  }
+}
+/* large */
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
 .shopping-bag,
 .favorite {
   position: relative;
@@ -54,4 +92,11 @@
   background-color: rgba(0, 0, 0, 0.2);
   z-index: -9;
 }
+
+/* .wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+} */
+
 /* ========= end  Home Page ========= */
