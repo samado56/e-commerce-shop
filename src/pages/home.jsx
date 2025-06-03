@@ -1,10 +1,13 @@
 import product1 from "../assets/imgs/product1.jpg";
-import product2 from "../assets/imgs/product2.jpg";
 import product3 from "../assets/imgs/product3.jpg";
 import product4 from "../assets/imgs/product4.jpg";
-import product5 from "../assets/imgs/product5.jpg";
 import product6 from "../assets/imgs/product6.jpg";
 import product7 from "../assets/imgs/product7.jpg";
+
+//review avatars
+import ravt1 from "../assets/imgs/r-avt1.jpeg";
+import ravt2 from "../assets/imgs/r-avt2.jpg";
+import ravt3 from "../assets/imgs/r-avt3.jpg";
 
 //icons
 import { IoIosStar } from "react-icons/io";
@@ -36,8 +39,9 @@ export default function Home() {
           </div>
         </div>
       </div>
+      {/* ========== start featured products =============== */}
       <div className="featured-products py-[60px]">
-        <h1 className="text-center text-5xl  font-bold mb-10">
+        <h1 className="text-center text-4xl md:text-5xl  font-bold mb-10">
           Featured Products
         </h1>
         <div className="container ">
@@ -110,18 +114,21 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="deal py-[60px] flex justify-center h-[100vh] ">
+      {/* ========== end featured products =============== */}
+
+      {/* ============ start deals ============ */}
+      <div className="deal py-[60px] flex justify-center  ">
         <div className="container">
-          <h1 className="font-bold text-5xl  text-center mb-3">
+          <h1 className="font-bold text-4xl md:text-5xl  text-center mb-3">
             Deal of the Day
           </h1>
-          <p className="text-center text-2xl mb-10 font-light">
+          <p className="text-center text-xl md:text-2xl mb-10 font-light">
             Don't miss out on our exclusive deal. Limited time offer!
           </p>
           <div className="sepacial  flex flex-col md:flex-row md:justify-between items-center gap-10">
             <img src={product7} className="  md:w-[400px] rounded-xl" />
             <div className="text-center md:w-[60%]">
-              <h1 className="text-4xl font-medium  mb-5">
+              <h1 className="text-3xl md:text-4xl font-medium  mb-5">
                 Premium Leather Jacket
               </h1>
               <p className="text-xl   mb-8">
@@ -163,6 +170,95 @@ export default function Home() {
           </ul>
         </div>
       </div>
+      {/* ============ end deals ============ */}
+
+      {/* ============= start reviews ============ */}
+      <div className="reviews py-10 bg-gray-50">
+        <h1 className="text-3xl md:text-5xl font-bold text-center mb-6 md:mb-10">
+          What Our Customers Say
+        </h1>
+        <div className="container">
+          <div className="wrapeer grid gap-5 md:grid-cols-[repeat(auto-fill,_minmax(350px,_1fr))] py-5 ">
+            <div className="rev-card p-4 shadow-md shadow-black/20 rounded-lg bg-white">
+              <div className="top flex items-center gap-5 mb-5">
+                <img src={ravt2} alt="" className="rounded-full w-[40px]" />
+                <div>
+                  <span className="font-medium text-xl">Sophia Carter</span>
+                  <div className="icons flex gap-1">
+                    <IoIosStar size={20} color="gold" />
+                    <IoIosStar size={20} color="gold" />
+                    <IoIosStar size={20} color="gold" />
+                    <IoIosStar size={20} color="gold" />
+                    <IoIosStar size={20} color="gold" />
+                  </div>
+                </div>
+              </div>
+              <p className="text-lg font-semibold text-gray-600">
+                "Abosolutely love the quality and style of the clothes! The fit
+                is perfect, and i always receive comliments when i wear then. "
+              </p>
+            </div>
+            <div className="rev-card p-4 shadow-md shadow-black/20 rounded-lg bg-white">
+              <div className="top flex items-center gap-5 mb-5">
+                <img src={ravt1} alt="" className="rounded-full w-[40px]" />
+                <div>
+                  <span className="font-medium text-xl">Ethan Bennett</span>
+                  <div className="icons flex gap-1">
+                    <IoIosStar size={20} color="gold" />
+                    <IoIosStar size={20} color="gold" />
+                    <IoIosStar size={20} color="gold" />
+                    <IoIosStar size={20} color="gold" />
+                    <IoIosStar size={20} color="gray" />
+                  </div>
+                </div>
+              </div>
+              <p className="text-lg font-semibold text-gray-600">
+                "Great selection of products and fast shipping. The customer
+                service was also very helpful when I had a question."
+              </p>
+            </div>
+
+            <div className="rev-card p-4 shadow-md shadow-black/20 rounded-lg bg-white">
+              <div className="top flex items-center gap-5 mb-5">
+                <img src={ravt3} alt="" className="rounded-full w-[40px]" />
+                <div>
+                  <span className="font-medium text-xl">Olivia Hayes</span>
+                  <div className="icons flex gap-1">
+                    <IoIosStar size={20} color="gold" />
+                    <IoIosStar size={20} color="gold" />
+                    <IoIosStar size={20} color="gold" />
+                    <IoIosStar size={20} color="gold" />
+                    <IoIosStar size={20} color="gold" />
+                  </div>
+                </div>
+              </div>
+              <p className="text-lg font-semibold text-gray-600">
+                "The designs are so unique and trendy. I always find something
+                new and exciting to add to my wardrobe. Highly recommend!"
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* ============= end reviews ============ */}
+
+      {/* start form */}
+      <div className="form">
+        <h1>Stay in the Loop</h1>
+        <p>
+          Get 10% off your first order and be the first to know about new
+          arrivals and exclusive offers.
+        </p>
+        <div className="container">
+          <div>
+            <input type="email" />
+            <button>Subscribe</button>
+          </div>
+          <input type="checkbox" />
+          <p> I agree to receive exclusive offers and promotions.</p>
+        </div>
+      </div>
+      {/* end form */}
     </>
   );
 }
