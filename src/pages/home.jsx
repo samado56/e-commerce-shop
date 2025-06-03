@@ -243,19 +243,34 @@ export default function Home() {
       {/* ============= end reviews ============ */}
 
       {/* start form */}
-      <div className="form">
-        <h1>Stay in the Loop</h1>
-        <p>
-          Get 10% off your first order and be the first to know about new
-          arrivals and exclusive offers.
-        </p>
+      <div className="form py-10">
         <div className="container">
-          <div>
-            <input type="email" />
-            <button>Subscribe</button>
+          <h1 className="text-center  text-3xl md:text-4xl font-bold mb-3">
+            Stay in the Loop
+          </h1>
+          <p className="text-center text-lg md:text-xl ">
+            Get 10% off your first order and be the first to know about new
+            arrivals and exclusive offers.
+          </p>
+          <div className="mx-auto w-fit mt-10">
+            <div className="flex">
+              <input
+                className="border-1 border-gray-400/60 rounded-md py-2 px-6 w-[250px] md:w-[400px]"
+                type="email"
+                placeholder="Enter Your Email"
+              />
+              <button className="ml-4 py-2 px-3 bg-black text-white text-xl font-medium rounded-md cursor-pointer">
+                Subscribe
+              </button>
+            </div>
+            <div className="flex gap-2 mt-5  justify-center">
+              <input type="checkbox" />
+              <p className=" text-md md:text-lg">
+                {" "}
+                I agree to receive exclusive offers and promotions.
+              </p>
+            </div>
           </div>
-          <input type="checkbox" />
-          <p> I agree to receive exclusive offers and promotions.</p>
         </div>
       </div>
       {/* end form */}
