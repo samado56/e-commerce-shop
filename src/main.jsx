@@ -6,11 +6,14 @@ import "./index.css";
 import "./framework.css";
 
 import App from "./App.jsx";
+import GlobalState from "./context/GlobalContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-      <App />
+      <GlobalState>
+        <App />
+      </GlobalState>
     </BrowserRouter>
   </StrictMode>
 );

@@ -1,12 +1,20 @@
+import { useContext } from "react";
+import { GlobalContext } from "../context/globalContext";
+
+//icons
 import { IoMdArrowDropdown } from "react-icons/io";
 import { IoMdMenu } from "react-icons/io";
 import { LuGrid2X2 } from "react-icons/lu";
+import { IoIosStar } from "react-icons/io";
 
 export default function Listing() {
+  const { products } = useContext(GlobalContext);
+
+  //   console.log(hey);
   return (
     <>
       <div className="pt-[80px] flex gap-2">
-        <div className="fliter h-[100vh] w-[350px] border-r-1 border-black/20  px-6">
+        <div className="fliter h-[100vh] mt-[80px] w-[300px] border-r-1 border-black/20  px-6 fixed top-0 left-0">
           <h1 className="text-2xl font-bold">Filters</h1>
           <div className="mt-6">
             <p className="text-xl font-medium ">Price Range</p>
@@ -43,7 +51,7 @@ export default function Listing() {
               </li>
             </ul>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between ">
             <button className="text-xl font-medium py-2 px-3 bg-gray-300 rounded-md">
               Clear
             </button>
@@ -52,7 +60,7 @@ export default function Listing() {
             </button>
           </div>
         </div>
-        <div className="listing w-full px-4">
+        <div className="listing w-[calc(100vw-300px)] ml-[300px] px-4">
           <div className="text-xl text-gray-400">
             Home / Men / Footwear / <span className="text-black">Sneakers</span>
           </div>
@@ -66,6 +74,26 @@ export default function Listing() {
               <IoMdArrowDropdown size={30} />
               <p className="text-lg font-medium">Sort</p>
             </div>
+          </div>
+          <div className="wrapper grid grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))] gap-4 mt-5">
+            {products &&
+              products.map(({ title, thumbnail, price, reviews, rating }) => {
+                return (
+                  <div className="product-card   shadow-md shadow-black/20 rounded-md whitespace-nowrap overflow-hidden text-ellipsis cursor-pointer">
+                    <img src={thumbnail} alt="" />
+                    <div className="p-2">
+                      <h1 className="text-lg font-medium truncate ">{title}</h1>
+                      <p className="text-gray-400 font-[500]">${price}</p>
+                      <span className="flex items-center gap-1">
+                        <IoIosStar size={20} color="gold" />
+                        <span className="text-gray-600">
+                          {rating}({reviews.length})
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
           </div>
         </div>
       </div>
