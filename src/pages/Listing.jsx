@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { GlobalContext } from "../context/globalContext";
+import useResopnsive from "../hooks/useResponsive";
 
 //icons
 import { IoMdArrowDropdown } from "react-icons/io";
@@ -7,15 +8,18 @@ import { IoMdMenu } from "react-icons/io";
 import { LuGrid2X2 } from "react-icons/lu";
 import { IoIosStar } from "react-icons/io";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-import useResopnsive from "../hooks/useResponsive";
+import { IoIosArrowDropright } from "react-icons/io";
+import { IoIosArrowDropleft } from "react-icons/io";
 
 export default function Listing() {
   const { products } = useContext(GlobalContext);
 
   const [showFilters, setShowFilters] = useState(false);
+  const [activePage, setActivePage] = useState(1);
 
   const { width } = useResopnsive();
-  //   console.log(width < 450);
+  const pagination = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
   return (
     <>
       <div className="pt-[80px] flex gap-2">
@@ -180,6 +184,34 @@ export default function Listing() {
                   );
                 }
               )}
+          </div>
+          <div className="pagination block">
+            <ul className="flex justify-center items-center gap-2 py-8 text-lg font-[500] text-gray-400">
+              <IoIosArrowBack
+                size={20}
+                className="cursor-pointer rounded-full h-[40px] w-[40px]  transisition-all duration-300 hover:bg-gray-400/20"
+                style={{ padding: "10px" }}
+              />
+              {pagination.map((page) => (
+                <li
+                  key={page}
+                  className="cursor-pointer rounded-full px-[16px] py-[6px]"
+                  style={{
+                    backgroundColor:
+                      activePage === page ? "rgb(245, 245,247)" : null,
+                    color: activePage === page ? " #4a5565" : null,
+                  }}
+                  onClick={() => setActivePage(page)}
+                >
+                  {page}
+                </li>
+              ))}
+              <IoIosArrowForward
+                size={20}
+                className="cursor-pointer rounded-full h-[40px] w-[40px]  transisition-all duration-300 hover:bg-gray-400/20"
+                style={{ padding: "10px" }}
+              />
+            </ul>
           </div>
         </div>
       </div>
