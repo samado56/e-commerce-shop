@@ -29,7 +29,7 @@ export default function Header() {
     <>
       {deviceWidth < 450 ? (
         /* ****** Start Mobile ******* */
-        <div className="header  border-b-1 border-gray-200 absolute w-full bg-white z-999">
+        <div className="header  border-b-1 border-gray-200 fixed w-full bg-white z-999">
           <div className="flex items-center justify-between pr-2 border-b-1 border-black/20">
             <div className="logo ">
               <img
