@@ -1,13 +1,9 @@
+import { useNavigate } from "react-router";
 import product1 from "../assets/imgs/product1.jpg";
 import product3 from "../assets/imgs/product3.jpg";
 import product4 from "../assets/imgs/product4.jpg";
 import product6 from "../assets/imgs/product6.jpg";
 import product7 from "../assets/imgs/product7.jpg";
-import masterCard from "../assets/imgs/master-card.png";
-import visa from "../assets/imgs/visa.png";
-import gPay from "../assets/imgs/google-pay.png";
-import aPay from "../assets/imgs/apple-pay.png";
-import paypal from "../assets/imgs/paypal.png";
 
 //review avatars
 import ravt1 from "../assets/imgs/r-avt1.jpeg";
@@ -18,12 +14,12 @@ import ravt3 from "../assets/imgs/r-avt3.jpg";
 import { IoIosStar } from "react-icons/io";
 import { IoIosArrowDropright } from "react-icons/io";
 import { IoIosArrowDropleft } from "react-icons/io";
-import { FaXTwitter } from "react-icons/fa6";
-import { FaFacebookF } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
-import { FaLinkedinIn } from "react-icons/fa";
+
+//components
+import Footer from "../component/Footer";
 
 export default function Home() {
+  const navigate = useNavigate();
   return (
     <>
       <div className="home flex items-center justify-center bg-center h-[100vh]  ">
@@ -38,7 +34,10 @@ export default function Home() {
               home decor.
             </p>
             <div className="btn mt-10">
-              <button className="bg-black text-white text-lg md:text-2xl shadow-sm shadow-black font-medium px-6 py-4 rounded-lg mr-8 border-none cursor-pointer">
+              <button
+                onClick={() => navigate("/products")}
+                className="bg-black text-white text-lg md:text-2xl shadow-sm shadow-black font-medium px-6 py-4 rounded-lg mr-8 border-none cursor-pointer"
+              >
                 Shop Now
               </button>
               <button className="bg-white text-black text-lg md:text-2xl shadow-sm shadow-black font-medium px-6 py-4 rounded-lg border-none cursor-pointer">
@@ -124,7 +123,6 @@ export default function Home() {
         </div>
       </div>
       {/* ========== end featured products =============== */}
-
       {/* ============ start deals ============ */}
       <div className="deal py-[60px] flex justify-center  ">
         <div className="container">
@@ -184,7 +182,6 @@ export default function Home() {
         </div>
       </div>
       {/* ============ end deals ============ */}
-
       {/* ============= start reviews ============ */}
       <div className="reviews py-10 bg-gray-50">
         <h1 className="text-3xl md:text-5xl font-bold text-center mb-6 md:mb-10">
@@ -254,7 +251,6 @@ export default function Home() {
         </div>
       </div>
       {/* ============= end reviews ============ */}
-
       {/* ============= start form=============  */}
       <div className="form py-10">
         <div className="container">
@@ -286,129 +282,7 @@ export default function Home() {
         </div>
       </div>
       {/* ============= end form=============  */}
-
-      {/* ========= start footer ============ */}
-      <div className="footer pt-10 border-t-1 border-black/20">
-        <div className="container text-center md:text-start">
-          <div className="wrapper grid grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))] gap-6 ">
-            <div className="mx-auto w-fit">
-              <h1 className="text-xl font-medium mb-4">About The Brand</h1>
-              <p className="text-md font-[400]">
-                FashionForward is your destination for modern, stylish apparel.
-                We believe in elevating everyday style with quality pieces that
-                inspire confidence.
-              </p>
-            </div>
-
-            <div className="mx-auto w-fit">
-              <h1 className="text-xl font-medium mb-4">Quick Links</h1>
-              <ul className="text-lg font-[400]">
-                <li>
-                  <a href="#">Shop</a>
-                </li>
-
-                <li>
-                  <a href="#">Returns</a>
-                </li>
-
-                <li>
-                  <a href="#">FAQ</a>
-                </li>
-
-                <li>
-                  <a href="#">Careers</a>
-                </li>
-              </ul>
-            </div>
-
-            <div className="mx-auto w-fit">
-              <h1 className="text-xl font-medium mb-4">Customer Service</h1>
-              <ul className="text-lg font-[400]">
-                <li>
-                  <a href="#">Contact Us</a>
-                </li>
-
-                <li>
-                  <a href="#">Shipping Information</a>
-                </li>
-
-                <li>
-                  <a href="#">Track Order</a>
-                </li>
-
-                <li>
-                  <a href="#">Size Guide</a>
-                </li>
-              </ul>
-            </div>
-
-            <div className="mx-auto w-fit ">
-              <h1 className="text-xl font-medium mb-4">Follow US</h1>
-              <ul className="flex gap-2 justify-center md:justify-start  ">
-                <li>
-                  <a href="#">
-                    <FaXTwitter size={20} />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <FaFacebookF size={20} />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <FaInstagram size={20} />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <FaLinkedinIn size={20} />
-                  </a>
-                </li>
-              </ul>
-              <h1 className="text-xl font-medium mt-4 mb-4">Secure Payment</h1>
-              <div className="flex item-center gap-2">
-                <ul className="flex items-center gap-2">
-                  <li>
-                    <img
-                      src={masterCard}
-                      className="w-[60px] shadow-sm shadow-black/20"
-                    />
-                  </li>
-                  <li>
-                    <img
-                      src={visa}
-                      className="w-[60px] shadow-sm shadow-black/20"
-                    />
-                  </li>
-                  <li>
-                    <img
-                      src={gPay}
-                      className="w-[60px] shadow-sm shadow-black/20"
-                    />
-                  </li>
-                  <li>
-                    <img
-                      src={aPay}
-                      className="w-[60px] shadow-sm shadow-black/20"
-                    />
-                  </li>
-                  <li>
-                    <img
-                      src={paypal}
-                      className="w-[60px] shadow-sm shadow-black/20"
-                    />
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <p className="w-fit mx-auto mt-6 py-4 text-lg">
-          © 2025 StyleHub. All rights reserved.
-        </p>
-      </div>
-      {/* ========= end footer ============ */}
+      <Footer />;
     </>
   );
 }

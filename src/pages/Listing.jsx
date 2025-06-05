@@ -8,17 +8,22 @@ import { IoMdMenu } from "react-icons/io";
 import { LuGrid2X2 } from "react-icons/lu";
 import { IoIosStar } from "react-icons/io";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-import { IoIosArrowDropright } from "react-icons/io";
-import { IoIosArrowDropleft } from "react-icons/io";
+import { HiOutlineHeart, HiHeart } from "react-icons/hi2";
+import { useNavigate } from "react-router";
 
 export default function Listing() {
   const { products } = useContext(GlobalContext);
 
   const [showFilters, setShowFilters] = useState(false);
   const [activePage, setActivePage] = useState(1);
+  const [activeFavorite, setActiveFavorite] = useState([]);
+
+  const navigate = useNavigate();
 
   const { width } = useResopnsive();
-  const pagination = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  let pagination = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+  width < 767 ? pagination.splice(5) : null;
 
   return (
     <>
@@ -161,12 +166,33 @@ export default function Listing() {
           <div className="wrapper grid grid-cols-[repeat(auto-fill,_minmax(150px,_1fr))] md:grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))] gap-4 mt-5">
             {products &&
               products.map(
-                ({ title, thumbnail, price, reviews, rating }, index) => {
+                ({ title, thumbnail, price, reviews, rating, id }, index) => {
                   return (
                     <div
                       key={index}
-                      className="product-card   shadow-md shadow-black/20 rounded-md whitespace-nowrap overflow-hidden text-ellipsis cursor-pointer"
+                      className="product-card  relative shadow-md shadow-black/20 rounded-md whitespace-nowrap overflow-hidden text-ellipsis cursor-pointer"
+                      onClick={() => navigate("/product")}
                     >
+                      <span className="absolute top-3 right-3">
+                        {activeFavorite.includes(id) ? (
+                          <HiHeart
+                            size={20}
+                            onClick={() => {
+                              const unFav = activeFavorite.filter(
+                                (fav) => fav !== id
+                              );
+                              setActiveFavorite(unFav);
+                            }}
+                          />
+                        ) : (
+                          <HiOutlineHeart
+                            size={20}
+                            onClick={() =>
+                              setActiveFavorite([...activeFavorite, id])
+                            }
+                          />
+                        )}
+                      </span>
                       <img src={thumbnail} alt="" />
                       <div className="p-2">
                         <h1 className="text-lg font-medium truncate ">

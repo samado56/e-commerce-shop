@@ -7,11 +7,14 @@ import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { IoIosSearch } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 export default function Header() {
   const [search, setSearch] = useState("");
   const [showMenu, setShowMenu] = useState(false);
   const [deviceWidth, setDeviceWidth] = useState();
+
+  const navigate = useNavigate();
 
   window.onresize = function () {
     const clientWidth = window.outerWidth;
@@ -108,7 +111,12 @@ export default function Header() {
 
         /* ======= start Web ========= */
         <div className="header flex items-center justify-between px-5 border-b-1 border-gray-200 fixed w-full bg-white z-99">
-          <div className="logo w-[200px]">
+          <div
+            className="logo w-[200px]"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
             <img
               src={logo}
               alt="stylehub"
