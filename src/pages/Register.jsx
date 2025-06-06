@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router";
+
 export default function Register() {
+  const navigate = useNavigate();
   return (
     <>
       <div class="bg-white flex items-center justify-center h-[calc(100vh-63px)]">
@@ -80,7 +83,11 @@ export default function Register() {
 
           <div class="text-center text-sm text-gray-600">
             Already have an account? {""}
-            <a href="#" class="font-medium text-black hover:underline">
+            <a
+              onClick={() => navigate("/login")}
+              href="#"
+              class="font-medium text-black hover:underline"
+            >
               Sign in
             </a>
           </div>

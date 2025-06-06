@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router";
+
 export default function Login() {
+  const navigate = useNavigate();
   return (
     <>
       <div class="bg-white flex items-center justify-center h-[calc(100vh-63px)]">
@@ -61,7 +64,11 @@ export default function Login() {
 
           <div class="text-center text-sm text-gray-600">
             Don’t have an account?{" "}
-            <a href="#" class="font-medium text-black hover:underline">
+            <a
+              onClick={() => navigate("/register")}
+              href="#"
+              class="font-medium text-black hover:underline"
+            >
               Sign up
             </a>
           </div>

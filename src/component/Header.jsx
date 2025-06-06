@@ -34,7 +34,12 @@ export default function Header() {
         /* ****** Start Mobile ******* */
         <div className="header  border-b-1 border-gray-200 fixed w-full bg-white z-999">
           <div className="flex items-center justify-between pr-2 border-b-1 border-black/20">
-            <div className="logo ">
+            <div
+              onClick={() => {
+                navigate("/");
+              }}
+              className="logo "
+            >
               <img
                 src={logo}
                 alt="stylehub"
@@ -94,7 +99,12 @@ export default function Header() {
               )}
             </div>
             <div className="icons flex items-center gap-2 px-2">
-              <span className=" shopping-bag">
+              <span
+                onClick={() => {
+                  navigate("/cart");
+                }}
+                className=" shopping-bag"
+              >
                 <HiOutlineShoppingBag size={20} className="cursor-pointer" />
               </span>
               <span className="favorite">
@@ -163,7 +173,12 @@ export default function Header() {
               )}
             </div>
 
-            <span className=" shopping-bag">
+            <span
+              onClick={() => {
+                navigate("/cart");
+              }}
+              className=" shopping-bag"
+            >
               <HiOutlineShoppingBag size={25} className={iconsStyle} />
             </span>
             <span className="favorite">

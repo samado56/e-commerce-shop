@@ -10,6 +10,7 @@
 @media (min-width: 430px) {
   .container {
     width: 420px;
+    padding: 0 10px;
   }
   .usable {
     font-size: 80px;
@@ -20,6 +21,7 @@
 @media (min-width: 768px) {
   .container {
     width: 750px;
+    padding: 0 5px;
   }
 }
 
