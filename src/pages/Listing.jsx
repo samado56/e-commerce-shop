@@ -223,9 +223,8 @@ export default function Listing() {
                   key={page}
                   className="cursor-pointer rounded-full px-[16px] py-[6px]"
                   style={{
-                    backgroundColor:
-                      activePage === page ? "rgb(245, 245,247)" : null,
-                    color: activePage === page ? " #4a5565" : null,
+                    backgroundColor: activePage === page ? "black" : null,
+                    color: activePage === page ? " #fff" : null,
                   }}
                   onClick={() => setActivePage(page)}
                 >

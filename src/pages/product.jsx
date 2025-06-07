@@ -8,10 +8,13 @@ import { SlLike } from "react-icons/sl";
 
 //components
 import Footer from "../component/Footer";
+import { useNavigate } from "react-router";
 
 export default function Product() {
   const [activeSize, setActiveSize] = useState("XS");
   const [activeColor, setActiveColor] = useState("red");
+
+  const navigate = useNavigate();
 
   const sizes = ["XS", "S", "M", "L", "XL"];
   const colors = ["red", "gold", "green"];
@@ -96,7 +99,10 @@ export default function Product() {
                 <button className="px-6 py-2 font-medium text-white bg-black rounded-md cursor-pointer text-xl flex-1/2">
                   Add to Cart
                 </button>
-                <button className="px-6 py-2 font-medium  bg-gray-400/10 rounded-md cursor-pointer text-xl flex-1/2">
+                <button
+                  onClick={() => navigate("/checkout")}
+                  className="px-6 py-2 font-medium  bg-gray-400/10 rounded-md cursor-pointer text-xl flex-1/2"
+                >
                   Buy Now
                 </button>
               </div>
