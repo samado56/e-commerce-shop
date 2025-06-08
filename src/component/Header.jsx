@@ -111,6 +111,7 @@ export default function Header() {
                 <HiOutlineHeart
                   size={20}
                   className=" cursor-pointer hover:bg-gray-300"
+                  onClick={() => navigate("/favorites")}
                 />
               </span>
             </div>
@@ -181,7 +182,7 @@ export default function Header() {
             >
               <HiOutlineShoppingBag size={25} className={iconsStyle} />
             </span>
-            <span className="favorite">
+            <span className="favorite" onClick={() => navigate("/favorites")}>
               <HiOutlineHeart size={25} className={iconsStyle} />
             </span>
             <BsPerson size={30} className={iconsStyle} />
