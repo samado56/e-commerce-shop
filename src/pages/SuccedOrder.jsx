@@ -80,7 +80,10 @@ export default function SuccedOrder() {
               </ul>
             </div>
             <div className="actions flex justify-center items-center gap-3 ">
-              <button className="bg-black text-white text-md md:text-xl text-center font-medium py-3 md:px-6 px-3  rounded-lg shadow-sm shadow-black/20 cursor-pointer">
+              <button
+                onClick={() => navigate("/order-details")}
+                className="bg-black text-white text-md md:text-xl text-center font-medium py-3 md:px-6 px-3  rounded-lg shadow-sm shadow-black/20 cursor-pointer"
+              >
                 Order Details
               </button>
               <button
