@@ -2,13 +2,14 @@ import { useState } from "react";
 import Footer from "../component/Footer";
 
 import prod from "../assets/imgs/r-avt2.jpg";
+import { useNavigate } from "react-router";
 
 export default function Checkout() {
   const paymentMethod = ["Credit Card", "PayPal", "Apple Pay"];
   const [method, setMethod] = useState("Credit Card");
   const [sameShippingInfo, setSameShippingInfo] = useState(false);
 
-  console.log(sameShippingInfo);
+  const navigate = useNavigate();
   return (
     <>
       <div className="py-[88px] md:pt-[61px]">
@@ -378,7 +379,10 @@ export default function Checkout() {
                   <span>$140.00</span>
                 </div>
               </div>
-              <button className="bg-black text-white text-xl text-center font-medium py-3 rounded-lg w-full mt-4 shadow-sm shadow-black/20 cursor-pointer">
+              <button
+                onClick={() => navigate("/succes")}
+                className="bg-black text-white text-xl text-center font-medium py-3 rounded-lg w-full mt-4 shadow-sm shadow-black/20 cursor-pointer"
+              >
                 Place Order
               </button>
             </div>
