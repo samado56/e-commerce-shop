@@ -47,7 +47,11 @@ export default function Header() {
               />
             </div>
             <div className="flex items-center gap-2">
-              <BsPerson size={25} className="cursor-pointer" />
+              <BsPerson
+                onClick={() => navigate("/favorites")}
+                size={25}
+                className="cursor-pointer"
+              />
 
               <RxHamburgerMenu
                 size={30}
@@ -185,7 +189,11 @@ export default function Header() {
             <span className="favorite" onClick={() => navigate("/favorites")}>
               <HiOutlineHeart size={25} className={iconsStyle} />
             </span>
-            <BsPerson size={30} className={iconsStyle} />
+            <BsPerson
+              onClick={() => navigate("/user")}
+              size={30}
+              className={iconsStyle}
+            />
           </div>
         </div>
 

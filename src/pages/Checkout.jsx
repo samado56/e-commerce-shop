@@ -33,7 +33,7 @@ export default function Checkout() {
                   id="fullname"
                   name="fullname"
                   placeholder="Enter your fullname"
-                  className="mt-1 w-full rounded-md border border-gray-300 px-4 py-2  focus:border-black focus:ring-black bg-white"
+                  className="mt-1 w-full rounded-md border border-gray-300 px-4 py-3  focus:border-black focus:ring-black bg-white"
                 />
               </div>
               <div className="mt-5">
@@ -48,7 +48,7 @@ export default function Checkout() {
                   id="address"
                   name="address"
                   placeholder="Enter your adress"
-                  className="mt-1 w-full rounded-md border border-gray-300 px-4 py-2  focus:border-black focus:ring-black bg-white"
+                  className="mt-1 w-full rounded-md border border-gray-300 px-4 py-3  focus:border-black focus:ring-black bg-white"
                 />
               </div>
               <div className="flex items-center gap-5 py-8 w-full">
@@ -65,7 +65,7 @@ export default function Checkout() {
                       id="city"
                       name="city"
                       placeholder="Enter your city"
-                      className="mt-1 w-full rounded-md border border-gray-300 px-4 py-2  focus:border-black focus:ring-black bg-white"
+                      className="mt-1 w-full rounded-md border border-gray-300 px-4 py-3  focus:border-black focus:ring-black bg-white"
                     />
                   </div>{" "}
                   <div>
@@ -80,7 +80,7 @@ export default function Checkout() {
                       id="zipcode"
                       name="zipcode"
                       placeholder="Enter your zip code"
-                      className="mt-1 w-full rounded-md border border-gray-300 px-4 py-2  focus:border-black focus:ring-black bg-white"
+                      className="mt-1 w-full rounded-md border border-gray-300 px-4 py-3  focus:border-black focus:ring-black bg-white"
                     />
                   </div>
                 </div>
@@ -98,7 +98,7 @@ export default function Checkout() {
                       id="state"
                       name="state"
                       placeholder="Enter your state"
-                      className="mt-1 w-full rounded-md border border-gray-300 px-4 py-2  focus:border-black focus:ring-black bg-white"
+                      className="mt-1 w-full rounded-md border border-gray-300 px-4 py-3  focus:border-black focus:ring-black bg-white"
                     />
                   </div>{" "}
                   <div>
@@ -113,7 +113,7 @@ export default function Checkout() {
                       id="phone"
                       name="phone"
                       placeholder="Enter your phone"
-                      className="mt-1 w-full rounded-md border border-gray-300 px-4 py-2  focus:border-black focus:ring-black bg-white"
+                      className="mt-1 w-full rounded-md border border-gray-300 px-4 py-3  focus:border-black focus:ring-black bg-white"
                     />
                   </div>
                 </div>
@@ -144,7 +144,7 @@ export default function Checkout() {
                       id="fullname"
                       name="fullname"
                       placeholder="Enter your fullname"
-                      className="mt-1 w-full rounded-md border border-gray-300 px-4 py-2  focus:border-black focus:ring-black bg-white"
+                      className="mt-1 w-full rounded-md border border-gray-300 px-4 py-3  focus:border-black focus:ring-black bg-white"
                     />
                   </div>
                   <div className="mt-5">
@@ -159,7 +159,7 @@ export default function Checkout() {
                       id="address"
                       name="address"
                       placeholder="Enter your adress"
-                      className="mt-1 w-full rounded-md border border-gray-300 px-4 py-2  focus:border-black focus:ring-black bg-white"
+                      className="mt-1 w-full rounded-md border border-gray-300 px-4 py-3  focus:border-black focus:ring-black bg-white"
                     />
                   </div>
                   <div className="flex items-start gap-5 py-8 w-full">
@@ -176,7 +176,7 @@ export default function Checkout() {
                           id="city"
                           name="city"
                           placeholder="Enter your city"
-                          className="mt-1 w-full rounded-md border border-gray-300 px-4 py-2  focus:border-black focus:ring-black bg-white"
+                          className="mt-1 w-full rounded-md border border-gray-300 px-4 py-3  focus:border-black focus:ring-black bg-white"
                         />
                       </div>{" "}
                       <div>
@@ -191,7 +191,7 @@ export default function Checkout() {
                           id="zipcode"
                           name="zipcode"
                           placeholder="Enter your zip code"
-                          className="mt-1 w-full rounded-md border border-gray-300 px-4 py-2  focus:border-black focus:ring-black bg-white"
+                          className="mt-1 w-full rounded-md border border-gray-300 px-4 py-3  focus:border-black focus:ring-black bg-white"
                         />
                       </div>
                     </div>
@@ -209,7 +209,7 @@ export default function Checkout() {
                           id="state"
                           name="state"
                           placeholder="Enter your state"
-                          className="mt-1 w-full rounded-md border border-gray-300 px-4 py-2  focus:border-black focus:ring-black bg-white"
+                          className="mt-1 w-full rounded-md border border-gray-300 px-4 py-3  focus:border-black focus:ring-black bg-white"
                         />
                       </div>{" "}
                     </div>
@@ -248,7 +248,7 @@ export default function Checkout() {
                     id="paypal"
                     name="paypal"
                     placeholder="Enter your  paypal"
-                    className="mt-1 w-full rounded-md border border-gray-300 px-4 py-2  focus:border-black focus:ring-black bg-white"
+                    className="mt-1 w-full rounded-md border border-gray-300 px-4 py-3  focus:border-black focus:ring-black bg-white"
                   />
                 </div>
               ) : method === "Apple Pay" ? (
@@ -264,7 +264,7 @@ export default function Checkout() {
                     id="apple pay"
                     name="apple pay"
                     placeholder="Enter your apple pay"
-                    className="mt-1 w-full rounded-md border border-gray-300 px-4 py-2  focus:border-black focus:ring-black bg-white"
+                    className="mt-1 w-full rounded-md border border-gray-300 px-4 py-3  focus:border-black focus:ring-black bg-white"
                   />
                 </div>
               ) : (
@@ -281,7 +281,7 @@ export default function Checkout() {
                       id="fullname"
                       name="fullname"
                       placeholder="Enter your  card number"
-                      className="mt-1 w-full rounded-md border border-gray-300 px-4 py-2  focus:border-black focus:ring-black bg-white"
+                      className="mt-1 w-full rounded-md border border-gray-300 px-4 py-3  focus:border-black focus:ring-black bg-white"
                     />
                   </div>
                   <div className="flex items-start gap-5 py-4 w-full">
@@ -298,7 +298,7 @@ export default function Checkout() {
                           id="expiration"
                           name="expiration"
                           placeholder="MM / YY"
-                          className="mt-1 w-full rounded-md border border-gray-300 px-4 py-2  focus:border-black focus:ring-black bg-white"
+                          className="mt-1 w-full rounded-md border border-gray-300 px-4 py-3  focus:border-black focus:ring-black bg-white"
                         />
                       </div>{" "}
                     </div>
@@ -316,7 +316,7 @@ export default function Checkout() {
                           id="cvv"
                           name="cvv"
                           placeholder="123"
-                          className="mt-1 w-full rounded-md border border-gray-300 px-4 py-2  focus:border-black focus:ring-black bg-white"
+                          className="mt-1 w-full rounded-md border border-gray-300 px-4 py-3  focus:border-black focus:ring-black bg-white"
                         />
                       </div>
                     </div>

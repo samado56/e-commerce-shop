@@ -1,14 +1,17 @@
 import { useNavigate } from "react-router";
 import avt from "../assets/imgs/r-avt2.jpg";
-import { MdDelete } from "react-icons/md";
 import { useState } from "react";
 
+import Footer from "../component/Footer";
+
+//icons
+import { MdDelete } from "react-icons/md";
 export default function Cart() {
   const navigate = useNavigate();
   const [cupon, setCupon] = useState(false);
   return (
     <>
-      <div className="pt-[61px]">
+      <div className="py-[88px]">
         <div className="container">
           <h1 className="text-4xl font-bold mt-10">Shopping Bag</h1>
           <div className="mt-10 flex flex-col justify-between md:flex-row items-start gap-10">
@@ -196,15 +199,15 @@ export default function Cart() {
                     id="cupon"
                     name="cupon"
                     placeholder="cupon code"
-                    class="mt-1 w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:border-black focus:ring-black"
+                    className="mt-1 w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:border-black focus:ring-black"
                   />
                 </div>
               ) : (
-                <div class="text-center text-sm text-gray-600">
+                <div className="text-center text-sm text-gray-600">
                   Have a dicount code?{" "}
                   <span
                     onClick={() => setCupon(!cupon)}
-                    class="font-medium text-black hover:underline cursor-pointer"
+                    className="font-medium text-black hover:underline cursor-pointer"
                   >
                     Enter it here
                   </span>
@@ -214,6 +217,7 @@ export default function Cart() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

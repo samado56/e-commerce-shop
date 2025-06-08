@@ -6,9 +6,11 @@ import Product from "./pages/product";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Cart from "./pages/Cart";
-import Checkout from "./pages/Checkout";
+import Checkout from "./pages/checkout";
 import SuccedOrder from "./pages/SuccedOrder";
 import Favorites from "./pages/Favorites";
+import User from "./pages/User";
+import OrderDetails from "./pages/OrderDetails";
 
 function App() {
   return (
@@ -21,9 +23,11 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="checkout" element={<Checkout />} />
-        <Route path="succes" element={<SuccedOrder />} />
-        <Route path="favorites" element={<Favorites />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/succes" element={<SuccedOrder />} />
+        <Route path="/favorites" element={<Favorites />} />
+        <Route path="/user" element={<User />} />
+        <Route path="/order-details" element={<OrderDetails />} />
       </Routes>
     </>
   );
