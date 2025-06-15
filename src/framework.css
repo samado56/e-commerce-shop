@@ -1,3 +1,18 @@
+:root {
+  --transition: 0.3s;
+  --awesome: "Font Awesome 6 Free";
+  --blue-color: #0075ff;
+  --blue-alt-color: #0d69d5;
+  --orange-color: #f59e0b;
+  --green-color: #22c55e;
+  --red-color: #f44336;
+  --grey-color: #888;
+  --grey-light: #ccc;
+  --bg-grey: #eeeeee;
+  --text: #777;
+  --border: #ccc;
+}
+
 .container {
   margin: 0 auto;
   padding: 0 20px;
@@ -102,3 +117,122 @@
 } */
 
 /* ========= end  Home Page ========= */
+
+/* start usable toggle switch */
+.toggle {
+  appearance: none;
+  /* visibility: hidden; */
+  display: none;
+}
+
+.switch {
+  width: 60px;
+  height: 32px;
+  border-radius: 40px;
+  background-color: var(--grey-light);
+  position: relative;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.switch::before {
+  content: "";
+  font-family: var(--awesome);
+  font-weight: 900;
+  position: absolute;
+  height: 24px;
+  width: 24px;
+  top: 4px;
+  left: 4px;
+  color: var(--grey-light);
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.toggle:checked + .switch {
+  background-color: black;
+}
+
+.toggle:checked + .switch::before {
+  content: "";
+  position: absolute;
+  left: calc(100% - 28px);
+  color: var(--blue-color);
+}
+
+/* ========== for modal ======== */
+
+/* .toggle {
+  appearance: none;
+  display: none;
+}
+
+.switch {
+  width: 50px;
+  height: 20px;
+  border-radius: 40px;
+  background-color: var(--grey-light);
+  position: relative;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.switch::before {
+  content: "";
+  font-family: var(--awesome);
+  font-weight: 900;
+  position: absolute;
+  height: 75%;
+  width: 20px;
+  top: 12.5%;
+  left: 8%;
+  color: var(--grey-light);
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.toggle:checked + .switch {
+  background-color: black;
+}
+
+.toggle:checked + .switch::before {
+  content: "";
+  position: absolute;
+  left: calc(100% - 28px);
+  color: var(--blue-color);
+} */
+
+/* ========== for modal ======== */
+
+@media (max-width: 767px) {
+  .switch {
+    width: 52px;
+    height: 22px;
+  }
+
+  .switch::before {
+    height: 16px;
+    width: 16px;
+    top: 3px;
+    left: 4px;
+  }
+
+  .toggle:checked + .switch {
+    background-color: black;
+    width: 52px;
+    height: 22px;
+  }
+
+  .toggle:checked + .switch::before {
+    left: calc(100% - 22px);
+  }
+}
+/* end usable toggle switch */

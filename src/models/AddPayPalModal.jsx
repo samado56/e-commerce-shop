@@ -1,0 +1,55 @@
+import { useRef, useEffect } from "react";
+
+//icons
+import { BsPaypal } from "react-icons/bs";
+export default function AddPayPalModal({ closeModal, showModal, addPayment }) {
+  const modalRef = useRef();
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        closeModal();
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [closeModal]);
+  return (
+    <>
+      {showModal ? (
+        <div className="fixed top-0 left-0 bg-black/40 w-full h-full pt-[88px] flex items-center justify-center">
+          <div
+            ref={modalRef}
+            className="relative w-[500px]  rounded-md shadow-md shadow-black/10 bg-white p-8"
+          >
+            <div className="flex flex-col items-center justify-between mb-8 text-center">
+              <BsPaypal size={50} className="text-blue-500 mb-6" />
+              <h1 className="text-4xl font-bold mb-4">Add PayPal Account</h1>
+              <p className="text-xl text-gray-600 font-medium mb-4">
+                Link your PayPal Account to securely manage your payments with
+                us. This allows for quick and easy transactions
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center justify-between gap-2 mt-8 ">
+              <button
+                onClick={addPayment}
+                className="text-lg font-semibold py-2 px-3 border-2 border-gray-400/20 rounded-md bg-black text-white cursor-pointer w-full"
+              >
+                Connect with PayPal
+              </button>
+              <button
+                onClick={closeModal}
+                className="text-lg font-semibold py-2 px-3 border-2 border-gray-400/20 rounded-md cursor-pointer w-full"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : null}
+    </>
+  );
+}
