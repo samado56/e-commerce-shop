@@ -507,7 +507,7 @@ const OrdersHistory = ({ nav }) => {
           </>
         </div>
         <div className="p-4 w-full bg-white mt-5 rounded-xl overflow-x-auto shadow-sm shadow-black/10  ">
-          <table className="w-[600px] md:w-full text-start table-auto  border-1 border-gray-400/20 ">
+          <table className="w-[800px] md:w-full text-start table-fixed  border-1 border-gray-400/20 ">
             <thead className="bg-gray-400/10 ">
               <tr>
                 <th className=" text-start py-2 px-4">ORDER</th>

@@ -11,6 +11,7 @@ import SuccedOrder from "./pages/SuccedOrder";
 import Favorites from "./pages/Favorites";
 import User from "./pages/User";
 import OrderDetails from "./pages/OrderDetails";
+import Dashboard from "./admin/Dashboard";
 
 function App() {
   return (
@@ -28,6 +29,8 @@ function App() {
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/user" element={<User />} />
         <Route path="/order-details" element={<OrderDetails />} />
+        {/* =========== admin ============ */}
+        <Route path="/admin" element={<Dashboard />} />
       </Routes>
     </>
   );
