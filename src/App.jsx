@@ -16,6 +16,9 @@ import Dashboard from "./admin/Dashboard";
 function App() {
   return (
     <>
+      <Routes>
+        <Route path="/admin" element={<Dashboard />} />
+      </Routes>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -30,7 +33,6 @@ function App() {
         <Route path="/user" element={<User />} />
         <Route path="/order-details" element={<OrderDetails />} />
         {/* =========== admin ============ */}
-        <Route path="/admin" element={<Dashboard />} />
       </Routes>
     </>
   );

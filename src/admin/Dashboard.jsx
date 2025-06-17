@@ -2,6 +2,10 @@ import { Box } from "@mui/material";
 import { useContext } from "react";
 import { GlobalContext } from "../context/globalContext";
 
+//component
+import SideBar from "../component/SideBar";
+import AdminHeader from "../component/AdminHeader";
+
 //recharts
 import {
   ResponsiveContainer,
@@ -113,6 +117,72 @@ const TinyBarChart = () => {
   );
 };
 
+const SalesOverview = () => {
+  return (
+    <>
+      <div className="grid grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))] gap-6 text-center md:text-start">
+        <div className="p-4 shadow-md shadow-black/10 rounded-md bg-white">
+          <p className="text-gray-600 font-semibold mb-2">Revenue</p>
+          <h1 className="text-4xl font-bold mb-1">$25,450</h1>
+          <span className="block text-green-600 font-semibold">
+            +12% from last month{" "}
+          </span>
+        </div>
+        <div className="p-4 shadow-md shadow-black/10 rounded-md bg-white">
+          <p className="text-gray-600 font-semibold mb-2">Orders</p>
+          <h1 className="text-4xl font-bold mb-1">1,235</h1>
+          <span className="block text-green-600 font-semibold">
+            +12% from last month{" "}
+          </span>
+        </div>
+        <div className="p-4 shadow-md shadow-black/10 rounded-md bg-white">
+          <p className="text-gray-600 font-semibold mb-2">Customers</p>
+          <h1 className="text-4xl font-bold mb-1">800</h1>
+          <span className="block text-green-600 font-semibold">
+            +12% from last month{" "}
+          </span>
+        </div>
+        <div className="p-4 shadow-md shadow-black/10 rounded-md bg-white">
+          <p className="text-gray-600 font-semibold mb-2">Conversion Rate</p>
+          <h1 className="text-4xl font-bold mb-1">4.5%</h1>
+          <span className="block text-red-600 font-semibold">
+            +12% from last month{" "}
+          </span>
+        </div>
+      </div>
+      <div className="flex flex-col md:flex-row items-centr gap-6 mt-10">
+        <div className=" rounded-md shadow-md shadow-black/10 p-4 flex-1/3 bg-white">
+          <div className="flex items-center justify-between mb-5">
+            <div>
+              <h4 className="text-2xl font-medium ">Revenue Trend</h4>
+              <span className="text-gray-600 font-semibold">Last 30 Days</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <h4 className="text-2xl font-bold ">$25,450</h4>
+              <span className="text-green-600 font-semibold">+12%</span>
+            </div>
+          </div>
+          {/* =========== Chart ============= */}
+          <SimpleAreaChart />
+        </div>
+        <div className=" rounded-md shadow-md shadow-black/10 p-4 flex-1/7 bg-white">
+          <div className="flex items-center justify-between mb-5">
+            <div>
+              <h4 className="text-2xl font-medium ">Orders by Category</h4>
+              <span className="text-gray-600 font-semibold">Last 30 Days</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <h4 className="text-2xl font-bold ">1,265</h4>
+              <span className="text-green-600 font-semibold">+8%</span>
+            </div>
+          </div>
+          <TinyBarChart />
+        </div>
+      </div>
+    </>
+  );
+};
+
 const RecentOrders = () => {
   return (
     <>
@@ -173,7 +243,7 @@ const TopSellingProducts = () => {
   products.splice(4);
   return (
     <>
-      <div className="grid grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))] gap-6 text-center md:text-start">
+      <div className="grid grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))] gap-6 text-center md:text-start">
         {products &&
           products.map(({ title, thumbnail }, index) => {
             return (
@@ -229,77 +299,23 @@ const CustomerInsights = () => {
 export default function Dashboard() {
   return (
     <>
-      <div className=" px-4 md:px-10 py-[88px] md:pt-[61px] bg-gray-400/5 ">
-        <h2 className="text-3xl font-bold my-10">Sales Overview</h2>
-        <div className="grid grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))] gap-6 text-center md:text-start">
-          <div className="p-4 shadow-md shadow-black/10 rounded-md bg-white">
-            <p className="text-gray-600 font-semibold mb-2">Revenue</p>
-            <h1 className="text-4xl font-bold mb-1">$25,450</h1>
-            <span className="block text-green-600 font-semibold">
-              +12% from last month{" "}
-            </span>
-          </div>
-          <div className="p-4 shadow-md shadow-black/10 rounded-md bg-white">
-            <p className="text-gray-600 font-semibold mb-2">Orders</p>
-            <h1 className="text-4xl font-bold mb-1">1,235</h1>
-            <span className="block text-green-600 font-semibold">
-              +12% from last month{" "}
-            </span>
-          </div>
-          <div className="p-4 shadow-md shadow-black/10 rounded-md bg-white">
-            <p className="text-gray-600 font-semibold mb-2">Customers</p>
-            <h1 className="text-4xl font-bold mb-1">800</h1>
-            <span className="block text-green-600 font-semibold">
-              +12% from last month{" "}
-            </span>
-          </div>
-          <div className="p-4 shadow-md shadow-black/10 rounded-md bg-white">
-            <p className="text-gray-600 font-semibold mb-2">Conversion Rate</p>
-            <h1 className="text-4xl font-bold mb-1">4.5%</h1>
-            <span className="block text-red-600 font-semibold">
-              +12% from last month{" "}
-            </span>
-          </div>
+      <div className="   bg-gray-400/5 ">
+        <AdminHeader />
+        <div className="pl-[80px] md:pl-[320px] pr-2 md:pr-4    ">
+          <SideBar />
+          <h2 className="text-3xl font-bold my-5 md:my-10">Sales Overview</h2>
+          <SalesOverview />
+          <h2 className="text-3xl font-bold my-5 md:my-10">Recent Orders</h2>
+          <RecentOrders />
+          <h2 className="text-3xl font-bold my-5 md:my-10">
+            Top Selling Products
+          </h2>
+          <TopSellingProducts />
+          <h2 className="text-3xl font-bold my-5 md:my-10">
+            Customer Insights
+          </h2>
+          <CustomerInsights />
         </div>
-        <div className="flex flex-col md:flex-row items-centr gap-6 mt-10">
-          <div className=" rounded-md shadow-md shadow-black/10 p-4 flex-1/3 bg-white">
-            <div className="flex items-center justify-between mb-5">
-              <div>
-                <h4 className="text-2xl font-medium ">Revenue Trend</h4>
-                <span className="text-gray-600 font-semibold">
-                  Last 30 Days
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <h4 className="text-2xl font-bold ">$25,450</h4>
-                <span className="text-green-600 font-semibold">+12%</span>
-              </div>
-            </div>
-            {/* =========== Chart ============= */}
-            <SimpleAreaChart />
-          </div>
-          <div className=" rounded-md shadow-md shadow-black/10 p-4 flex-1/7 bg-white">
-            <div className="flex items-center justify-between mb-5">
-              <div>
-                <h4 className="text-2xl font-medium ">Orders by Category</h4>
-                <span className="text-gray-600 font-semibold">
-                  Last 30 Days
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <h4 className="text-2xl font-bold ">1,265</h4>
-                <span className="text-green-600 font-semibold">+8%</span>
-              </div>
-            </div>
-            <TinyBarChart />
-          </div>
-        </div>
-        <h2 className="text-3xl font-bold my-10">Sales Overview</h2>
-        <RecentOrders />
-        <h2 className="text-3xl font-bold my-10">Top Selling Products</h2>
-        <TopSellingProducts />
-        <h2 className="text-3xl font-bold my-10">Customer Insights</h2>
-        <CustomerInsights />
       </div>
     </>
   );
