@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import { useContext } from "react";
 import { GlobalContext } from "../context/globalContext";
+import { SideBarContext } from "../context/sideBarContext";
 
 //component
 import SideBar from "../component/SideBar";
@@ -152,7 +153,7 @@ const SalesOverview = () => {
       </div>
       <div className="flex flex-col md:flex-row items-centr gap-6 mt-10">
         <div className=" rounded-md shadow-md shadow-black/10 p-4 flex-1/3 bg-white">
-          <div className="flex items-center justify-between mb-5">
+          <div className="flex items-start justify-between mb-5">
             <div>
               <h4 className="text-2xl font-medium ">Revenue Trend</h4>
               <span className="text-gray-600 font-semibold">Last 30 Days</span>
@@ -166,7 +167,7 @@ const SalesOverview = () => {
           <SimpleAreaChart />
         </div>
         <div className=" rounded-md shadow-md shadow-black/10 p-4 flex-1/7 bg-white">
-          <div className="flex items-center justify-between mb-5">
+          <div className="flex items-start justify-between mb-5">
             <div>
               <h4 className="text-2xl font-medium ">Orders by Category</h4>
               <span className="text-gray-600 font-semibold">Last 30 Days</span>
@@ -297,12 +298,15 @@ const CustomerInsights = () => {
 };
 
 export default function Dashboard() {
+  const { shrinkSideBar } = useContext(SideBarContext);
   return (
     <>
       <div className="   bg-gray-400/5 ">
         <AdminHeader />
-        <div className="pl-[80px] md:pl-[320px] pr-2 md:pr-4    ">
-          <SideBar />
+        <div
+          className=" pr-2 md:pr-4    "
+          style={{ paddingLeft: shrinkSideBar ? "220px" : " 120px" }}
+        >
           <h2 className="text-3xl font-bold my-5 md:my-10">Sales Overview</h2>
           <SalesOverview />
           <h2 className="text-3xl font-bold my-5 md:my-10">Recent Orders</h2>

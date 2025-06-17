@@ -35,7 +35,7 @@ export default function Home() {
             </p>
             <div className="btn mt-10">
               <button
-                onClick={() => navigate("/products")}
+                onClick={() => navigate("/shopping")}
                 className="bg-black text-white text-lg md:text-2xl shadow-sm shadow-black font-medium px-6 py-4 rounded-lg mr-8 border-none cursor-pointer"
               >
                 Shop Now

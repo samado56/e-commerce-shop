@@ -12,17 +12,21 @@ import Favorites from "./pages/Favorites";
 import User from "./pages/User";
 import OrderDetails from "./pages/OrderDetails";
 import Dashboard from "./admin/Dashboard";
+import StoreProducts from "./admin/StoreProducts";
+import SideBar from "./component/SideBar";
 
 function App() {
   return (
     <>
+      <SideBar />
       <Routes>
-        <Route path="/admin" element={<Dashboard />} />
+        <Route path="/Dashboard" element={<Dashboard />} />
+        <Route path="/Products" element={<StoreProducts />} />
       </Routes>
-      <Header />
+      {/* <Header /> */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Listing />} />
+        <Route path="/shopping" element={<Listing />} />
         <Route path="/product" element={<Product />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

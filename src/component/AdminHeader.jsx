@@ -3,10 +3,19 @@ import avt from "../assets/imgs/r-avt1.jpeg";
 //icons
 import { FaRegBell } from "react-icons/fa";
 
+//hooks
+import { SideBarContext } from "../context/sideBarContext";
+import { useContext } from "react";
+
 export default function AdminHeader() {
+  const { shrinkSideBar } = useContext(SideBarContext);
+
   return (
     <>
-      <div className="pl-[80px] md:pl-[316px] flex items-center justify-between bg-white p-2 shadow-sm shadow-black/10">
+      <div
+        className="pl-[80px] md:pl-[316px] flex items-center justify-between bg-white p-2 shadow-sm shadow-black/10"
+        style={{ paddingLeft: shrinkSideBar ? "220px" : " 120px" }}
+      >
         <div>
           <h2 className="text-2xl md:text-3xl font-bold">Dashboard</h2>
           <p className="text-gray-600 font-semibold text-xs">

@@ -7,13 +7,16 @@ import "./framework.css";
 
 import App from "./App.jsx";
 import GlobalState from "./context/GlobalContext.jsx";
+import SideBarProvider from "./context/SideBarContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-      <GlobalState>
-        <App />
-      </GlobalState>
+      <SideBarProvider>
+        <GlobalState>
+          <App />
+        </GlobalState>
+      </SideBarProvider>
     </BrowserRouter>
   </StrictMode>
 );
