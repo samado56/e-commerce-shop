@@ -3,3 +3,7 @@
 @theme {
   --color-mint-500: oklch(0.72 0.11 178);
 }
+
+.grid-wrapper {
+  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6;
+}

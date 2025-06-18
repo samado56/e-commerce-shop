@@ -7,6 +7,9 @@ import { SideBarContext } from "../context/sideBarContext";
 import SideBar from "../component/SideBar";
 import AdminHeader from "../component/AdminHeader";
 
+//usable styles
+import sectionsPadding from "../styles/sectionsPadding";
+
 //recharts
 import {
   ResponsiveContainer,
@@ -21,6 +24,7 @@ import {
 
 //map chart
 import MapChart from "../MapChart/MapChart";
+import useResopnsive from "../hooks/useResponsive";
 
 const data = [
   { date: "Week 1", value: 10 },
@@ -121,8 +125,8 @@ const TinyBarChart = () => {
 const SalesOverview = () => {
   return (
     <>
-      <div className="grid grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))] gap-6 text-center md:text-start">
-        <div className="p-4 shadow-md shadow-black/10 rounded-md bg-white">
+      <div className="grid-wrapper text-center md:text-start">
+        <div className="p-4 shadow-md shadow-black/10 rounded-md bg-white ">
           <p className="text-gray-600 font-semibold mb-2">Revenue</p>
           <h1 className="text-4xl font-bold mb-1">$25,450</h1>
           <span className="block text-green-600 font-semibold">
@@ -244,7 +248,7 @@ const TopSellingProducts = () => {
   products.splice(4);
   return (
     <>
-      <div className="grid grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))] gap-6 text-center md:text-start">
+      <div className="grid-wrapper  text-center md:text-start">
         {products &&
           products.map(({ title, thumbnail }, index) => {
             return (
@@ -299,13 +303,15 @@ const CustomerInsights = () => {
 
 export default function Dashboard() {
   const { shrinkSideBar } = useContext(SideBarContext);
+  const { width } = useResopnsive();
+  const isSmallScreen = width < 768;
   return (
     <>
-      <div className="   bg-gray-400/5 ">
+      <div className="   bg-gray-400/5 min-h-[100vh]">
         <AdminHeader />
         <div
           className=" pr-2 md:pr-4    "
-          style={{ paddingLeft: shrinkSideBar ? "220px" : " 120px" }}
+          style={sectionsPadding({ shrinkSideBar, isSmallScreen })}
         >
           <h2 className="text-3xl font-bold my-5 md:my-10">Sales Overview</h2>
           <SalesOverview />

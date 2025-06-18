@@ -2,7 +2,7 @@ import { SideBarContext } from "./sideBarContext";
 import { useState } from "react";
 
 export default function SideBarProvider({ children }) {
-  const [shrinkSideBar, setShrinkSideBar] = useState(false);
+  const [shrinkSideBar, setShrinkSideBar] = useState(true);
 
   return (
     <>
