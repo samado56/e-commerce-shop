@@ -16,6 +16,7 @@ import Dashboard from "./admin/Dashboard";
 import SideBar from "./component/SideBar";
 import StoreProducts from "./admin/StoreProducts";
 import Orders from "./admin/Orders";
+import Customers from "./admin/Customers";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="/Products" element={<StoreProducts />} />
         <Route path="/Orders" element={<Orders />} />
+        <Route path="/Customers" element={<Customers />} />
       </Routes>
       {/* <Header /> */}
       <Routes>

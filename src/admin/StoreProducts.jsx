@@ -1,8 +1,5 @@
 //icons
 import { IoMdAdd } from "react-icons/io";
-// import { AiOutlineDelete } from "react-icons/md";
-// import { MdOutlineEdit } from "react-icons/md";
-import AdminHeader from "../component/AdminHeader";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { MdFileDownload } from "react-icons/md";
 import { IoIosSearch } from "react-icons/io";
@@ -13,6 +10,8 @@ import { MdOutlineEdit } from "react-icons/md";
 import { SideBarContext } from "../context/sideBarContext";
 import { useContext, useState } from "react";
 import useResponsive from "../hooks/useResponsive";
+
+import AdminHeader from "../component/AdminHeader";
 
 import prod from "../assets/imgs/product7.jpg";
 import sectionsPadding from "../styles/sectionsPadding";

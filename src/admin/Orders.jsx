@@ -1,8 +1,4 @@
 //icons
-import { IoMdAdd } from "react-icons/io";
-// import { AiOutlineDelete } from "react-icons/md";
-// import { MdOutlineEdit } from "react-icons/md";
-import AdminHeader from "../component/AdminHeader";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { MdFileDownload } from "react-icons/md";
 import { IoIosSearch } from "react-icons/io";
@@ -10,13 +6,16 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { MdOutlineEdit } from "react-icons/md";
 import { BsEye } from "react-icons/bs";
 
-import { SideBarContext } from "../context/sideBarContext";
+//hooks
 import { useContext, useState } from "react";
 import useResponsive from "../hooks/useResponsive";
 
+// usable style
 import sectionsPadding from "../styles/sectionsPadding";
 
 //components
+import { SideBarContext } from "../context/sideBarContext";
+import AdminHeader from "../component/AdminHeader";
 import Label from "../component/Label";
 
 export default function Orders() {
@@ -35,7 +34,7 @@ export default function Orders() {
           className="pr-3 md:pr-6 "
           style={sectionsPadding({ shrinkSideBar, isSmallScreen })}
         >
-          <div className="my-5 md:my-6 flex items-center justify-between">
+          <div className="my-5 md:my-6">
             <h2 className="text-2xl md:text-3xl font-bold">Orders</h2>
           </div>
           <div className="grid grid-cols-[repeat(auto-fill,_minmax(300px,_1fr))] gap-6 text-center md:text-start mb-5">

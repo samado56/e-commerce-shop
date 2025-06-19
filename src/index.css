@@ -27,3 +27,7 @@
 .label-yellow {
   @apply text-sm bg-yellow-500/10 py-1 px-3 text-yellow-500 font-[500] rounded-2xl mx-auto block w-fit;
 }
+
+.row-text {
+  @apply text-gray-500 text-sm font-semibold;
+}
