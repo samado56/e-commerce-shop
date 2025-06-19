@@ -12,8 +12,10 @@ import Favorites from "./pages/Favorites";
 import User from "./pages/User";
 import OrderDetails from "./pages/OrderDetails";
 import Dashboard from "./admin/Dashboard";
-import StoreProducts from "./admin/StoreProducts";
+//Admin Pages
 import SideBar from "./component/SideBar";
+import StoreProducts from "./admin/StoreProducts";
+import Orders from "./admin/Orders";
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
       <Routes>
         <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="/Products" element={<StoreProducts />} />
+        <Route path="/Orders" element={<Orders />} />
       </Routes>
       {/* <Header /> */}
       <Routes>

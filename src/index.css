@@ -7,3 +7,23 @@
 .grid-wrapper {
   @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6;
 }
+
+.label-cyan {
+  @apply text-sm bg-cyan-500/10 py-1 px-3 text-cyan-500 font-[500] rounded-2xl mx-auto block w-fit;
+}
+.label-green {
+  @apply text-sm bg-green-500/10 py-1  px-3 text-green-500 font-[500] rounded-2xl mx-auto block w-fit;
+}
+.label-blue {
+  @apply text-sm bg-blue-500/10 py-1 px-3 text-blue-500 font-[500] rounded-2xl mx-auto block w-fit;
+}
+.label-red {
+  @apply text-sm bg-red-500/10 py-1 px-3 text-red-500 font-[500] rounded-2xl mx-auto block w-fit;
+}
+.label-orange {
+  @apply text-sm bg-orange-500/10 py-1 px-3 text-orange-500 font-[500] rounded-2xl mx-auto block w-fit;
+}
+
+.label-yellow {
+  @apply text-sm bg-yellow-500/10 py-1 px-3 text-yellow-500 font-[500] rounded-2xl mx-auto block w-fit;
+}

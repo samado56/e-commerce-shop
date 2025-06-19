@@ -313,7 +313,7 @@ export default function Dashboard() {
           className=" pr-2 md:pr-4    "
           style={sectionsPadding({ shrinkSideBar, isSmallScreen })}
         >
-          <h2 className="text-3xl font-bold my-5 md:my-10">Sales Overview</h2>
+          <h2 className="text-3xl font-bold my-5 md:my-6">Sales Overview</h2>
           <SalesOverview />
           <h2 className="text-3xl font-bold my-5 md:my-10">Recent Orders</h2>
           <RecentOrders />

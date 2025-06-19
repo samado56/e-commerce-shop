@@ -6,17 +6,20 @@ import AdminHeader from "../component/AdminHeader";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { MdFileDownload } from "react-icons/md";
 import { IoIosSearch } from "react-icons/io";
-import { MdContentCopy } from "react-icons/md";
 import { AiOutlineDelete } from "react-icons/ai";
 import { MdOutlineEdit } from "react-icons/md";
+import { BsEye } from "react-icons/bs";
 
 import { SideBarContext } from "../context/sideBarContext";
 import { useContext, useState } from "react";
 import useResponsive from "../hooks/useResponsive";
 
-import prod from "../assets/imgs/product7.jpg";
 import sectionsPadding from "../styles/sectionsPadding";
-export default function StoreProducts() {
+
+//components
+import Label from "../component/Label";
+
+export default function Orders() {
   const { shrinkSideBar } = useContext(SideBarContext);
   const [activePage, setActivePage] = useState(1);
   const { width } = useResponsive();
@@ -33,38 +36,29 @@ export default function StoreProducts() {
           style={sectionsPadding({ shrinkSideBar, isSmallScreen })}
         >
           <div className="my-5 md:my-6 flex items-center justify-between">
-            <h2 className="text-2xl md:text-3xl font-bold">Products</h2>
-
-            <button className="rounded-md bg-black text-white  py-1 md:py-2 px-2 md:px-4 font-medium flex gap-2 items-center cursor-pointer">
-              <span>
-                <IoMdAdd size={20} />
-              </span>
-              {!isSmallScreen ? "Add Product" : null}
-            </button>
+            <h2 className="text-2xl md:text-3xl font-bold">Orders</h2>
           </div>
           <div className="grid grid-cols-[repeat(auto-fill,_minmax(300px,_1fr))] gap-6 text-center md:text-start mb-5">
             <div className="p-4 shadow-md shadow-black/10 rounded-md bg-white">
-              <p className="text-gray-600 font-semibold mb-2">Total Products</p>
-              <h1 className="text-4xl font-bold mb-1">120</h1>
+              <p className="text-gray-600 font-semibold mb-2">Total Orders</p>
+              <h1 className="text-4xl font-bold mb-1">1,257</h1>
+            </div>
+            <div className="p-4 shadow-md shadow-black/10 rounded-md bg-white">
+              <p className="text-gray-600 font-semibold mb-2">Total Revenue</p>
+              <h1 className="text-4xl font-bold mb-1">$85,320.50</h1>
             </div>
             <div className="p-4 shadow-md shadow-black/10 rounded-md bg-white">
               <p className="text-gray-600 font-semibold mb-2">
-                Products in Stock
+                Pending Shipments
               </p>
-              <h1 className="text-4xl font-bold mb-1">95</h1>
-            </div>
-            <div className="p-4 shadow-md shadow-black/10 rounded-md bg-white">
-              <p className="text-gray-600 font-semibold mb-2">
-                Products Out of Stock
-              </p>
-              <h1 className="text-4xl font-bold mb-1">25</h1>
+              <h1 className="text-4xl font-bold mb-1">42</h1>
             </div>
           </div>
           <div className="flex items-center flex-wrap gap-2  px-2 md:px-3 bg-white shadow-sm shadow-black/10 rounded-md py-4 w-full">
             <div className="relative w-[calc(100%-44px)] md:w-auto ">
               <input
                 type="search"
-                placeholder="Search  by name or SKU "
+                placeholder="Search orders..."
                 className=" py-1 md:py-2 px-8 border-2 border-gray-400/20 rounded-md w-[calc(100%-10px)] md:w-[400px] bg-white  "
               />
               <IoIosSearch
@@ -74,14 +68,13 @@ export default function StoreProducts() {
             </div>
 
             <div className="w-full md:flex-1 order-5 md:order-1 flex gap-2 md:block md:gap-0">
-              <select className="py-1 md:py-2 px-2 md:px-4  border-2 border-gray-400/20 rounded-md w-1/2 md:w-fit  bg-white">
-                <option value="shipped">Category</option>
-                <option value="shipped">Shipped</option>
-                <option value="deliverd">Deliverd</option>
-                <option value="cancelled">Cancelled</option>
-              </select>
+              <input
+                type="date"
+                className="py-1 md:py-2 px-2 md:px-4  border-2 border-gray-400/20 rounded-md w-1/2 md:w-fit  bg-white"
+              />
+
               <select className="py-1 md:py-2 px-2 md:px-4  border-2 border-gray-400/20 rounded-md w-1/2 md:w-fit md:ml-2 bg-white">
-                <option value="shipped">Stock Status</option>
+                <option value="shipped">All Status</option>
                 <option value="shipped">Shipped</option>
                 <option value="deliverd">Deliverd</option>
                 <option value="cancelled">Cancelled</option>
@@ -99,114 +92,104 @@ export default function StoreProducts() {
 
           <div className="p-4 w-full bg-white mt-5 rounded-xl overflow-x-auto shadow-sm shadow-black/10  ">
             <table className="w-[1200px] md:w-full text-start table-auto  border-1 border-gray-400/20 ">
-              <thead className="bg-gray-400/10 ">
+              <thead className="bg-gray-400/10 font-medium text-gray-600 text-center">
                 <tr>
-                  <td className=" text-start py-2 px-4">
+                  <td className=" py-2 px-4">
                     <input type="checkbox" />
                   </td>
-                  <td className=" text-start py-2 px-4">IMAGE</td>
-                  <td className=" text-start py-2 px-4">PRODUCT NAME</td>
-                  <td className=" text-start py-2 px-4">SKU</td>
-                  <td className=" text-start py-2 px-4">PRICE</td>
-                  <td className=" text-start py-2 px-4">STOCK QTY</td>
-                  <td className=" text-start py-2 px-4">STATUS</td>
-                  <td className=" text-start py-2 px-4">VISIBILITY</td>
-                  <td className=" text-start py-2 px-4">Actions</td>
+                  <td className="text-start py-2 px-4">ORDER ID</td>
+                  <td className=" py-2 px-4">CUSTMER NAME</td>
+                  <td className=" py-2 px-4">DATE</td>
+                  <td className=" py-2 px-4">TOTAL</td>
+                  <td className=" py-2 px-4">PAYMENT STATUS</td>
+                  <td className=" py-2 px-4">ORDER STATUS</td>
+                  <td className=" py-2 px-4">Actions</td>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="text-center">
                 <tr className="border-b-1 border-gray-400/20">
-                  <td className=" text-start py-2 px-4">
+                  <td className=" text-start  px-4">
                     <input type="checkbox" />
                   </td>
-                  <td className="py-4 px-4 text-gray-400">
-                    <img src={prod} className="w-[40px] rounded-md" />
+                  <td className="text-start px-4 font-semibold ">#12345</td>
+                  <td className=" px-4 font-medium text-gray-500 ">
+                    Sophia Clark
                   </td>
-                  <td className="py-4 px-4 font-medium ">
-                    Eco-Friendly Bamboo
+                  <td className=" px-4 text-gray-400 text-md font-semibold ">
+                    2024-07-26
                   </td>
-                  <td className="py-4 px-4 text-gray-500 text-lg ">
-                    Personal Care
+                  <td className=" px-4  ">$125.00</td>
+                  <td className=" px-4 ">
+                    <Label label="Paid" className="label-green" />
                   </td>
-                  <td className="py-4 px-4 text-gray-500 text-lg ">564</td>
-                  <td className="py-4 px-4 text-gray-500 text-lg ">$125.00</td>
-                  <td className="py-4 px-4">
-                    <span className="bg-cyan-500/10 py-1 px-3 text-cyan-500 font-[500] rounded-2xl">
-                      Shipped
-                    </span>
+                  <td className=" px-4">
+                    <Label label="Shipped" className="label-orange" />
                   </td>
-                  <td className="py-4 px-4">
-                    <span className="bg-blue-500/10 py-1 px-3 text-blue-500 font-[500] rounded-2xl">
-                      Published
-                    </span>
-                  </td>
-                  <td className="py-6 px-4 text-lg text-gray-600 font-medium flex items-center gap-4 my-auto ">
-                    <AiOutlineDelete size={25} />
-                    <MdContentCopy size={25} />
-                    <MdOutlineEdit size={25} />
+
+                  <td className="py-4 px-4 text-lg text-gray-600 font-medium flex items-center justify-center gap-4 ">
+                    <BsEye size={25} className="cursor-pointer" />
+                    <MdOutlineEdit size={25} className="cursor-pointer" />
+                    <AiOutlineDelete
+                      size={25}
+                      className="cursor-pointer text-red-400"
+                    />
                   </td>
                 </tr>
                 <tr className="border-b-1 border-gray-400/20">
-                  <td className=" text-start py-2 px-4">
+                  <td className=" text-start px-4">
                     <input type="checkbox" />
                   </td>
-                  <td className="py-4 px-4 text-gray-400">
-                    <img src={prod} className="w-[40px] rounded-md" />
+                  <td className="text-start px-4 font-semibold ">#12345</td>
+
+                  <td className="px-4 font-medium text-gray-500 ">
+                    Sophia Clark
                   </td>
-                  <td className="py-4 px-4 font-medium ">
-                    Eco-Friendly Bamboo
+                  <td className="px-4 text-gray-400 text-md font-semibold ">
+                    2024-07-26
                   </td>
-                  <td className="py-4 px-4 text-gray-500 text-lg ">
-                    Home Goods
+                  <td className="px-4  text-md  ">$740.42</td>
+                  <td className="px-4 ">
+                    <Label label="Failed" className="label-red" />
                   </td>
-                  <td className="py-4 px-4 text-gray-500 text-lg ">740</td>
-                  <td className="py-4 px-4">$523.00</td>
-                  <td className="py-4 px-4">
-                    <span className="bg-red-500/10 py-1 px-3 text-red-700 font-[500] rounded-2xl">
-                      Canceled
-                    </span>
+                  <td className="px-4">
+                    <Label label="Delivered" className="label-green" />
                   </td>
 
-                  <td className="py-4 px-4">
-                    <span className="bg-blue-500/10 py-1 px-3 text-blue-500 font-[500] rounded-2xl">
-                      Published
-                    </span>
-                  </td>
-
-                  <td className="py-6 px-4 text-lg text-gray-600 font-medium flex items-center gap-4 my-auto ">
-                    <AiOutlineDelete size={25} />
-                    <MdContentCopy size={25} />
-                    <MdOutlineEdit size={25} />
+                  <td className="py-4 px-4 text-lg text-gray-600 font-medium flex items-center justify-center gap-4 ">
+                    <BsEye size={25} className="cursor-pointer" />
+                    <MdOutlineEdit size={25} className="cursor-pointer" />
+                    <AiOutlineDelete
+                      size={25}
+                      className="cursor-pointer text-red-400"
+                    />
                   </td>
                 </tr>
                 <tr className="border-b-1 border-gray-400/20">
-                  <td className=" text-start py-2 px-4">
+                  <td className=" text-start  px-4">
                     <input type="checkbox" />
                   </td>
-                  <td className="py-4 px-4 text-gray-400">
-                    <img src={prod} className="w-[40px] rounded-md" />
+                  <td className="text-start px-4 font-semibold ">#12345</td>
+                  <td className="px-4 font-medium text-gray-500 ">
+                    Sophia Clark
                   </td>
-                  <td className="py-4 px-4 font-medium ">
-                    Eco-Friendly Bamboo
+                  <td className="px-4 text-gray-400 text-md font-semibold ">
+                    2024-07-26
                   </td>
-                  <td className="py-4 px-4 text-gray-500 text-lg ">Apparel</td>
-                  <td className="py-4 px-4 text-gray-500 text-lg ">854</td>
-                  <td className="py-4 px-4">$64.00</td>
-                  <td className="py-4 px-4">
-                    <span className="bg-green-500/10 py-1 px-3 text-green-800 font-[500] rounded-2xl">
-                      Delivered
-                    </span>
+                  <td className="px-4  ">$854.00</td>
+                  <td className="px-4">
+                    <Label label="Pending" className="label-orange" />
+                  </td>
+                  <td className="px-4">
+                    <Label label="Processing" className="label-blue" />
                   </td>
 
-                  <td className="py-4 px-4">
-                    <span className="bg-gray-500/10 py-1 px-3 text-gray-500 font-[500] rounded-2xl">
-                      Draft
-                    </span>
-                  </td>
-                  <td className="py-6 px-4 text-lg text-gray-600 font-medium flex items-center gap-4 my-auto ">
-                    <AiOutlineDelete size={25} />
-                    <MdContentCopy size={25} />
-                    <MdOutlineEdit size={25} />
+                  <td className="py-4 px-4 text-lg text-gray-600 font-medium flex items-center justify-center gap-4  ">
+                    <BsEye size={25} className="cursor-pointer" />
+                    <MdOutlineEdit size={25} className="cursor-pointer" />
+                    <AiOutlineDelete
+                      size={25}
+                      className="cursor-pointer text-red-400"
+                    />
                   </td>
                 </tr>
               </tbody>

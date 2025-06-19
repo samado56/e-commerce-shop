@@ -51,13 +51,13 @@ export default function SideBar() {
           <div>
             {isSmallScreen ? null : shrinkSideBar ? (
               <TbLayoutSidebarLeftExpand
-                size={40}
+                size={30}
                 className="cursor-pointer mx-auto "
                 onClick={() => setShrinkSideBar(!shrinkSideBar)}
               />
             ) : (
               <TbLayoutSidebarLeftCollapse
-                size={40}
+                size={30}
                 className="cursor-pointer"
                 onClick={() => setShrinkSideBar(!shrinkSideBar)}
               />
