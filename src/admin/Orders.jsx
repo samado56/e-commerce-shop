@@ -93,7 +93,7 @@ export default function Orders() {
             <table className="w-[1200px] md:w-full text-start table-auto  border-1 border-gray-400/20 ">
               <thead className="bg-gray-400/10 font-medium text-gray-600 text-center">
                 <tr>
-                  <td className=" py-2 px-4">
+                  <td className="text-start py-2 px-4">
                     <input type="checkbox" />
                   </td>
                   <td className="text-start py-2 px-4">ORDER ID</td>
@@ -110,14 +110,10 @@ export default function Orders() {
                   <td className=" text-start  px-4">
                     <input type="checkbox" />
                   </td>
-                  <td className="text-start px-4 font-semibold ">#12345</td>
-                  <td className=" px-4 font-medium text-gray-500 ">
-                    Sophia Clark
-                  </td>
-                  <td className=" px-4 text-gray-400 text-md font-semibold ">
-                    2024-07-26
-                  </td>
-                  <td className=" px-4  ">$125.00</td>
+                  <td className="text-start px-4 row-text ">#12345</td>
+                  <td className=" px-4 row-text">Sophia Clark</td>
+                  <td className=" px-4 row-text ">2024-07-26</td>
+                  <td className=" px-4  row-text">$125.00</td>
                   <td className=" px-4 ">
                     <Label label="Paid" className="label-green" />
                   </td>
@@ -126,10 +122,10 @@ export default function Orders() {
                   </td>
 
                   <td className="py-4 px-4 text-lg text-gray-600 font-medium flex items-center justify-center gap-4 ">
-                    <BsEye size={25} className="cursor-pointer" />
-                    <MdOutlineEdit size={25} className="cursor-pointer" />
+                    <BsEye size={20} className="cursor-pointer" />
+                    <MdOutlineEdit size={20} className="cursor-pointer" />
                     <AiOutlineDelete
-                      size={25}
+                      size={20}
                       className="cursor-pointer text-red-400"
                     />
                   </td>
@@ -138,15 +134,11 @@ export default function Orders() {
                   <td className=" text-start px-4">
                     <input type="checkbox" />
                   </td>
-                  <td className="text-start px-4 font-semibold ">#12345</td>
+                  <td className="text-start px-4 row-text ">#12345</td>
 
-                  <td className="px-4 font-medium text-gray-500 ">
-                    Sophia Clark
-                  </td>
-                  <td className="px-4 text-gray-400 text-md font-semibold ">
-                    2024-07-26
-                  </td>
-                  <td className="px-4  text-md  ">$740.42</td>
+                  <td className="px-4 row-text ">Sophia Clark</td>
+                  <td className="px-4 row-text">2024-07-26</td>
+                  <td className="px-4  row-text ">$740.42</td>
                   <td className="px-4 ">
                     <Label label="Failed" className="label-red" />
                   </td>
@@ -155,26 +147,22 @@ export default function Orders() {
                   </td>
 
                   <td className="py-4 px-4 text-lg text-gray-600 font-medium flex items-center justify-center gap-4 ">
-                    <BsEye size={25} className="cursor-pointer" />
-                    <MdOutlineEdit size={25} className="cursor-pointer" />
+                    <BsEye size={20} className="cursor-pointer" />
+                    <MdOutlineEdit size={20} className="cursor-pointer" />
                     <AiOutlineDelete
-                      size={25}
+                      size={20}
                       className="cursor-pointer text-red-400"
                     />
                   </td>
                 </tr>
                 <tr className="border-b-1 border-gray-400/20">
-                  <td className=" text-start  px-4">
+                  <td className="text-start  px-4">
                     <input type="checkbox" />
                   </td>
-                  <td className="text-start px-4 font-semibold ">#12345</td>
-                  <td className="px-4 font-medium text-gray-500 ">
-                    Sophia Clark
-                  </td>
-                  <td className="px-4 text-gray-400 text-md font-semibold ">
-                    2024-07-26
-                  </td>
-                  <td className="px-4  ">$854.00</td>
+                  <td className="text-start px-4 row-text">#12345</td>
+                  <td className="px-4 row-text ">Sophia Clark</td>
+                  <td className="px-4 row-text ">2024-07-26</td>
+                  <td className="px-4  row-text">$854.00</td>
                   <td className="px-4">
                     <Label label="Pending" className="label-orange" />
                   </td>
@@ -183,10 +171,10 @@ export default function Orders() {
                   </td>
 
                   <td className="py-4 px-4 text-lg text-gray-600 font-medium flex items-center justify-center gap-4  ">
-                    <BsEye size={25} className="cursor-pointer" />
-                    <MdOutlineEdit size={25} className="cursor-pointer" />
+                    <BsEye size={20} className="cursor-pointer" />
+                    <MdOutlineEdit size={20} className="cursor-pointer" />
                     <AiOutlineDelete
-                      size={25}
+                      size={20}
                       className="cursor-pointer text-red-400"
                     />
                   </td>

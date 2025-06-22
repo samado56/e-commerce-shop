@@ -6,6 +6,7 @@ import { SideBarContext } from "../context/sideBarContext";
 //component
 import SideBar from "../component/SideBar";
 import AdminHeader from "../component/AdminHeader";
+import Label from "../component/Label";
 
 //usable styles
 import sectionsPadding from "../styles/sectionsPadding";
@@ -193,48 +194,42 @@ const RecentOrders = () => {
     <>
       <div className="p-4 md:p-0 w-full bg-white mt-5 rounded-xl overflow-x-auto shadow-sm shadow-black/10  ">
         <table className="w-[800px] md:w-full text-start table-fixed  border-1 border-gray-400/20 ">
-          <thead className="bg-gray-400/10 ">
+          <thead className="bg-gray-400/10 font-medium text-gray-600 text-center text-sm">
             <tr>
-              <th className=" text-start py-2 px-4">ORDER</th>
-              <th className=" text-start py-2 px-4">CUSTOMER</th>
-              <th className=" text-start py-2 px-4">STATUS</th>
-              <th className=" text-start py-2 px-4">TOTAL</th>
-              <th className=" text-start py-2 px-4">DATE</th>
+              <th className="  py-2 px-4">ORDER</th>
+              <th className="  py-2 px-4">CUSTOMER</th>
+              <th className="  py-2 px-4">STATUS</th>
+              <th className="  py-2 px-4">TOTAL</th>
+              <th className="  py-2 px-4">DATE</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="text-center">
             <tr className="border-b-1 border-gray-400/20">
-              <td className="py-4 px-4 font-medium ">#12345</td>
-              <td className="py-4 px-4 text-gray-500 text-lg ">Sophia alan</td>
+              <td className="py-4 px-4 row-text ">#12345</td>
+              <td className="py-4 px-4 row-text ">Sophia alan</td>
               <td className="py-4 px-4">
-                <span className="bg-cyan-500/10 py-1 px-3 text-cyan-500 font-[500] rounded-2xl">
-                  Shipped
-                </span>
+                <Label label="Shipped" className="label-cyan" />
               </td>
-              <td className="py-4 px-4 text-gray-500 text-lg ">$125.00</td>
-              <td className="py-4 px-4 text-gray-400">july 15, 2024</td>
+              <td className="py-4 px-4 row-text ">$125.00</td>
+              <td className="py-4 px-4 row-text">july 15, 2024</td>
             </tr>
             <tr className="border-b-1 border-gray-400/20">
-              <td className="py-4 px-4 font-medium ">#12345</td>
-              <td className="py-4 px-4 text-gray-500 text-lg ">David becam</td>
+              <td className="py-4 px-4 row-text">#12345</td>
+              <td className="py-4 px-4 row-text ">David becam</td>
               <td className="py-4 px-4">
-                <span className="bg-red-500/10 py-1 px-3 text-red-700 font-[500] rounded-2xl">
-                  Canceled
-                </span>
+                <Label label="Canceled" className="label-red" />
               </td>
-              <td className="py-4 px-4 text-gray-500 text-lg ">$125.00</td>
-              <td className="py-4 px-4 text-gray-400">july 15, 2024</td>
+              <td className="py-4 px-4 row-text ">$125.00</td>
+              <td className="py-4 px-4 row-text">july 15, 2024</td>
             </tr>
             <tr className="border-b-1 border-gray-400/20">
-              <td className="py-4 px-4 font-medium ">#12345</td>
-              <td className="py-4 px-4 text-gray-500 text-lg ">jessus brayn</td>
+              <td className="py-4 px-4 row-text">#12345</td>
+              <td className="py-4 px-4 row-text ">jessus brayn</td>
               <td className="py-4 px-4">
-                <span className="bg-green-500/10 py-1 px-3 text-green-800 font-[500] rounded-2xl">
-                  Delivered
-                </span>
+                <Label label="Delivered" className="label-green" />
               </td>
-              <td className="py-4 px-4 text-gray-500 text-lg ">$125.00</td>
-              <td className="py-4 px-4 text-gray-400">july 15, 2024</td>
+              <td className="py-4 px-4 row-text ">$125.00</td>
+              <td className="py-4 px-4 row-text">july 15, 2024</td>
             </tr>
           </tbody>
         </table>

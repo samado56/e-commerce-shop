@@ -11,7 +11,9 @@ import { SideBarContext } from "../context/sideBarContext";
 import { useContext, useState } from "react";
 import useResponsive from "../hooks/useResponsive";
 
+//components
 import AdminHeader from "../component/AdminHeader";
+import Label from "../component/Label";
 
 import prod from "../assets/imgs/product7.jpg";
 import sectionsPadding from "../styles/sectionsPadding";
@@ -98,114 +100,93 @@ export default function StoreProducts() {
 
           <div className="p-4 w-full bg-white mt-5 rounded-xl overflow-x-auto shadow-sm shadow-black/10  ">
             <table className="w-[1200px] md:w-full text-start table-auto  border-1 border-gray-400/20 ">
-              <thead className="bg-gray-400/10 ">
+              <thead className="bg-gray-400/10 font-medium text-gray-600 text-center">
                 <tr>
-                  <td className=" text-start py-2 px-4">
+                  <td className=" py-2 px-4">
                     <input type="checkbox" />
                   </td>
-                  <td className=" text-start py-2 px-4">IMAGE</td>
-                  <td className=" text-start py-2 px-4">PRODUCT NAME</td>
-                  <td className=" text-start py-2 px-4">SKU</td>
-                  <td className=" text-start py-2 px-4">PRICE</td>
-                  <td className=" text-start py-2 px-4">STOCK QTY</td>
-                  <td className=" text-start py-2 px-4">STATUS</td>
-                  <td className=" text-start py-2 px-4">VISIBILITY</td>
-                  <td className=" text-start py-2 px-4">Actions</td>
+                  <td className="py-2 px-4">IMAGE</td>
+                  <td className="py-2 px-4">PRODUCT NAME</td>
+                  <td className="py-2 px-4">SKU</td>
+                  <td className="py-2 px-4">PRICE</td>
+                  <td className="py-2 px-4">STOCK QTY</td>
+                  <td className="py-2 px-4">STATUS</td>
+                  <td className="py-2 px-4">VISIBILITY</td>
+                  <td className="py-2 px-4">Actions</td>
                 </tr>
               </thead>
-              <tbody>
+
+              <tbody className="text-center">
                 <tr className="border-b-1 border-gray-400/20">
-                  <td className=" text-start py-2 px-4">
+                  <td className="  py-2 px-4">
                     <input type="checkbox" />
                   </td>
                   <td className="py-4 px-4 text-gray-400">
-                    <img src={prod} className="w-[40px] rounded-md" />
+                    <img src={prod} className="w-[40px] rounded-md mx-auto" />
                   </td>
-                  <td className="py-4 px-4 font-medium ">
-                    Eco-Friendly Bamboo
-                  </td>
-                  <td className="py-4 px-4 text-gray-500 text-lg ">
-                    Personal Care
-                  </td>
-                  <td className="py-4 px-4 text-gray-500 text-lg ">564</td>
-                  <td className="py-4 px-4 text-gray-500 text-lg ">$125.00</td>
+                  <td className="py-4 px-4 row-text ">Eco-Friendly Bamboo</td>
+                  <td className="py-4 px-4 row-text ">Personal Care</td>
+                  <td className="py-4 px-4 row-text ">564</td>
+                  <td className="py-4 px-4 row-text ">$125.00</td>
                   <td className="py-4 px-4">
-                    <span className="bg-cyan-500/10 py-1 px-3 text-cyan-500 font-[500] rounded-2xl">
-                      Shipped
-                    </span>
+                    <Label label="Shipped" className="label-cyan" />
                   </td>
                   <td className="py-4 px-4">
-                    <span className="bg-blue-500/10 py-1 px-3 text-blue-500 font-[500] rounded-2xl">
-                      Published
-                    </span>
+                    <Label label="Published" className="label-blue" />
                   </td>
                   <td className="py-6 px-4 text-lg text-gray-600 font-medium flex items-center gap-4 my-auto ">
-                    <AiOutlineDelete size={25} />
-                    <MdContentCopy size={25} />
-                    <MdOutlineEdit size={25} />
+                    <MdContentCopy size={20} />
+                    <MdOutlineEdit size={20} />
+                    <AiOutlineDelete size={20} />
                   </td>
                 </tr>
                 <tr className="border-b-1 border-gray-400/20">
-                  <td className=" text-start py-2 px-4">
+                  <td className=" py-2 px-4">
                     <input type="checkbox" />
                   </td>
                   <td className="py-4 px-4 text-gray-400">
-                    <img src={prod} className="w-[40px] rounded-md" />
+                    <img src={prod} className="w-[40px] rounded-md mx-auto" />
                   </td>
-                  <td className="py-4 px-4 font-medium ">
-                    Eco-Friendly Bamboo
-                  </td>
-                  <td className="py-4 px-4 text-gray-500 text-lg ">
-                    Home Goods
-                  </td>
-                  <td className="py-4 px-4 text-gray-500 text-lg ">740</td>
-                  <td className="py-4 px-4">$523.00</td>
+                  <td className="py-4 px-4 row-text ">Eco-Friendly Bamboo</td>
+                  <td className="py-4 px-4 row-text ">Home Goods</td>
+                  <td className="py-4 px-4 row-text">740</td>
+                  <td className="py-4 px-4 row-text">$523.00</td>
                   <td className="py-4 px-4">
-                    <span className="bg-red-500/10 py-1 px-3 text-red-700 font-[500] rounded-2xl">
-                      Canceled
-                    </span>
+                    <Label label="Canceled" className="label-red" />
                   </td>
 
                   <td className="py-4 px-4">
-                    <span className="bg-blue-500/10 py-1 px-3 text-blue-500 font-[500] rounded-2xl">
-                      Published
-                    </span>
+                    <Label label="Published" className="label-blue" />
                   </td>
 
                   <td className="py-6 px-4 text-lg text-gray-600 font-medium flex items-center gap-4 my-auto ">
-                    <AiOutlineDelete size={25} />
-                    <MdContentCopy size={25} />
-                    <MdOutlineEdit size={25} />
+                    <MdContentCopy size={20} />
+                    <MdOutlineEdit size={20} />
+                    <AiOutlineDelete size={20} />
                   </td>
                 </tr>
                 <tr className="border-b-1 border-gray-400/20">
-                  <td className=" text-start py-2 px-4">
+                  <td className=" py-2 px-4">
                     <input type="checkbox" />
                   </td>
                   <td className="py-4 px-4 text-gray-400">
-                    <img src={prod} className="w-[40px] rounded-md" />
+                    <img src={prod} className="w-[40px] rounded-md mx-auto" />
                   </td>
-                  <td className="py-4 px-4 font-medium ">
-                    Eco-Friendly Bamboo
-                  </td>
-                  <td className="py-4 px-4 text-gray-500 text-lg ">Apparel</td>
-                  <td className="py-4 px-4 text-gray-500 text-lg ">854</td>
-                  <td className="py-4 px-4">$64.00</td>
+                  <td className="py-4 px-4 row-text ">Eco-Friendly Bamboo</td>
+                  <td className="py-4 px-4 row-text">Apparel</td>
+                  <td className="py-4 px-4 row-text ">854</td>
+                  <td className="py-4 px-4 row-text">$64.00</td>
                   <td className="py-4 px-4">
-                    <span className="bg-green-500/10 py-1 px-3 text-green-800 font-[500] rounded-2xl">
-                      Delivered
-                    </span>
+                    <Label label="Delivered" className="label-green" />
                   </td>
 
                   <td className="py-4 px-4">
-                    <span className="bg-gray-500/10 py-1 px-3 text-gray-500 font-[500] rounded-2xl">
-                      Draft
-                    </span>
+                    <Label label="Draft" className="label-gray" />
                   </td>
                   <td className="py-6 px-4 text-lg text-gray-600 font-medium flex items-center gap-4 my-auto ">
-                    <AiOutlineDelete size={25} />
-                    <MdContentCopy size={25} />
-                    <MdOutlineEdit size={25} />
+                    <MdContentCopy size={20} />
+                    <MdOutlineEdit size={20} />
+                    <AiOutlineDelete size={20} />
                   </td>
                 </tr>
               </tbody>

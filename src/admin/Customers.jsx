@@ -150,10 +150,10 @@ export default function Custmores() {
                     <Label label="Active" className="label-green" />
                   </td>
                   <td className="py-4 px-4 text-lg text-gray-600 font-medium flex items-center justify-center gap-4 ">
-                    <BsEye size={25} className="cursor-pointer" />
-                    <MdOutlineEdit size={25} className="cursor-pointer" />
+                    <BsEye size={20} className="cursor-pointer" />
+                    <MdOutlineEdit size={20} className="cursor-pointer" />
                     <AiOutlineDelete
-                      size={25}
+                      size={20}
                       className="cursor-pointer text-red-400"
                     />
                   </td>
@@ -173,10 +173,10 @@ export default function Custmores() {
                     <Label label="Active" className="label-green" />
                   </td>
                   <td className="py-4 px-4 text-lg text-gray-600 font-medium flex items-center justify-center gap-4 ">
-                    <BsEye size={25} className="cursor-pointer" />
-                    <MdOutlineEdit size={25} className="cursor-pointer" />
+                    <BsEye size={20} className="cursor-pointer" />
+                    <MdOutlineEdit size={20} className="cursor-pointer" />
                     <AiOutlineDelete
-                      size={25}
+                      size={20}
                       className="cursor-pointer text-red-400"
                     />
                   </td>
@@ -198,10 +198,10 @@ export default function Custmores() {
                     <Label label="Inactive" className="label-yellow" />
                   </td>
                   <td className="py-4 px-4 text-lg text-gray-600 font-medium flex items-center justify-center gap-4 ">
-                    <BsEye size={25} className="cursor-pointer" />
-                    <MdOutlineEdit size={25} className="cursor-pointer" />
+                    <BsEye size={20} className="cursor-pointer" />
+                    <MdOutlineEdit size={20} className="cursor-pointer" />
                     <AiOutlineDelete
-                      size={25}
+                      size={20}
                       className="cursor-pointer text-red-400"
                     />
                   </td>
@@ -223,10 +223,10 @@ export default function Custmores() {
                     <Label label="Banned" className="label-red" />
                   </td>
                   <td className="py-4 px-4 text-lg text-gray-600 font-medium flex items-center justify-center gap-4 ">
-                    <BsEye size={25} className="cursor-pointer" />
-                    <MdOutlineEdit size={25} className="cursor-pointer" />
+                    <BsEye size={20} className="cursor-pointer" />
+                    <MdOutlineEdit size={20} className="cursor-pointer" />
                     <AiOutlineDelete
-                      size={25}
+                      size={20}
                       className="cursor-pointer text-red-400"
                     />
                   </td>

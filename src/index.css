@@ -7,6 +7,13 @@
 .grid-wrapper {
   @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6;
 }
+.grid-wrapper-2 {
+  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-6;
+}
+
+.grid-wrapper-3 {
+  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
 
 .label-cyan {
   @apply text-sm bg-cyan-500/10 py-1 px-3 text-cyan-500 font-[500] rounded-2xl mx-auto block w-fit;
@@ -28,6 +35,43 @@
   @apply text-sm bg-yellow-500/10 py-1 px-3 text-yellow-500 font-[500] rounded-2xl mx-auto block w-fit;
 }
 
+.label-gray {
+  @apply text-sm bg-gray-500/10 py-1 px-3 text-gray-500 font-[500] rounded-2xl mx-auto block w-fit;
+}
+
+/* ========= label start ========== */
+.label-cyan-start {
+  @apply text-sm bg-cyan-500/10 py-1 px-3 text-cyan-500 font-[500] rounded-2xl  block w-fit;
+}
+.label-green-start {
+  @apply text-sm bg-green-500/10 py-1  px-3 text-green-500 font-[500] rounded-2xl  block w-fit;
+}
+.label-blue-start {
+  @apply text-sm bg-blue-500/10 py-1 px-3 text-blue-500 font-[500] rounded-2xl  block w-fit;
+}
+.label-red-start {
+  @apply text-sm bg-red-500/10 py-1 px-3 text-red-500 font-[500] rounded-2xl  block w-fit;
+}
+.label-orange-start {
+  @apply text-sm bg-orange-500/10 py-1 px-3 text-orange-500 font-[500] rounded-2xl  block w-fit;
+}
+
+.label-yellow-start {
+  @apply text-sm bg-yellow-500/10 py-1 px-3 text-yellow-500 font-[500] rounded-2xl  block w-fit;
+}
+
+.label-gray-start {
+  @apply text-sm bg-gray-500/10 py-1 px-3 text-gray-500 font-[500] rounded-2xl  block w-fit;
+}
+
 .row-text {
   @apply text-gray-500 text-sm font-semibold;
+}
+
+.row-text-btn {
+  @apply text-blue-500 text-sm font-semibold cursor-pointer transition duration-300 hover:text-gray-500 hover:scale-95;
+}
+
+.row-hover {
+  @apply hover:bg-gray-400/5 transition duration-300;
 }

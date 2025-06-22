@@ -72,7 +72,7 @@ export default function SideBar() {
               style={activePage === page ? style : null}
               onClick={() => {
                 setActivePage(page);
-                navigate(`/${page}`);
+                navigate(`/${page.toLowerCase()}`);
               }}
             >
               {icon}

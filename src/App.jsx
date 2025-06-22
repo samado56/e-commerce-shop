@@ -17,19 +17,21 @@ import SideBar from "./component/SideBar";
 import StoreProducts from "./admin/StoreProducts";
 import Orders from "./admin/Orders";
 import Customers from "./admin/Customers";
+import Analytics from "./admin/Analytics";
 
 function App() {
   return (
     <>
       <SideBar />
       <Routes>
-        <Route path="/Dashboard" element={<Dashboard />} />
-        <Route path="/Products" element={<StoreProducts />} />
-        <Route path="/Orders" element={<Orders />} />
-        <Route path="/Customers" element={<Customers />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/products" element={<StoreProducts />} />
+        <Route path="/orders" element={<Orders />} />
+        <Route path="/customers" element={<Customers />} />
+        <Route path="/analytics" element={<Analytics />} />
       </Routes>
       {/* <Header /> */}
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/shopping" element={<Listing />} />
         <Route path="/product" element={<Product />} />
@@ -41,8 +43,7 @@ function App() {
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/user" element={<User />} />
         <Route path="/order-details" element={<OrderDetails />} />
-        {/* =========== admin ============ */}
-      </Routes>
+      </Routes> */}
     </>
   );
 }
