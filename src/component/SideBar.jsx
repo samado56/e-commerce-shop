@@ -14,9 +14,9 @@ import {
 
 //hooks
 import { SideBarContext } from "../context/sideBarContext";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import useResopnsive from "../hooks/useResponsive";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 
 export default function SideBar() {
   const navs = [
@@ -27,14 +27,16 @@ export default function SideBar() {
     { page: "Analytics", icon: <FaChartLine size={25} /> },
   ];
 
-  const [activePage, setActivePage] = useState("Dashboard");
-
   const style = { backgroundColor: "lightgray", fontWeight: "bold" };
 
   const { width } = useResopnsive();
   const isSmallScreen = width < 767 || width < 1025;
   const navigate = useNavigate();
   const { shrinkSideBar, setShrinkSideBar } = useContext(SideBarContext);
+  const { pathname } = useLocation();
+
+  const navTitle = pathname.slice(1);
+  console.log(navTitle);
 
   return (
     <>
@@ -69,10 +71,9 @@ export default function SideBar() {
             <div
               key={page}
               className="flex items-center gap-2 py-2 md:py-4 px-2 md:px-4 rounded-md w-full cursor-pointer"
-              style={activePage === page ? style : null}
+              style={navTitle === page ? style : null}
               onClick={() => {
-                setActivePage(page);
-                navigate(`/${page.toLowerCase()}`);
+                navigate(`/${page}`);
               }}
             >
               {icon}

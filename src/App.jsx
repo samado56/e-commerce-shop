@@ -24,11 +24,11 @@ function App() {
     <>
       <SideBar />
       <Routes>
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/products" element={<StoreProducts />} />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/customers" element={<Customers />} />
-        <Route path="/analytics" element={<Analytics />} />
+        <Route path="/Dashboard" element={<Dashboard />} />
+        <Route path="/Products" element={<StoreProducts />} />
+        <Route path="/Orders" element={<Orders />} />
+        <Route path="/Customers" element={<Customers />} />
+        <Route path="/Analytics" element={<Analytics />} />
       </Routes>
       {/* <Header /> */}
       {/* <Routes>

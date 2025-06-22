@@ -1,5 +1,5 @@
 import { SideBarContext } from "../context/sideBarContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import useResponsive from "../hooks/useResponsive";
 
 //usable styles
@@ -31,8 +31,12 @@ import CustomerAreaChart from "../charts/CustomerAreaChart";
 
 // import prod from "../assets/imgs/product7.jpg";
 
+//modals
+import OrderEventModal from "../models/OrderEventModal";
+
 export default function Analytics() {
   const { shrinkSideBar } = useContext(SideBarContext);
+  const [showModal, setShowModal] = useState();
   const { width } = useResponsive();
 
   const isSmallScreen = width < 768;
@@ -258,7 +262,9 @@ export default function Analytics() {
                   <td className="py-4 px-4 ">
                     <Label label="Successfull" className="label-green-start" />
                   </td>
-                  <td className="py-4 px-4 row-text-btn ">View Details</td>
+                  <td className="py-4 px-4 row-text-btn ">
+                    <span onClick={() => setShowModal(true)}>View Details</span>
+                  </td>
                 </tr>
                 <tr className="border-b-1 border-gray-400/20 row-hover">
                   <td className="py-4 px-4 row-text ">2025-07-26 10:00 AM</td>
@@ -315,13 +321,19 @@ export default function Analytics() {
                   <td className="py-4 px-4">
                     <Label label="Completed" className="label-green-start" />
                   </td>
-                  <td className="py-4 px-4 row-text-btn ">View Details</td>
+                  <td className="py-4 px-4 row-text-btn ">
+                    <span>View Details</span>
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
       </div>
+      <OrderEventModal
+        showModal={showModal}
+        closeModal={() => setShowModal(false)}
+      />
     </>
   );
 }

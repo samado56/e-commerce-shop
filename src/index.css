@@ -64,6 +64,32 @@
   @apply text-sm bg-gray-500/10 py-1 px-3 text-gray-500 font-[500] rounded-2xl  block w-fit;
 }
 
+/* ========= label with icons ========== */
+
+.label-cyan-icons {
+  @apply text-sm bg-cyan-500/10 py-1 px-3 text-cyan-500 font-[500] rounded-2xl  flex items-center gap-2 w-fit;
+}
+.label-green-icons {
+  @apply text-sm bg-green-500/10 py-1  px-3 text-green-500 font-[500] rounded-2xl  flex items-center gap-2 w-fit;
+}
+.label-blue-icons {
+  @apply text-sm bg-blue-500/10 py-1 px-3 text-blue-500 font-[500] rounded-2xl  flex items-center gap-2 w-fit;
+}
+.label-red-icons {
+  @apply text-sm bg-red-500/10 py-1 px-3 text-red-500 font-[500] rounded-2xl  flex items-center gap-2 w-fit;
+}
+.label-orange-icons {
+  @apply text-sm bg-orange-500/10 py-1 px-3 text-orange-500 font-[500] rounded-2xl  flex items-center gap-2 w-fit;
+}
+
+.label-yellow-icons {
+  @apply text-sm bg-yellow-500/10 py-1 px-3 text-yellow-500 font-[500] rounded-2xl  flex items-center gap-2 w-fit;
+}
+
+.label-gray-icons {
+  @apply text-sm bg-gray-500/10 py-1 px-3 text-gray-500 font-[500] rounded-2xl  flex items-center gap-2 w-fit;
+}
+
 .row-text {
   @apply text-gray-500 text-sm font-semibold;
 }
