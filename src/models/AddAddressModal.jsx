@@ -25,7 +25,7 @@ export default function AddAddressModal({ closeModal, showModal }) {
   return (
     <>
       {showModal ? (
-        <div className="fixed top-0 left-0 bg-black/40 w-full h-full pt-[88px] flex items-center justify-center">
+        <div className="fixed top-0 left-0 bg-black/40 w-full h-full flex items-center justify-center">
           <div
             ref={modalRef}
             className="relative w-[500px]  rounded-md shadow-md shadow-black/10 bg-white p-8"

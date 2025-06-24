@@ -30,12 +30,12 @@ export default function CustomerEventModal({ closeModal, showModal }) {
   return (
     <>
       {showModal ? (
-        <div className="fixed top-0 left-0 bg-black/40 w-full h-full pt-[88px] flex items-center justify-center">
+        <div className="fixed top-0 left-0 bg-black/40 w-full h-full flex items-center justify-center">
           <div
             ref={modalRef}
-            className="relative w-[800px]  rounded-md shadow-md shadow-black/10 bg-white p-5"
+            className="relative w-[800px]  rounded-md shadow-md shadow-black/10 bg-white "
           >
-            <div className="flex items-center justify-between mb-8 border-b-2 border-gray-400/20 pb-5">
+            <div className="flex items-center justify-between  border-b-2 border-gray-400/20 p-5">
               <div className="flex items-center gap-4 ">
                 <FaUser size={25} />
                 <h1 className="text-2xl font-bold">New Customer</h1>
@@ -46,7 +46,7 @@ export default function CustomerEventModal({ closeModal, showModal }) {
                 onClick={closeModal}
               />
             </div>
-            <div>
+            <div className="px-8 py-4">
               <div className="flex items-center gap-4 bg-white border-2 border-gray-400/20 rounded-md p-4 w-full">
                 <img src={avt} className="w-[60px] rounded-full" />
                 <div>
@@ -83,7 +83,7 @@ export default function CustomerEventModal({ closeModal, showModal }) {
               ></textarea>
             </div>
 
-            <div className="flex items-center gap-4 mt-8 justify-end border-t-2 border-gray-400/20 pt-5">
+            <div className="flex items-center gap-4 justify-end border-t-2 border-gray-400/20 p-5">
               <button className="flex items-center gap-2 text-md font-semibold py-2 px-3  rounded-md bg-gray-400/20 cursor-pointer">
                 <MdOutlineEdit size={20} />
                 Edit Profile

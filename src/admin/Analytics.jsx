@@ -35,12 +35,16 @@ import CustomerAreaChart from "../charts/CustomerAreaChart";
 import OrderEventModal from "../models/OrderEventModal";
 import CustomerEventModal from "../models/CustomerEventModal";
 import InventoryEventModal from "../models/InventoryEventModal";
+import PaymentEventModal from "../models/PaymentEventModal";
+import TeamEventModal from "../models/TeamEventModal";
 
 export default function Analytics() {
   const { shrinkSideBar } = useContext(SideBarContext);
   const [showModal, setShowModal] = useState(false);
   const [showCustomerModal, setShowCustomerModal] = useState(false);
   const [showInventoryModal, setInventoryModal] = useState(false);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [showTeamModal, setShowTeamModal] = useState(false);
   const { width } = useResponsive();
 
   const isSmallScreen = width < 768;
@@ -319,7 +323,11 @@ export default function Analytics() {
                   <td className="py-4 px-4">
                     <Label label="Failed" className="label-red-start" />
                   </td>
-                  <td className="py-4 px-4 row-text-btn ">View Details</td>
+                  <td className="py-4 px-4 row-text-btn ">
+                    <span onClick={() => setShowPaymentModal(true)}>
+                      View Details
+                    </span>
+                  </td>
                 </tr>
                 <tr className="border-b-1 border-gray-400/20 row-hover">
                   <td className="py-4 px-4 row-text ">2025-07-26 10:00 AM</td>
@@ -334,7 +342,9 @@ export default function Analytics() {
                     <Label label="Completed" className="label-green-start" />
                   </td>
                   <td className="py-4 px-4 row-text-btn ">
-                    <span>View Details</span>
+                    <span onClick={() => setShowTeamModal(true)}>
+                      View Details
+                    </span>
                   </td>
                 </tr>
               </tbody>
@@ -342,6 +352,7 @@ export default function Analytics() {
           </div>
         </div>
       </div>
+
       <OrderEventModal
         showModal={showModal}
         closeModal={() => setShowModal(false)}
@@ -354,6 +365,14 @@ export default function Analytics() {
       <InventoryEventModal
         showModal={showInventoryModal}
         closeModal={() => setInventoryModal(false)}
+      />
+      <PaymentEventModal
+        showModal={showPaymentModal}
+        closeModal={() => setShowPaymentModal(false)}
+      />
+      <TeamEventModal
+        showModal={showTeamModal}
+        closeModal={() => setShowTeamModal(false)}
       />
     </>
   );
