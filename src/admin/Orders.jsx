@@ -21,6 +21,7 @@ import Label from "../component/Label";
 //modals
 import ViewOrderDeatilsModal from "../models/ViewOrderDeatilsModal";
 import DeleteOrderModal from "../models/DeleteOrderModal";
+import EditOrderModal from "../models/EditOrderModal";
 
 export default function Orders() {
   const { shrinkSideBar } = useContext(SideBarContext);
@@ -32,6 +33,7 @@ export default function Orders() {
 
   const [showViewOrderModal, setShowViewOrderModal] = useState(false);
   const [showDeleteOrderModal, setShowDeleteOrderModal] = useState(false);
+  const [shoEditeOrderModal, setShowEditOrderModal] = useState(false);
 
   return (
     <>
@@ -134,7 +136,11 @@ export default function Orders() {
                       className="cursor-pointer"
                       onClick={() => setShowViewOrderModal(true)}
                     />
-                    <MdOutlineEdit size={20} className="cursor-pointer" />
+                    <MdOutlineEdit
+                      onClick={() => setShowEditOrderModal(true)}
+                      size={20}
+                      className="cursor-pointer"
+                    />
                     <AiOutlineDelete
                       size={20}
                       className="cursor-pointer text-red-400"
@@ -164,7 +170,11 @@ export default function Orders() {
                       className="cursor-pointer"
                       onClick={() => setShowViewOrderModal(true)}
                     />
-                    <MdOutlineEdit size={20} className="cursor-pointer" />
+                    <MdOutlineEdit
+                      onClick={() => setShowEditOrderModal(true)}
+                      size={20}
+                      className="cursor-pointer"
+                    />
                     <AiOutlineDelete
                       size={20}
                       className="cursor-pointer text-red-400"
@@ -193,7 +203,11 @@ export default function Orders() {
                       className="cursor-pointer"
                       onClick={() => setShowViewOrderModal(true)}
                     />
-                    <MdOutlineEdit size={20} className="cursor-pointer" />
+                    <MdOutlineEdit
+                      onClick={() => setShowEditOrderModal(true)}
+                      size={20}
+                      className="cursor-pointer"
+                    />
                     <AiOutlineDelete
                       size={20}
                       className="cursor-pointer text-red-400"
@@ -246,6 +260,10 @@ export default function Orders() {
       <DeleteOrderModal
         closeModal={() => setShowDeleteOrderModal(false)}
         showModal={showDeleteOrderModal}
+      />
+      <EditOrderModal
+        closeModal={() => setShowEditOrderModal(false)}
+        showModal={shoEditeOrderModal}
       />
     </>
   );
