@@ -14,12 +14,20 @@ import useResponsive from "../hooks/useResponsive";
 //components
 import AdminHeader from "../component/AdminHeader";
 import Label from "../component/Label";
+//modals
+import AddProductModal from "../models/AddProductModal";
+import EditProductModal from "../models/EditProductModal";
+import DeleteProductModal from "../models/DeleteProductModal";
 
 import prod from "../assets/imgs/product7.jpg";
 import sectionsPadding from "../styles/sectionsPadding";
 export default function StoreProducts() {
   const { shrinkSideBar } = useContext(SideBarContext);
   const [activePage, setActivePage] = useState(1);
+  const [showAddProductModal, setShowAddProdutModal] = useState(false);
+  const [showEditProductModal, setShowEditProductModal] = useState(false);
+  const [showDeleteProductModal, setShowDeleteProductModal] = useState(false);
+
   const { width } = useResponsive();
   let pagination = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -36,7 +44,10 @@ export default function StoreProducts() {
           <div className="my-5 md:my-6 flex items-center justify-between">
             <h2 className="text-2xl md:text-3xl font-bold">Products</h2>
 
-            <button className="rounded-md bg-black text-white  py-1 md:py-2 px-2 md:px-4 font-medium flex gap-2 items-center cursor-pointer">
+            <button
+              onClick={() => setShowAddProdutModal(true)}
+              className="rounded-md bg-black text-white  py-1 md:py-2 px-2 md:px-4 font-medium flex gap-2 items-center cursor-pointer"
+            >
               <span>
                 <IoMdAdd size={20} />
               </span>
@@ -136,8 +147,16 @@ export default function StoreProducts() {
                   </td>
                   <td className="py-6 px-4 text-lg text-gray-600 font-medium flex items-center gap-4 my-auto ">
                     <MdContentCopy size={20} />
-                    <MdOutlineEdit size={20} />
-                    <AiOutlineDelete size={20} />
+                    <MdOutlineEdit
+                      className="cursor-pointer"
+                      size={20}
+                      onClick={() => setShowEditProductModal(true)}
+                    />
+                    <AiOutlineDelete
+                      className="cursor-pointer"
+                      size={20}
+                      onClick={() => setShowDeleteProductModal(true)}
+                    />
                   </td>
                 </tr>
                 <tr className="border-b-1 border-gray-400/20">
@@ -161,8 +180,16 @@ export default function StoreProducts() {
 
                   <td className="py-6 px-4 text-lg text-gray-600 font-medium flex items-center gap-4 my-auto ">
                     <MdContentCopy size={20} />
-                    <MdOutlineEdit size={20} />
-                    <AiOutlineDelete size={20} />
+                    <MdOutlineEdit
+                      className="cursor-pointer"
+                      size={20}
+                      onClick={() => setShowEditProductModal(true)}
+                    />
+                    <AiOutlineDelete
+                      className="cursor-pointer"
+                      size={20}
+                      onClick={() => setShowDeleteProductModal(true)}
+                    />
                   </td>
                 </tr>
                 <tr className="border-b-1 border-gray-400/20">
@@ -185,8 +212,16 @@ export default function StoreProducts() {
                   </td>
                   <td className="py-6 px-4 text-lg text-gray-600 font-medium flex items-center gap-4 my-auto ">
                     <MdContentCopy size={20} />
-                    <MdOutlineEdit size={20} />
-                    <AiOutlineDelete size={20} />
+                    <MdOutlineEdit
+                      className="cursor-pointer"
+                      size={20}
+                      onClick={() => setShowEditProductModal(true)}
+                    />
+                    <AiOutlineDelete
+                      className="cursor-pointer"
+                      size={20}
+                      onClick={() => setShowDeleteProductModal(true)}
+                    />
                   </td>
                 </tr>
               </tbody>
@@ -226,6 +261,20 @@ export default function StoreProducts() {
           </div>
         </div>
       </div>
+
+      <AddProductModal
+        showModal={showAddProductModal}
+        closeModal={() => setShowAddProdutModal(false)}
+      />
+
+      <EditProductModal
+        showModal={showEditProductModal}
+        closeModal={() => setShowEditProductModal(false)}
+      />
+      <DeleteProductModal
+        showModal={showDeleteProductModal}
+        closeModal={() => setShowDeleteProductModal(false)}
+      />
     </>
   );
 }

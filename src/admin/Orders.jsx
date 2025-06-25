@@ -10,13 +10,17 @@ import { BsEye } from "react-icons/bs";
 import { useContext, useState } from "react";
 import useResponsive from "../hooks/useResponsive";
 
-// usable style
+// reusable style
 import sectionsPadding from "../styles/sectionsPadding";
 
 //components
 import { SideBarContext } from "../context/sideBarContext";
 import AdminHeader from "../component/AdminHeader";
 import Label from "../component/Label";
+
+//modals
+import ViewOrderDeatilsModal from "../models/ViewOrderDeatilsModal";
+import DeleteOrderModal from "../models/DeleteOrderModal";
 
 export default function Orders() {
   const { shrinkSideBar } = useContext(SideBarContext);
@@ -25,6 +29,9 @@ export default function Orders() {
   let pagination = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   const isSmallScreen = width < 768;
+
+  const [showViewOrderModal, setShowViewOrderModal] = useState(false);
+  const [showDeleteOrderModal, setShowDeleteOrderModal] = useState(false);
 
   return (
     <>
@@ -122,11 +129,16 @@ export default function Orders() {
                   </td>
 
                   <td className="py-4 px-4 text-lg text-gray-600 font-medium flex items-center justify-center gap-4 ">
-                    <BsEye size={20} className="cursor-pointer" />
+                    <BsEye
+                      size={20}
+                      className="cursor-pointer"
+                      onClick={() => setShowViewOrderModal(true)}
+                    />
                     <MdOutlineEdit size={20} className="cursor-pointer" />
                     <AiOutlineDelete
                       size={20}
                       className="cursor-pointer text-red-400"
+                      onClick={() => setShowDeleteOrderModal(true)}
                     />
                   </td>
                 </tr>
@@ -147,11 +159,16 @@ export default function Orders() {
                   </td>
 
                   <td className="py-4 px-4 text-lg text-gray-600 font-medium flex items-center justify-center gap-4 ">
-                    <BsEye size={20} className="cursor-pointer" />
+                    <BsEye
+                      size={20}
+                      className="cursor-pointer"
+                      onClick={() => setShowViewOrderModal(true)}
+                    />
                     <MdOutlineEdit size={20} className="cursor-pointer" />
                     <AiOutlineDelete
                       size={20}
                       className="cursor-pointer text-red-400"
+                      onClick={() => setShowDeleteOrderModal(true)}
                     />
                   </td>
                 </tr>
@@ -171,11 +188,16 @@ export default function Orders() {
                   </td>
 
                   <td className="py-4 px-4 text-lg text-gray-600 font-medium flex items-center justify-center gap-4  ">
-                    <BsEye size={20} className="cursor-pointer" />
+                    <BsEye
+                      size={20}
+                      className="cursor-pointer"
+                      onClick={() => setShowViewOrderModal(true)}
+                    />
                     <MdOutlineEdit size={20} className="cursor-pointer" />
                     <AiOutlineDelete
                       size={20}
                       className="cursor-pointer text-red-400"
+                      onClick={() => setShowDeleteOrderModal(true)}
                     />
                   </td>
                 </tr>
@@ -216,6 +238,15 @@ export default function Orders() {
           </div>
         </div>
       </div>
+
+      <ViewOrderDeatilsModal
+        closeModal={() => setShowViewOrderModal(false)}
+        showModal={showViewOrderModal}
+      />
+      <DeleteOrderModal
+        closeModal={() => setShowDeleteOrderModal(false)}
+        showModal={showDeleteOrderModal}
+      />
     </>
   );
 }
