@@ -32,7 +32,6 @@ export default function CustomerWorldMap() {
         {({ geographies }) =>
           geographies.map((geo) => {
             const isHighlighted = highlightedCountries.includes(+geo.id);
-            console.log(isHighlighted);
             return (
               <Geography
                 key={geo.rsmKey}

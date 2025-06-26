@@ -1,12 +1,10 @@
 //icons
-import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
 import { GoHomeFill } from "react-icons/go";
 import { GoPackage } from "react-icons/go";
 import { BsClipboard2Check } from "react-icons/bs";
 import { PiUsers } from "react-icons/pi";
 import { FaChartLine } from "react-icons/fa6";
 import { PiUserBold } from "react-icons/pi";
-import { RiSidebarUnfoldLine, RiSidebarFoldLine } from "react-icons/ri";
 import {
   TbLayoutSidebarLeftCollapse,
   TbLayoutSidebarLeftExpand,
@@ -34,9 +32,7 @@ export default function SideBar() {
   const navigate = useNavigate();
   const { shrinkSideBar, setShrinkSideBar } = useContext(SideBarContext);
   const { pathname } = useLocation();
-
   const navTitle = pathname.slice(1);
-  console.log(navTitle);
 
   return (
     <>

@@ -42,7 +42,7 @@ export default function EditOrderModal({ closeModal, showModal }) {
               />
             </div>
             <div className="mx-4 my-4  p-5 rounded-xl shadow-sm shadow-black/10 border-2 border-gray-400/20">
-              <h2 className="text-xl font-bold mb-4">Order Information</h2>
+              <h2 className="text-xl font-bold mb-4">Customer Information</h2>
               <form className="space-y-5">
                 <div className="flex items-center gap-6  w-full ">
                   <div className="w-1/2">
@@ -184,7 +184,7 @@ export default function EditOrderModal({ closeModal, showModal }) {
               </button>
             </div>
             <div className="mx-4 my-4  p-5 rounded-xl shadow-sm shadow-black/10 border-2 border-gray-400/20">
-              <h2 className="text-xl font-bold mb-4">Order Information</h2>
+              <h2 className="text-xl font-bold mb-4">Shipping Information</h2>
               <form className="space-y-5">
                 <div className="w-full">
                   <label

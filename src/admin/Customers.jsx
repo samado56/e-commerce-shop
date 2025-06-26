@@ -19,6 +19,9 @@ import { SideBarContext } from "../context/sideBarContext";
 import AdminHeader from "../component/AdminHeader";
 import Label from "../component/Label";
 
+//modal
+import AddCustomerModal from "../models/AddCustomerModal";
+
 export default function Custmores() {
   const { shrinkSideBar } = useContext(SideBarContext);
   const [activePage, setActivePage] = useState(1);
@@ -26,6 +29,9 @@ export default function Custmores() {
   let pagination = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   const isSmallScreen = width < 768;
+
+  //modals states
+  const [showAddCustomerModal, setShowAddCustomerModal] = useState(false);
 
   return (
     <>
@@ -38,7 +44,10 @@ export default function Custmores() {
           <div className="my-5 md:my-6 flex items-center justify-between">
             <h2 className="text-2xl md:text-3xl font-bold">Customers</h2>
 
-            <button className="rounded-md bg-black text-white  py-1 md:py-2 px-2 md:px-4 font-medium flex gap-2 items-center cursor-pointer">
+            <button
+              onClick={() => setShowAddCustomerModal(true)}
+              className="rounded-md bg-black text-white  py-1 md:py-2 px-2 md:px-4 font-medium flex gap-2 items-center cursor-pointer"
+            >
               <span>
                 <IoMdAdd size={20} />
               </span>
@@ -268,6 +277,11 @@ export default function Custmores() {
           </div>
         </div>
       </div>
+
+      <AddCustomerModal
+        showModal={showAddCustomerModal}
+        closeModal={() => setShowAddCustomerModal(false)}
+      />
     </>
   );
 }
