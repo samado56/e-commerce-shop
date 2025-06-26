@@ -21,6 +21,7 @@ import Label from "../component/Label";
 
 //modal
 import AddCustomerModal from "../models/AddCustomerModal";
+import DeleteCustomerModal from "../models/DeleteCustomerModal";
 
 export default function Custmores() {
   const { shrinkSideBar } = useContext(SideBarContext);
@@ -32,6 +33,7 @@ export default function Custmores() {
 
   //modals states
   const [showAddCustomerModal, setShowAddCustomerModal] = useState(false);
+  const [showDeleteCustomerModal, setShowDeleteCustomerModal] = useState(false);
 
   return (
     <>
@@ -164,6 +166,7 @@ export default function Custmores() {
                     <AiOutlineDelete
                       size={20}
                       className="cursor-pointer text-red-400"
+                      onClick={() => setShowDeleteCustomerModal(true)}
                     />
                   </td>
                 </tr>
@@ -281,6 +284,10 @@ export default function Custmores() {
       <AddCustomerModal
         showModal={showAddCustomerModal}
         closeModal={() => setShowAddCustomerModal(false)}
+      />
+      <DeleteCustomerModal
+        showModal={showDeleteCustomerModal}
+        closeModal={() => setShowDeleteCustomerModal(false)}
       />
     </>
   );
