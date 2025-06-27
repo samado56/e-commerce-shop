@@ -10,6 +10,7 @@ import { IoMdAdd } from "react-icons/io";
 //hooks
 import { useContext, useState } from "react";
 import useResponsive from "../hooks/useResponsive";
+import { useNavigate } from "react-router";
 
 // usable style
 import sectionsPadding from "../styles/sectionsPadding";
@@ -30,6 +31,8 @@ export default function Custmores() {
   let pagination = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   const isSmallScreen = width < 768;
+
+  const navigate = useNavigate();
 
   //modals states
   const [showAddCustomerModal, setShowAddCustomerModal] = useState(false);
@@ -185,7 +188,11 @@ export default function Custmores() {
                     <Label label="Active" className="label-green" />
                   </td>
                   <td className="py-4 px-4 text-lg text-gray-600 font-medium flex items-center justify-center gap-4 ">
-                    <BsEye size={20} className="cursor-pointer" />
+                    <BsEye
+                      size={20}
+                      className="cursor-pointer"
+                      onClick={() => navigate("/customer-details")}
+                    />
                     <MdOutlineEdit size={20} className="cursor-pointer" />
                     <AiOutlineDelete
                       size={20}
