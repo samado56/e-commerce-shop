@@ -90,6 +90,34 @@
   @apply text-sm bg-gray-500/10 py-1 px-3 text-gray-500 font-[500] rounded-2xl  flex items-center gap-2 w-fit;
 }
 
+/* ========= label with icons rouneded full ========== */
+
+.label-cyan-icons-rounded {
+  @apply text-sm bg-cyan-500/10  text-cyan-500 font-[500] rounded-full  flex items-center  w-fit;
+}
+.label-green-icons-rounded {
+  @apply text-sm bg-green-500/10  text-green-500 font-[500] rounded-full  flex items-center  w-fit;
+}
+.label-blue-icons-rounded {
+  @apply text-sm bg-blue-500/10  text-blue-500 font-[500] rounded-full  flex items-center justify-center  w-fit;
+}
+.label-red-icons-rounded {
+  @apply text-sm bg-red-500/10  text-red-500 font-[500] rounded-full  flex items-center  w-fit;
+}
+.label-orange-icons-rounded {
+  @apply text-sm bg-orange-500/10  text-orange-500 font-[500] rounded-full  flex items-center  w-fit;
+}
+
+.label-yellow-icons-rounded {
+  @apply text-sm bg-yellow-500/10  text-yellow-500 font-[500] rounded-full  flex items-center  w-fit;
+}
+
+.label-gray-icons-rounded {
+  @apply text-sm bg-gray-500/10  text-gray-500 font-[500] rounded-full  flex items-center  w-fit;
+}
+.label-indigo-icons-rounded {
+  @apply text-sm bg-indigo-500/10  text-indigo-500 font-[500] rounded-full  flex items-center  w-fit;
+}
 .row-text {
   @apply text-gray-500 text-sm font-semibold;
 }
@@ -100,4 +128,8 @@
 
 .row-hover {
   @apply hover:bg-gray-400/5 transition duration-300;
+}
+
+.steper {
+  @apply relative z-3 before:absolute before:-bottom-[32px] before:-z-1 before:left-1/2 before:h-[32px] before:w-[2px] before:bg-gray-400/40;
 }

@@ -40,7 +40,7 @@ const Overview = () => {
             </div>
             <div>
               <p className="text-gray-400 font-semibold ">PHONE</p>
-              <h1 className="text-md font-semibold ">(555) 123-4567</h1>
+              <h1 className="text-md font-semibold ">+1 (555) 123-4567</h1>
             </div>
             <div>
               <p className="text-gray-400 font-semibold ">ADDRESS</p>
@@ -325,7 +325,7 @@ export default function CustomerDetails() {
           className="pr-3 md:pr-6 "
           style={sectionsPadding({ shrinkSideBar, isSmallScreen })}
         >
-          <div className="flex items-center justify-between rounded-md shadow-sm shadow-black/10 bg-white p-4 mt-8">
+          <div className="flex flex-col md:flex-row gap-4 md:gap-0 items-center md:justify-between text-center rounded-md shadow-sm shadow-black/10 bg-white p-4 mt-8">
             <div>
               <h2 className="text-xl md:text-2xl font-bold">Amelia Harper</h2>
               <p className="text-sm md:text-md text-gray-400 font-medium">
@@ -333,6 +333,10 @@ export default function CustomerDetails() {
               </p>
             </div>
             <div className="flex items-center gap-2 md:gap-4  ">
+              <button className="flex items-center gap-2 text-md font-semibold py-2 px-3  rounded-md bg-red-400/20 text-red-600 cursor-pointer">
+                <MdBlockFlipped size={20} />
+                {isSmallScreen ? null : "Suspend Account"}
+              </button>
               <button
                 //   onClick={closeModal}
                 className="flex items-center gap-2 text-md font-semibold py-2 px-3  rounded-md bg-gray-400/20  cursor-pointer"

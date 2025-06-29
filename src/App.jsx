@@ -19,6 +19,7 @@ import Orders from "./admin/Orders";
 import Customers from "./admin/Customers";
 import Analytics from "./admin/Analytics";
 import CustomerDetails from "./admin/CustomerDetails";
+import CustomerOrderDetails from "./admin/CustomerOrderDetails";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/Customers" element={<Customers />} />
         <Route path="/Analytics" element={<Analytics />} />
         <Route path="/customer-details" element={<CustomerDetails />} />
+        <Route path="/order-details" element={<CustomerOrderDetails />} />
       </Routes>
       {/* <Header /> */}
       {/* <Routes>
