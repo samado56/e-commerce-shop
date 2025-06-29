@@ -308,7 +308,7 @@ const Returns = () => {
   );
 };
 
-export default function CustomerDetails() {
+export default function CutomerOrderDetails() {
   const { shrinkSideBar } = useContext(SideBarContext);
   //   const [activePage, setActivePage] = useState(1);
   const { width } = useResponsive();
