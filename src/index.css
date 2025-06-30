@@ -133,3 +133,10 @@
 .steper {
   @apply relative z-3 before:absolute before:-bottom-[32px] before:-z-1 before:left-1/2 before:h-[32px] before:w-[2px] before:bg-gray-400/40;
 }
+
+:root {
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+  scrollbar-color: black white;
+  scrollbar-face-color: aqua;
+}

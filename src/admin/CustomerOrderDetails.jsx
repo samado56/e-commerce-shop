@@ -1,5 +1,5 @@
 //hooks
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import useResponsive from "../hooks/useResponsive";
 // import { useNavigate } from "react-router";
 
@@ -16,8 +16,13 @@ import { FaShoppingCart } from "react-icons/fa";
 import { MdPayments } from "react-icons/md";
 import { FaTruck } from "react-icons/fa";
 import { FaBoxOpen } from "react-icons/fa6";
+import { RxOpenInNewWindow } from "react-icons/rx";
+
 // imgs
 import prd from "../assets/imgs/product7.jpg";
+
+//modals
+import TrackShipmentMModal from "../models/TrackShipmentMModal";
 
 const LineItems = () => {
   return (
@@ -69,6 +74,7 @@ const LineItems = () => {
 };
 
 const ShippingAndTracking = () => {
+  const [showTrackShipmentModal, setShowTrackShipmentModal] = useState(false);
   return (
     <>
       <div className="rounded-md shadow-sm shadow-black/10 bg-white p-4 mt-8  text-center md:text-start">
@@ -100,10 +106,19 @@ const ShippingAndTracking = () => {
             <span className="block text-sm text-gray-500 font-medium mb-1">
               Track shipment
             </span>
-            <span className="font-medium text-blue-500">Standard Shipping</span>
+            <span
+              onClick={() => setShowTrackShipmentModal(true)}
+              className="font-medium text-blue-500 flex items-center gap-2 cursor-pointer"
+            >
+              Track Shipment <RxOpenInNewWindow />
+            </span>
           </li>
         </ul>
       </div>
+      <TrackShipmentMModal
+        showModal={showTrackShipmentModal}
+        closeModal={() => setShowTrackShipmentModal(false)}
+      />
     </>
   );
 };

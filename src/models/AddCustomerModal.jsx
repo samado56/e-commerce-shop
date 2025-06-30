@@ -2,8 +2,6 @@ import { useRef, useEffect } from "react";
 
 //icons
 import { IoClose } from "react-icons/io5";
-import { VscPackage } from "react-icons/vsc";
-import { CiSaveUp2 } from "react-icons/ci";
 import { MdOutlineCancel } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
 import { PiUserBold } from "react-icons/pi";
