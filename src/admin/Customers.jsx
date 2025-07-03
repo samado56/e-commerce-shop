@@ -23,6 +23,7 @@ import Label from "../component/Label";
 //modal
 import AddCustomerModal from "../models/AddCustomerModal";
 import DeleteCustomerModal from "../models/DeleteCustomerModal";
+import EditCustomerModal from "../models/EditCustomerModal";
 
 export default function Custmores() {
   const { shrinkSideBar } = useContext(SideBarContext);
@@ -37,6 +38,7 @@ export default function Custmores() {
   //modals states
   const [showAddCustomerModal, setShowAddCustomerModal] = useState(false);
   const [showDeleteCustomerModal, setShowDeleteCustomerModal] = useState(false);
+  const [showEditCustomerModal, setShowEditCustomerModal] = useState(false);
 
   return (
     <>
@@ -193,7 +195,11 @@ export default function Custmores() {
                       className="cursor-pointer"
                       onClick={() => navigate("/customer-details")}
                     />
-                    <MdOutlineEdit size={20} className="cursor-pointer" />
+                    <MdOutlineEdit
+                      onClick={() => setShowEditCustomerModal(true)}
+                      size={20}
+                      className="cursor-pointer"
+                    />
                     <AiOutlineDelete
                       size={20}
                       className="cursor-pointer text-red-400"
@@ -295,6 +301,10 @@ export default function Custmores() {
       <DeleteCustomerModal
         showModal={showDeleteCustomerModal}
         closeModal={() => setShowDeleteCustomerModal(false)}
+      />
+      <EditCustomerModal
+        showModal={showEditCustomerModal}
+        closeModal={() => setShowEditCustomerModal(false)}
       />
     </>
   );
