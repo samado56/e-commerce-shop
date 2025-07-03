@@ -23,6 +23,7 @@ import prd from "../assets/imgs/product7.jpg";
 
 //modals
 import TrackShipmentMModal from "../models/TrackShipmentMModal";
+import ResendShipmentModal from "../models/ResendShipmentModal";
 
 const LineItems = () => {
   return (
@@ -181,6 +182,8 @@ export default function CustomerOrderDetails() {
   const { width } = useResponsive();
   const isSmallScreen = width < 768;
 
+  const [showResendShipmentModal, setShowResendShipmentModal] = useState(false);
+
   return (
     <>
       <div className="   bg-gray-400/5 min-h-[100vh] pb-10">
@@ -288,8 +291,27 @@ export default function CustomerOrderDetails() {
           <LineItems />
           <ShippingAndTracking />
           <StatusUpdates />
+          <div className="flex items-center  gap-4 justify-between border-t-2 border-gray-400/20 p-5">
+            <div className="flex items-center  gap-4 ">
+              <button
+                onClick={() => setShowResendShipmentModal(true)}
+                className="flex items-center gap-2 text-md font-semibold py-2 px-3  rounded-md bg-gray-400/20  cursor-pointer"
+              >
+                {/* <MdOutlineCancel size={20} /> */}
+                Resend Shipment Confiramtion
+              </button>
+              <button className="flex items-center gap-2 text-md font-semibold py-2 px-3  rounded-md bg-black text-white cursor-pointer">
+                {/* <CiSaveUp2 size={20} /> */}
+                Contact Customer
+              </button>
+            </div>
+          </div>
         </div>
       </div>
+      <ResendShipmentModal
+        showModal={showResendShipmentModal}
+        closeModal={() => setShowResendShipmentModal(false)}
+      />
     </>
   );
 }
