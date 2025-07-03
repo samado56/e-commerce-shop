@@ -17,6 +17,7 @@ import { MdPayments } from "react-icons/md";
 import { FaTruck } from "react-icons/fa";
 import { FaBoxOpen } from "react-icons/fa6";
 import { RxOpenInNewWindow } from "react-icons/rx";
+import { MdMailOutline } from "react-icons/md";
 
 // imgs
 import prd from "../assets/imgs/product7.jpg";
@@ -24,6 +25,7 @@ import prd from "../assets/imgs/product7.jpg";
 //modals
 import TrackShipmentMModal from "../models/TrackShipmentMModal";
 import ResendShipmentModal from "../models/ResendShipmentModal";
+import ContactCustomerModal from "../models/ContactCustomerModal";
 
 const LineItems = () => {
   return (
@@ -183,6 +185,8 @@ export default function CustomerOrderDetails() {
   const isSmallScreen = width < 768;
 
   const [showResendShipmentModal, setShowResendShipmentModal] = useState(false);
+  const [showContactCustomerModal, setShowContactCustomerModal] =
+    useState(false);
 
   return (
     <>
@@ -300,8 +304,11 @@ export default function CustomerOrderDetails() {
                 {/* <MdOutlineCancel size={20} /> */}
                 Resend Shipment Confiramtion
               </button>
-              <button className="flex items-center gap-2 text-md font-semibold py-2 px-3  rounded-md bg-black text-white cursor-pointer">
-                {/* <CiSaveUp2 size={20} /> */}
+              <button
+                onClick={() => setShowContactCustomerModal(true)}
+                className="flex items-center gap-2 text-md font-semibold py-2 px-3  rounded-md bg-black text-white cursor-pointer"
+              >
+                <MdMailOutline size={20} />
                 Contact Customer
               </button>
             </div>
@@ -311,6 +318,10 @@ export default function CustomerOrderDetails() {
       <ResendShipmentModal
         showModal={showResendShipmentModal}
         closeModal={() => setShowResendShipmentModal(false)}
+      />
+      <ContactCustomerModal
+        showModal={showContactCustomerModal}
+        closeModal={() => setShowContactCustomerModal(false)}
       />
     </>
   );

@@ -1,8 +1,6 @@
 import { useRef, useEffect } from "react";
 
 //icons
-import { AiOutlineDelete } from "react-icons/ai";
-import { GoAlert } from "react-icons/go";
 import { MdOutlineCancel } from "react-icons/md";
 import { MdMailOutline } from "react-icons/md";
 import { IoIosSend } from "react-icons/io";
@@ -54,7 +52,7 @@ export default function ResendShipmentModal({ closeModal, showModal }) {
                 <MdOutlineCancel size={20} />
                 Cancel
               </button>
-              <button className="flex w-1/2 items-center justify-center gap-2 text-md font-semibold py-2 px-3 rounded-md bg-red-500 text-white cursor-pointer">
+              <button className="flex w-1/2 items-center justify-center gap-2 text-md font-semibold py-2 px-3 rounded-md bg-black text-white cursor-pointer">
                 <IoIosSend size={20} />
                 Resend Email
               </button>
