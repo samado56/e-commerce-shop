@@ -9,6 +9,8 @@ import {
   TbLayoutSidebarLeftCollapse,
   TbLayoutSidebarLeftExpand,
 } from "react-icons/tb";
+import { IoSettingsOutline } from "react-icons/io5";
+import { MdLogout } from "react-icons/md";
 
 //hooks
 import { SideBarContext } from "../context/sideBarContext";
@@ -62,22 +64,51 @@ export default function SideBar() {
             )}
           </div>
         </div>
-        <div className="md:pl-0">
-          {navs.map(({ page, icon }) => (
+        <div className="md:pl-0 flex flex-col justify-between h-[calc(100vh-100px)] ">
+          <div>
+            {navs.map(({ page, icon }) => (
+              <div
+                key={page}
+                className="flex items-center gap-2 py-2 md:py-4 px-2 md:px-4 rounded-md w-full cursor-pointer"
+                style={navTitle === page ? style : null}
+                onClick={() => {
+                  navigate(`/${page}`);
+                }}
+              >
+                {icon}
+                {isSmallScreen || shrinkSideBar ? null : (
+                  <h1 className="text-lg font-medium">{page}</h1>
+                )}
+              </div>
+            ))}
+          </div>
+          <div className="mx-auto w-fit ">
             <div
-              key={page}
-              className="flex items-center gap-2 py-2 md:py-4 px-2 md:px-4 rounded-md w-full cursor-pointer"
-              style={navTitle === page ? style : null}
-              onClick={() => {
-                navigate(`/${page}`);
-              }}
+              className="py-2 md:py-4 px-2 md:px-4 rounded-md  cursor-pointer "
+              style={navTitle === "Settings" ? style : null}
             >
-              {icon}
-              {isSmallScreen || shrinkSideBar ? null : (
-                <h1 className="text-lg font-medium">{page}</h1>
-              )}
+              <IoSettingsOutline
+                size={25}
+                onClick={() => {
+                  navigate(`/Settings`);
+                }}
+              />
             </div>
-          ))}
+
+            <div
+              className="py-2 md:py-4 px-2 md:px-4 rounded-md  cursor-pointer "
+              style={navTitle === "Login" ? style : null}
+            >
+              <MdLogout
+                size={25}
+                className=" cursor-pointer"
+                style={navTitle === "Login" ? style : null}
+                onClick={() => {
+                  navigate(`/Login`);
+                }}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </>
