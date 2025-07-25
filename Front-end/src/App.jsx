@@ -18,13 +18,16 @@ import StoreProducts from "./admin/StoreProducts";
 import Orders from "./admin/Orders";
 import Customers from "./admin/Customers";
 import Analytics from "./admin/Analytics";
+import Settings from "./admin/Settings";
 import CustomerDetails from "./admin/CustomerDetails";
 import CustomerOrderDetails from "./admin/CustomerOrderDetails";
+import ProductState from "./context/ProductContext.jsx";
+import CartState from "./context/CartContext.jsx";
 
 function App() {
   return (
     <>
-      <SideBar />
+      {/* <SideBar />
       <Routes>
         <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="/Products" element={<StoreProducts />} />
@@ -33,21 +36,36 @@ function App() {
         <Route path="/Analytics" element={<Analytics />} />
         <Route path="/customer-details" element={<CustomerDetails />} />
         <Route path="/order-details" element={<CustomerOrderDetails />} />
-      </Routes>
-      {/* <Header /> */}
-      {/* <Routes>
+        <Route path="/Settings" element={<Settings />} />
+      </Routes> */}
+      <Header />
+      <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/shopping" element={<Listing />} />
-        <Route path="/product" element={<Product />} />
+        <Route
+          path="/product/:id"
+          element={
+            <ProductState>
+              <Product />
+            </ProductState>
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route
+          path="/cart"
+          element={
+            <CartState>
+              <Cart />
+            </CartState>
+          }
+        />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/succes" element={<SuccedOrder />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/user" element={<User />} />
         <Route path="/order-details" element={<OrderDetails />} />
-      </Routes> */}
+      </Routes>
     </>
   );
 }

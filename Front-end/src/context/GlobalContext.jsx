@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import { GlobalContext } from "./globalContext";
 
+
 const GlobalState = ({ children }) => {
   const [products, setProducts] = useState([]);
 
   async function fetchProducts() {
-    const url = `https://dummyjson.com/products`;
+    const url = `http://localhost:5000/products`;
     try {
       const res = await fetch(url);
       const data = await res.json();
 
       if (res.ok) {
-        console.log(data.products);
-        setProducts(data.products);
+        setProducts(data);
       }
     } catch (err) {
       console.log(err);
@@ -22,6 +22,8 @@ const GlobalState = ({ children }) => {
   useEffect(() => {
     fetchProducts();
   }, []);
+
+
 
   return (
     <>

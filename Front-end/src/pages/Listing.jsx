@@ -166,20 +166,20 @@ export default function Listing() {
           <div className="wrapper grid grid-cols-[repeat(auto-fill,_minmax(150px,_1fr))] md:grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))] gap-4 mt-5">
             {products &&
               products.map(
-                ({ title, thumbnail, price, reviews, rating, id }, index) => {
+                ({ title, _id, price, image}, index) => {
                   return (
                     <div
                       key={index}
                       className="product-card  relative shadow-md shadow-black/20 rounded-md whitespace-nowrap overflow-hidden text-ellipsis cursor-pointer"
-                      onClick={() => navigate("/product")}
+                      onClick={() => navigate(`/product/${_id}`)}
                     >
                       <span className="absolute top-3 right-3">
-                        {activeFavorite.includes(id) ? (
+                        {activeFavorite.includes(_id) ? (
                           <HiHeart
                             size={20}
                             onClick={() => {
                               const unFav = activeFavorite.filter(
-                                (fav) => fav !== id
+                                (fav) => fav !== _id
                               );
                               setActiveFavorite(unFav);
                             }}
@@ -188,12 +188,12 @@ export default function Listing() {
                           <HiOutlineHeart
                             size={20}
                             onClick={() =>
-                              setActiveFavorite([...activeFavorite, id])
+                              setActiveFavorite([...activeFavorite, _id])
                             }
                           />
                         )}
                       </span>
-                      <img src={thumbnail} alt="" />
+                      <img src={image} alt="" />
                       <div className="p-2">
                         <h1 className="text-lg font-medium truncate ">
                           {title}
@@ -202,7 +202,7 @@ export default function Listing() {
                         <span className="flex items-center gap-1">
                           <IoIosStar size={20} color="gold" />
                           <span className="text-gray-600">
-                            {rating}({reviews.length})
+                            {/* {rating}({reviews.length}) */}
                           </span>
                         </span>
                       </div>

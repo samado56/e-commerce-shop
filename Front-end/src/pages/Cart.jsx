@@ -1,14 +1,19 @@
 import { useNavigate } from "react-router";
 import avt from "../assets/imgs/r-avt2.jpg";
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import Footer from "../component/Footer";
 
 //icons
 import { MdDelete } from "react-icons/md";
+
+//context
+import {CartContext} from "../context/cartContext"
 export default function Cart() {
   const navigate = useNavigate();
   const [cupon, setCupon] = useState(false);
+
+  const {cart} = useContext(CartContext)
   return (
     <>
       <div className="py-[88px]">

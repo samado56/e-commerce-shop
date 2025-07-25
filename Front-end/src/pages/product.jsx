@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import pro from "../assets/imgs/product1.jpg";
 import avt from "../assets/imgs/r-avt2.jpg";
 
@@ -8,9 +8,21 @@ import { SlLike } from "react-icons/sl";
 
 //components
 import Footer from "../component/Footer";
-import { useNavigate } from "react-router";
+
+//routing
+import { useNavigate,  } from "react-router";
+
+//context
+import { ProductContext } from "../context/productContext";
+
+import {  useParams } from "react-router";
+
+
 
 export default function Product() {
+
+      const {id } = useParams()
+    // console.log('product id', id)
   const [activeSize, setActiveSize] = useState("XS");
   const [activeColor, setActiveColor] = useState("red");
 
@@ -19,6 +31,10 @@ export default function Product() {
   const sizes = ["XS", "S", "M", "L", "XL"];
   const colors = ["red", "gold", "green"];
 
+  const {product} = useContext(ProductContext)
+
+  
+console.log(product)
   return (
     <>
       <div className="product-page pt-[88px] md:pt-[61px] bg-gray-300/10">
@@ -30,7 +46,7 @@ export default function Product() {
           <div className="details flex flex-col md:flex-row items-start gap-10 mt-4 md:mt-8 md:px-10 pb-10  ">
             <div className="imgs  w-full md:w-[400px]">
               <img
-                src={pro}
+                src={product.image}
                 className="w-full rounded-xl shadow-md shadow-black/20"
               />
               <div className="flex items-center  gap-5 mt-4 ">
@@ -41,9 +57,9 @@ export default function Product() {
               </div>
             </div>
             <div className="description flex-1/2 ">
-              <h1 className="text-3xl font-bold">Floral Print Midi Dress</h1>
+              <h1 className="text-3xl font-bold">{product.title}</h1>
               <p>Item No. 12345</p>
-              <h1 className="text-2xl font-bold mt-6">$79.99</h1>
+              <h1 className="text-2xl font-bold mt-6">${product.price}</h1>
               <p className="mt-10 text-xl">
                 A charming midi dress featuring a vibrant floral print, perfect
                 for any occasion. Made from lightweight, breathable fabric for
