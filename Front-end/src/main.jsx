@@ -7,18 +7,22 @@ import "./framework.css";
 
 import App from "./App.jsx";
 import GlobalState from "./context/GlobalContext.jsx";
-import ProductState from "./context/ProductContext.jsx";
 import SideBarProvider from "./context/SideBarContext.jsx";
-
+import AuthProvider from "./context/Auth/AuthProvider.jsx";
+import CartProvider from "./context/Cart/CartProvider.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-      <SideBarProvider>
-        <GlobalState>
-    <BrowserRouter>
-          <App />
-    </BrowserRouter>
-        </GlobalState>
-      </SideBarProvider>
+    <AuthProvider>
+      <CartProvider>
+        <SideBarProvider>
+          <GlobalState>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </GlobalState>
+        </SideBarProvider>
+      </CartProvider>
+    </AuthProvider>
   </StrictMode>
 );

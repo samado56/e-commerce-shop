@@ -23,6 +23,8 @@ import CustomerDetails from "./admin/CustomerDetails";
 import CustomerOrderDetails from "./admin/CustomerOrderDetails";
 import ProductState from "./context/ProductContext.jsx";
 import CartState from "./context/CartContext.jsx";
+import ProtectedRoute from "./component/ProtectedRoute";
+
 
 function App() {
   return (
@@ -52,6 +54,8 @@ function App() {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route element={<ProtectedRoute />}>
+
         <Route
           path="/cart"
           element={
@@ -65,6 +69,8 @@ function App() {
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/user" element={<User />} />
         <Route path="/order-details" element={<OrderDetails />} />
+        </Route>
+
       </Routes>
     </>
   );

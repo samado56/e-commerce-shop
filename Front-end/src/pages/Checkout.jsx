@@ -1,8 +1,10 @@
 import { useState } from "react";
 import Footer from "../component/Footer";
 
-import prod from "../assets/imgs/r-avt2.jpg";
+
 import { useNavigate } from "react-router";
+import { UseAuth } from "../context/Auth/AuthCntext";
+import { useCart } from "../context/Cart/CartContext";
 
 export default function Checkout() {
   const paymentMethod = ["Credit Card", "PayPal", "Apple Pay"];
@@ -10,6 +12,46 @@ export default function Checkout() {
   const [sameShippingInfo, setSameShippingInfo] = useState(false);
 
   const navigate = useNavigate();
+
+  const { loader, cartItems, totalAmount } = useCart();
+  const [adress, setAdress] = useState();
+
+  const { token } = UseAuth();
+
+
+  console.log(cartItems);
+
+  const handleConfirmOrder = async () => {
+    if (!adress) return;
+
+    try {
+      const url = "http://localhost:5000/cart/checkout";
+      const res = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "Application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          adress,
+        }),
+      });
+
+      const order = await res.json();
+
+      if (res.ok) {
+        console.log("my order", order);
+        // clearCart();
+        navigate("/succes");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  if (loader) {
+    return <h1>Loading...</h1>;
+  }
   return (
     <>
       <div className="py-[88px] md:pt-[61px]">
@@ -47,6 +89,8 @@ export default function Checkout() {
                   type="adress"
                   id="address"
                   name="address"
+                  value={adress}
+                  onChange={(e) => setAdress(e.target.value)}
                   placeholder="Enter your adress"
                   className="mt-1 w-full rounded-md border border-gray-300 px-4 py-3  focus:border-black focus:ring-black bg-white"
                 />
@@ -329,41 +373,31 @@ export default function Checkout() {
               <div className="order-summary  rounded-lg p-6 shadow-md shadow-black/20">
                 <h1 className="text-2xl font-medium">Order Summary</h1>
                 <ul className="py-4 border-b-2 border-gray-400/20">
-                  <li className="py-2 flex items-center gap-3">
-                    <img src={prod} alt="" className="w-[60px] rounded-md" />
-                    <div className="flex-1 ">
-                      <span className="text-lg font-medium">Coton t-shirt</span>
-                      <span className="block font-[500] text-gray-500">
-                        Size M
-                      </span>
-                    </div>
-                    <p className="text-xl text-gray-500 font-medium">$25</p>
-                  </li>
-                  <li className="py-2 flex items-center gap-3">
-                    <img src={prod} alt="" className="w-[60px] rounded-md" />
-                    <div className="flex-1 ">
-                      <span className="text-lg font-medium">Coton t-shirt</span>
-                      <span className="block font-[500] text-gray-500">
-                        Size M
-                      </span>
-                    </div>
-                    <p className="text-xl text-gray-500 font-medium">$25</p>
-                  </li>
-                  <li className="py-2 flex items-center gap-3">
-                    <img src={prod} alt="" className="w-[60px] rounded-md" />
-                    <div className="flex-1 ">
-                      <span className="text-lg font-medium">Coton t-shirt</span>
-                      <span className="block font-[500] text-gray-500">
-                        Size M
-                      </span>
-                    </div>
-                    <p className="text-xl text-gray-500 font-medium">$25</p>
-                  </li>
+                  {cartItems.map(({ product, unitPrice }) => (
+                    <li className="py-2 flex items-center gap-3">
+                      <img
+                        src={product.image}
+                        alt=""
+                        className="w-[60px] rounded-md"
+                      />
+                      <div className="flex-1 ">
+                        <span className="text-lg font-medium">
+                          {product.title}
+                        </span>
+                        <span className="block font-[500] text-gray-500">
+                          Size M
+                        </span>
+                      </div>
+                      <p className="text-xl text-gray-500 font-medium">
+                        ${unitPrice}
+                      </p>
+                    </li>
+                  ))}
                 </ul>
                 <ul className="border-b-1 border-gray-600/20 py-2">
                   <li className="flex items-center justify-between text-lg font-medium text-gray-400 mb-2">
                     <span>Subtotal</span>
-                    <span>$125.00</span>
+                    <span>${totalAmount}</span>
                   </li>
                   <li className="flex items-center justify-between text-lg font-medium text-gray-400 mb-2">
                     <span>Tax</span>
@@ -371,16 +405,20 @@ export default function Checkout() {
                   </li>
                   <li className="flex items-center justify-between text-lg font-medium text-gray-400 mb-2">
                     <span>Subtotal</span>
-                    <span>$131.00</span>
+                    <span>
+                      ${totalAmount === 0 ? totalAmount : totalAmount + 9.99}
+                    </span>
                   </li>
                 </ul>
                 <div className="py-2 text-xl font-bold flex justify-between items-center">
                   <span>Total</span>
-                  <span>$140.00</span>
+                  <span>
+                    ${totalAmount === 0 ? totalAmount : totalAmount + 9.99}
+                  </span>
                 </div>
               </div>
               <button
-                onClick={() => navigate("/succes")}
+                onClick={handleConfirmOrder}
                 className="bg-black text-white text-xl text-center font-medium py-3 rounded-lg w-full mt-4 shadow-sm shadow-black/20 cursor-pointer"
               >
                 Place Order

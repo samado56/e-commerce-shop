@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import pro from "../assets/imgs/product1.jpg";
 import avt from "../assets/imgs/r-avt2.jpg";
 
@@ -10,31 +10,27 @@ import { SlLike } from "react-icons/sl";
 import Footer from "../component/Footer";
 
 //routing
-import { useNavigate,  } from "react-router";
+import { useNavigate } from "react-router";
 
 //context
 import { ProductContext } from "../context/productContext";
+import { useCart } from "../context/Cart/CartContext";
 
-import {  useParams } from "react-router";
-
-
+import { useParams } from "react-router";
 
 export default function Product() {
-
-      const {id } = useParams()
-    // console.log('product id', id)
+  const { id } = useParams();
   const [activeSize, setActiveSize] = useState("XS");
   const [activeColor, setActiveColor] = useState("red");
 
   const navigate = useNavigate();
+  const { addItemToCart } = useCart();
 
   const sizes = ["XS", "S", "M", "L", "XL"];
   const colors = ["red", "gold", "green"];
 
-  const {product} = useContext(ProductContext)
+  const { product } = useContext(ProductContext);
 
-  
-console.log(product)
   return (
     <>
       <div className="product-page pt-[88px] md:pt-[61px] bg-gray-300/10">
@@ -112,7 +108,10 @@ console.log(product)
                 />
               </div>
               <div className="mt-8 flex items-center gap-5">
-                <button className="px-6 py-2 font-medium text-white bg-black rounded-md cursor-pointer text-xl flex-1/2">
+                <button
+                  onClick={() => addItemToCart(id)}
+                  className="px-6 py-2 font-medium text-white bg-black rounded-md cursor-pointer text-xl flex-1/2"
+                >
                   Add to Cart
                 </button>
                 <button

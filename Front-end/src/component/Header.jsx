@@ -8,6 +8,7 @@ import { IoIosSearch } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { useCart } from "../context/Cart/CartContext";
 
 export default function Header() {
   const [search, setSearch] = useState("");
@@ -15,6 +16,8 @@ export default function Header() {
   const [deviceWidth, setDeviceWidth] = useState();
 
   const navigate = useNavigate();
+
+  const { cartItems } = useCart();
 
   window.onresize = function () {
     const clientWidth = window.outerWidth;
@@ -183,6 +186,7 @@ export default function Header() {
                 navigate("/cart");
               }}
               className=" shopping-bag"
+              data-cart={cartItems.length}
             >
               <HiOutlineShoppingBag size={25} className={iconsStyle} />
             </span>
