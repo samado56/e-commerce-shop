@@ -8,12 +8,16 @@ import { MdDelete } from "react-icons/md";
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa";
 
+//modals
+import EmptyCartModal from "../models/EmptyCartModal";
+
 //context
 import { useCart } from "../context/Cart/CartContext";
 
 export default function Cart() {
   const navigate = useNavigate();
   const [cupon, setCupon] = useState(false);
+  const [emptyCartModal, setEmptyCartModal] = useState(false)
   // const [quantity, setQuantity] = useState(1);
 
   const {
@@ -44,8 +48,19 @@ export default function Cart() {
     return <h1>Loading...</h1>;
   }
 
+  const handleNaivgate = () => {
+    !cartItems.length > 0? 
+      setEmptyCartModal(true):
+    navigate("/checkout");
+  };
+
   return (
     <>
+      <EmptyCartModal
+        showModal={emptyCartModal}
+        closeModal={() => setEmptyCartModal(false)}
+      />
+
       <div className="py-[88px]">
         <div className="container">
           <h1 className="text-4xl font-bold mt-10">Shopping Bag</h1>
@@ -118,7 +133,7 @@ export default function Cart() {
               <ul className="border-b-1 border-gray-600/20 py-2">
                 <li className="flex items-center justify-between text-lg font-medium text-gray-400 mb-2">
                   <span>Subtotal</span>
-                  <span>${totalAmount}</span>
+                  <span>${totalAmount.toFixed(2)}</span>
                 </li>
                 <li className="flex items-center justify-between text-lg font-medium text-gray-400 mb-2">
                   <span>Tax</span>
@@ -132,11 +147,14 @@ export default function Cart() {
               <div className="py-5 text-xl font-bold flex justify-between items-center">
                 <span>Total</span>
                 <span>
-                  ${totalAmount === 0 ? totalAmount : totalAmount + 9.99}
+                  $
+                  {totalAmount === 0
+                    ? totalAmount
+                    :   Number(totalAmount +9.99).toFixed(2)  }
                 </span>
               </div>
               <button
-                onClick={() => navigate("/checkout")}
+                onClick={handleNaivgate}
                 className="text-white text-lg font-medium rounded-md bg-black  py-2 my-3 w-full cursor-pointer"
               >
                 Proced to Checkout

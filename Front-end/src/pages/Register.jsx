@@ -13,7 +13,9 @@ export default function Register() {
   const { login } = UseAuth();
 
 
-  const handleRegister = async () => {
+  const handleRegister = async (e) => {
+    e.preventDefault();
+
     if (!FirstName || !LastName || !email || !password) {
       setError("missing information!");
       return;
@@ -43,7 +45,8 @@ export default function Register() {
       setError("incorect Token!");
     }
 
-    login(token, email);
+    login(email, token);
+    navigate("/shopping");
     console.log(token);
   };
 

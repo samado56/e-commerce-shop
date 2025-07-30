@@ -397,7 +397,7 @@ export default function Checkout() {
                 <ul className="border-b-1 border-gray-600/20 py-2">
                   <li className="flex items-center justify-between text-lg font-medium text-gray-400 mb-2">
                     <span>Subtotal</span>
-                    <span>${totalAmount}</span>
+                    <span>${Number(totalAmount).toFixed(2)}</span>
                   </li>
                   <li className="flex items-center justify-between text-lg font-medium text-gray-400 mb-2">
                     <span>Tax</span>
@@ -405,15 +405,13 @@ export default function Checkout() {
                   </li>
                   <li className="flex items-center justify-between text-lg font-medium text-gray-400 mb-2">
                     <span>Subtotal</span>
-                    <span>
-                      ${totalAmount === 0 ? totalAmount : totalAmount + 9.99}
-                    </span>
+                    <span>${Number(totalAmount).toFixed(2)}</span>
                   </li>
                 </ul>
                 <div className="py-2 text-xl font-bold flex justify-between items-center">
                   <span>Total</span>
                   <span>
-                    ${totalAmount === 0 ? totalAmount : totalAmount + 9.99}
+                    <span>${Number(totalAmount).toFixed(2)}</span>
                   </span>
                 </div>
               </div>

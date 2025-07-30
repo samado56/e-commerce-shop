@@ -6,24 +6,44 @@ import { BsPerson } from "react-icons/bs";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { IoIosSearch } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { useState } from "react";
+import { MdLogout } from "react-icons/md";
+import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useCart } from "../context/Cart/CartContext";
+import { RiAccountCircleLine } from "react-icons/ri";
+
+//modals
+import LogoutModal from "../models/LogoutModal";
 
 export default function Header() {
   const [search, setSearch] = useState("");
   const [showMenu, setShowMenu] = useState(false);
   const [deviceWidth, setDeviceWidth] = useState();
-
+  const [dropMenu, setDropMenu] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
   const navigate = useNavigate();
 
   const { cartItems } = useCart();
+
+  const menuRef = useRef();
 
   window.onresize = function () {
     const clientWidth = window.outerWidth;
     console.log(deviceWidth);
     setDeviceWidth(clientWidth);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setDropMenu(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [setDropMenu]);
 
   const linkStyle =
     "relative  before:absolute before:left-0 before:-bottom-2 before:w-0 before:h-[4px] before:bg-black before:transition-all before:duration-300 hover:before:w-full";
@@ -193,16 +213,51 @@ export default function Header() {
             <span className="favorite" onClick={() => navigate("/favorites")}>
               <HiOutlineHeart size={25} className={iconsStyle} />
             </span>
-            <BsPerson
-              onClick={() => navigate("/user")}
-              size={30}
-              className={iconsStyle}
-            />
+            <div className="relative ">
+              <BsPerson
+                size={30}
+                className={iconsStyle}
+                onClick={() => setDropMenu(!dropMenu)}
+              />
+
+              {dropMenu ? (
+                <div
+                  ref={menuRef}
+                  className="absolute w-[200px]  bg-white shadow-sm shadow-black/20 rounded-md top-10 right-2 "
+                >
+                  <div
+                    className="flex items-center gap-4 hover:bg-gray-400/20 py-2 px-4 cursor-pointer"
+                    onClick={() => {
+                      navigate("/user");
+                      setDropMenu(false);
+                    }}
+                  >
+                    <RiAccountCircleLine size={20} />
+                    <h1 className="text-lg font-medium">Account</h1>
+                  </div>
+                  <div
+                    className="flex items-center gap-4 hover:bg-gray-400/20 py-2 px-4 cursor-pointer"
+                    onClick={() => {
+                      setShowLogoutModal(true);
+                      setDropMenu(false);
+                    }}
+                  >
+                    <MdLogout size={20} />
+                    <h1 className="text-lg font-medium">Logout</h1>
+                  </div>
+                </div>
+              ) : null}
+            </div>
           </div>
         </div>
 
         /* ======= End Web ========= */
       )}
+
+      <LogoutModal
+        showModal={showLogoutModal}
+        closeModal={() => setShowLogoutModal(false)}
+      />
     </>
   );
 }

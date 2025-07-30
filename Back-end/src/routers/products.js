@@ -1,6 +1,11 @@
 import express from "express";
 
-import { getAllProduct, getOneProduct } from "../services/productServeice.js";
+import {
+  deleteProduct,
+  getAllProduct,
+  getOneProduct,
+  listProduct,
+} from "../services/productServeice.js";
 
 const router = express.Router();
 
@@ -20,5 +25,30 @@ router.get("/:id", async (req, res) => {
     res.status(400).send("Invalid ID");
   }
 });
+
+//post product
+router.post("/", async (req, res) => {
+  const { title, price, stock, image } = req.body;
+
+  const { statusCode, data } = await listProduct({
+    title,
+    price,
+    stock,
+    image,
+  });
+
+  res.status(statusCode).send(data);
+});
+
+//delete product
+
+router.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+  const { statusCode, data } = await deleteProduct({ id });
+
+  res.status(statusCode).send(data);
+});
+
+
 
 export default router;

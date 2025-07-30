@@ -28,7 +28,7 @@ router.post("/login", async (req, res) => {
   res.status(statusCode).json(data);
 });
 
-router.get("/my-orders", validateJWt, async (req, res) => {
+router.get("/orders", validateJWt, async (req, res) => {
   try {
     const userId = req.user._id;
     //get active cart for user

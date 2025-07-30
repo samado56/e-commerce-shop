@@ -93,3 +93,42 @@ export const seedProduct = async () => {
     console.error("cannot seed database ", err);
   }
 };
+
+
+export const listProduct = async ({ title, price, stock, image }) => {
+  const findProduct = await productModel.findOne({ title });
+
+  if (findProduct) {
+    return { data: "Product already exixts !", statusCode: 400 };
+  }
+
+  const newProduct = new productModel({
+    title,
+    price,
+    stock,
+    image,
+  });
+
+  await newProduct.save();
+
+  return { data: newProduct, statusCode: 201 };
+};
+
+export const deleteProduct = async ({ id }) => {
+  const products = await getAllProduct();
+
+  const findItem = products.find(({ _id }) => _id.toString() === id);
+  // console.log(findItem);
+
+  if (!findItem) {
+    return { data: "item not found !", statusCode: 400 };
+  }
+
+  const deleteItem = await productModel.findByIdAndDelete(id);
+
+  // await deleteItem.save();
+
+  return { data: "deleteItem", statusCode: 201 };
+};
+
+

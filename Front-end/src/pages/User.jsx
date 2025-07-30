@@ -34,6 +34,8 @@ import AddPayPalModal from "../models/AddPayPalModal";
 import AddGooglePayModal from "../models/AddGooglePayModal";
 import AddApplePayModal from "../models/AddApplePayModal";
 import AddAddressModal from "../models/AddAddressModal";
+import { useOrders } from "../context/Orders/OrdersContext";
+import { UseAuth } from "../context/Auth/AuthCntext";
 
 const PaymentMethods = () => {
   const { width } = useResopnsive();
@@ -475,12 +477,14 @@ const Profile = () => {
   );
 };
 
-const OrdersHistory = ({ nav }) => {
+const OrdersHistory = ({ nav, orders }) => {
   const [activePage, setActivePage] = useState(1);
   const { width } = useResopnsive();
   let pagination = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   width < 767 ? pagination.splice(5) : null;
+
+  console.log(orders);
   return (
     <>
       <div>
@@ -570,6 +574,30 @@ const OrdersHistory = ({ nav }) => {
                   </span>
                 </td>
               </tr>
+              {orders.map(({ orderItmes, total }, index) => (
+                <>
+                  <tr className="border-b-1 border-gray-400/20" key={index}>
+                    <td className="py-4 px-4 font-medium ">#12345</td>
+                    <td className="py-4 px-4 text-gray-400">july 15, 2024</td>
+                    <td className="py-4 px-4 text-gray-500 text-lg ">
+                      {orderItmes.length}
+                    </td>
+                    <td className="py-4 px-4 text-gray-500 text-lg ">
+                      ${total.toFixed(2)}
+                    </td>
+                    <td className="py-4 px-4">
+                      <span className="bg-green-500/10 py-1 px-3 text-green-800 font-[500] rounded-2xl">
+                        Delivered
+                      </span>
+                    </td>
+                    <td className="py-4 px-4 text-lg text-gray-600 font-medium ">
+                      <span className="cursor-pointer transition duration-100 hover:border-b-2 hover:border-black hover:text-black">
+                        View Details
+                      </span>
+                    </td>
+                  </tr>
+                </>
+              ))}
             </tbody>
           </table>
         </div>
@@ -610,7 +638,8 @@ const OrdersHistory = ({ nav }) => {
   );
 };
 
-const Overview = ({ editProfile }) => {
+const Overview = ({ editProfile, orders, activeSection }) => {
+  const { username } = UseAuth();
   return (
     <>
       <div className="flex flex-col md:flex-row items-center gap-6 p-6 bg-white shadow-sm shadow-black/10 mt-10 rounded-xl text-center md:text-start">
@@ -619,7 +648,7 @@ const Overview = ({ editProfile }) => {
           className="w-[200px] border-4 border-white shadow-sm shadow-black/20 rounded-full"
         />
         <div>
-          <h2 className="text-3xl font-bold mb-2"> Sophia Bennett</h2>
+          <h2 className="text-3xl font-bold mb-2"> {username}</h2>
           <span className="px-2 bg-yellow-400 font-medium mb-2 md:mb-5 block w-fit rounded-xl mx-auto md:mx-0 ">
             Gold Tier
           </span>
@@ -640,13 +669,16 @@ const Overview = ({ editProfile }) => {
       <h1 className="text-4xl font-bold my-10">Account Overview</h1>
       <div className="grid grid-cols-[repeat(auto-fill,_minmax(150px,_1fr))] md:grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))] gap-4 text-center md:text-start">
         <div className="bg-white px-4 py-6 shadow-sm shadow-black/10 rounded-md ">
-          <div className="flex flex-col-reverse md:flex-row items-center justify-between">
+          <div
+            className="flex flex-col-reverse md:flex-row items-center justify-between"
+            onClick={activeSection}
+          >
             <span className="text-gray-400 font-medium mt-2 md:mt-0">
               Total Order
             </span>
             <FiShoppingCart size={20} />
           </div>
-          <h2 className="text-3xl font-bold mt-2">12</h2>
+          <h2 className="text-3xl font-bold mt-2">{orders.length}</h2>
         </div>
         <div className="bg-white px-4 py-6 shadow-sm shadow-black/10 rounded-md">
           <div className="flex flex-col-reverse md:flex-row items-center justify-between">
@@ -692,6 +724,9 @@ export default function User() {
     "Adress",
     "Payment Methods",
   ];
+
+  const { orders } = useOrders();
+
   return (
     <>
       <div className="py-[88px] min-h-[100vh] bg-gray-400/5">
@@ -717,11 +752,18 @@ export default function User() {
           </div>
 
           {active === "Order History" ? (
-            <OrdersHistory nav={() => navigate("/order-details")} />
+            <OrdersHistory
+              nav={() => navigate("/order-details")}
+              orders={orders}
+            />
           ) : active === "Profile" ? (
             <Profile />
           ) : active === "Overview" ? (
-            <Overview editProfile={() => setActive("Profile")} />
+            <Overview
+              editProfile={() => setActive("Profile")}
+              orders={orders}
+              // activeSection={setActive("Order History")}
+            />
           ) : active === "Adress" ? (
             <AdressBook />
           ) : (

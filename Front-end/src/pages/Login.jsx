@@ -6,16 +6,20 @@ export default function Login() {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("ss@ss.cc");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("123");
   const [error, setError] = useState("");
 
   const { login } = UseAuth();
 
+  console.log(email);
+  console.log(password);
 
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
-  const handleLogin = async () => {
     if (!email || !password) {
       setError("missing information!");
+      console.log("missing information!");
       return;
     }
 
@@ -31,9 +35,9 @@ export default function Login() {
         password: password,
       }),
     });
-
-    if(res.ok){
-      console.log('login success')
+    console.log(res);
+    if (res.ok) {
+      console.log("login success");
     }
 
     if (!res.ok) {
@@ -51,8 +55,8 @@ export default function Login() {
     navigate("/shopping");
   };
 
-  if(error){
-    console.log(error )
+  if (error) {
+    console.log(error);
   }
 
   return (

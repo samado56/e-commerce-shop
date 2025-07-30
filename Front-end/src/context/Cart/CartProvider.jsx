@@ -40,7 +40,7 @@ const CartProvider = ({ children }) => {
     fetchCart();
   }, [token]);
 
-  const addItemToCart = async (productId) => {
+  const addItemToCart = async (productId, quantity = 1) => {
     console.log(productId);
     try {
       const url = "http://localhost:5000/cart/items";
@@ -53,7 +53,7 @@ const CartProvider = ({ children }) => {
         },
         body: JSON.stringify({
           productId,
-          quantity: 1,
+          quantity,
         }),
       });
 

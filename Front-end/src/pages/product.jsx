@@ -5,6 +5,8 @@ import avt from "../assets/imgs/r-avt2.jpg";
 //icons
 import { IoIosStar } from "react-icons/io";
 import { SlLike } from "react-icons/sl";
+import { FaPlus } from "react-icons/fa6";
+import { FaMinus } from "react-icons/fa";
 
 //components
 import Footer from "../component/Footer";
@@ -22,14 +24,23 @@ export default function Product() {
   const { id } = useParams();
   const [activeSize, setActiveSize] = useState("XS");
   const [activeColor, setActiveColor] = useState("red");
+  const [quantity, setQuantity] = useState(1);
 
   const navigate = useNavigate();
-  const { addItemToCart } = useCart();
+  const { addItemToCart, updateItemInCart } = useCart();
 
   const sizes = ["XS", "S", "M", "L", "XL"];
   const colors = ["red", "gold", "green"];
 
   const { product } = useContext(ProductContext);
+  console.log(product);
+
+  const handleQuantity = (productId, quantity) => {
+    if (quantity <= 0) {
+      return;
+    }
+    updateItemInCart(productId, quantity);
+  };
 
   return (
     <>
@@ -101,15 +112,30 @@ export default function Product() {
 
               <div className="mt-6 flex items-center gap-4">
                 <p className="text-xl font-medium ">Quantity</p>
+                <FaMinus
+                  size={20}
+                  className="cursor-pointer"
+                  onClick={() =>
+                    handleQuantity(setQuantity((Prev) => Prev - 1))
+                  }
+                />
                 <input
                   type="number"
-                  min={0}
+                  min={1}
+                  value={quantity}
                   className="border-2 border-gray-400/30 py-2 px-4  rounded-md w-[80px] font-medium bg-white focus:border-black"
+                />
+                <FaPlus
+                  size={20}
+                  className="cursor-pointer"
+                  onClick={() =>
+                    handleQuantity(setQuantity((Prev) => Prev + 1))
+                  }
                 />
               </div>
               <div className="mt-8 flex items-center gap-5">
                 <button
-                  onClick={() => addItemToCart(id)}
+                  onClick={() => addItemToCart(id, quantity)}
                   className="px-6 py-2 font-medium text-white bg-black rounded-md cursor-pointer text-xl flex-1/2"
                 >
                   Add to Cart
