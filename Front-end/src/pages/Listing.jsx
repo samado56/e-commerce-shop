@@ -165,51 +165,47 @@ export default function Listing() {
           </div>
           <div className="wrapper grid grid-cols-[repeat(auto-fill,_minmax(150px,_1fr))] md:grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))] gap-4 mt-5">
             {products &&
-              products.map(
-                ({ title, _id, price, image}, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className="product-card  relative shadow-md shadow-black/20 rounded-md whitespace-nowrap overflow-hidden text-ellipsis cursor-pointer"
-                      onClick={() => navigate(`/product/${_id}`)}
-                    >
-                      <span className="absolute top-3 right-3">
-                        {activeFavorite.includes(_id) ? (
-                          <HiHeart
-                            size={20}
-                            onClick={() => {
-                              const unFav = activeFavorite.filter(
-                                (fav) => fav !== _id
-                              );
-                              setActiveFavorite(unFav);
-                            }}
-                          />
-                        ) : (
-                          <HiOutlineHeart
-                            size={20}
-                            onClick={() =>
-                              setActiveFavorite([...activeFavorite, _id])
-                            }
-                          />
-                        )}
-                      </span>
-                      <img src={image} alt="" />
-                      <div className="p-2">
-                        <h1 className="text-lg font-medium truncate ">
-                          {title}
-                        </h1>
-                        <p className="text-gray-400 font-[500]">${price}</p>
-                        <span className="flex items-center gap-1">
-                          <IoIosStar size={20} color="gold" />
-                          <span className="text-gray-600">
-                            {/* {rating}({reviews.length}) */}
-                          </span>
+              products.map(({ title, _id, price, thumbnail }, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="product-card  relative shadow-md shadow-black/20 rounded-md whitespace-nowrap overflow-hidden text-ellipsis cursor-pointer"
+                    onClick={() => navigate(`/product/${_id}`)}
+                  >
+                    <span className="absolute top-3 right-3">
+                      {activeFavorite.includes(_id) ? (
+                        <HiHeart
+                          size={20}
+                          onClick={() => {
+                            const unFav = activeFavorite.filter(
+                              (fav) => fav !== _id
+                            );
+                            setActiveFavorite(unFav);
+                          }}
+                        />
+                      ) : (
+                        <HiOutlineHeart
+                          size={20}
+                          onClick={() =>
+                            setActiveFavorite([...activeFavorite, _id])
+                          }
+                        />
+                      )}
+                    </span>
+                    <img src={`data:image/jpg;base64,${thumbnail}`} />
+                    <div className="p-2">
+                      <h1 className="text-lg font-medium truncate ">{title}</h1>
+                      <p className="text-gray-400 font-[500]">${price}</p>
+                      <span className="flex items-center gap-1">
+                        <IoIosStar size={20} color="gold" />
+                        <span className="text-gray-600">
+                          {/* {rating}({reviews.length}) */}
                         </span>
-                      </div>
+                      </span>
                     </div>
-                  );
-                }
-              )}
+                  </div>
+                );
+              })}
           </div>
           <div className="pagination block">
             <ul className="flex justify-center items-center gap-2 py-8 text-lg font-[500] text-gray-400">

@@ -25,6 +25,7 @@ export default function Product() {
   const [activeSize, setActiveSize] = useState("XS");
   const [activeColor, setActiveColor] = useState("red");
   const [quantity, setQuantity] = useState(1);
+  const [thumbnail, setThumbnail] = useState("");
 
   const navigate = useNavigate();
   const { addItemToCart, updateItemInCart } = useCart();
@@ -53,14 +54,20 @@ export default function Product() {
           <div className="details flex flex-col md:flex-row items-start gap-10 mt-4 md:mt-8 md:px-10 pb-10  ">
             <div className="imgs  w-full md:w-[400px]">
               <img
-                src={product.image}
+                src={`data:image/png;base64,${
+                  thumbnail === "" ? product.thumbnail : thumbnail
+                }`}
                 className="w-full rounded-xl shadow-md shadow-black/20"
               />
               <div className="flex items-center  gap-5 mt-4 ">
-                <img src={pro} className="w-[70px] md:w-[80px]" />
-                <img src={pro} className="w-[70px] md:w-[80px]" />
-                <img src={pro} className="w-[70px] md:w-[80px]" />
-                <img src={pro} className="w-[70px] md:w-[80px]" />
+                {product?.images?.map((img, index) => (
+                  <img
+                    key={index}
+                    src={`data:image/png;base64,${img}`}
+                    className="w-[70px] md:w-[80px]"
+                    onClick={() => setThumbnail(img)}
+                  />
+                ))}
               </div>
             </div>
             <div className="description flex-1/2 ">
