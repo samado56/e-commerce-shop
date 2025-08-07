@@ -19,8 +19,6 @@ export default function Checkout() {
   const { token } = UseAuth();
 
 
-  console.log(cartItems);
-
   const handleConfirmOrder = async () => {
     if (!adress) return;
 
@@ -373,11 +371,10 @@ export default function Checkout() {
               <div className="order-summary  rounded-lg p-6 shadow-md shadow-black/20">
                 <h1 className="text-2xl font-medium">Order Summary</h1>
                 <ul className="py-4 border-b-2 border-gray-400/20">
-                  {cartItems.map(({ product, unitPrice }) => (
-                    <li className="py-2 flex items-center gap-3">
+                  {cartItems.map(({ product, unitPrice }, index) => (
+                    <li key={index} className="py-2 flex items-center gap-3">
                       <img
-                        src={product.image}
-                        alt=""
+                        src={`data:image/webp;base64,${product.thumbnail}`}
                         className="w-[60px] rounded-md"
                       />
                       <div className="flex-1 ">

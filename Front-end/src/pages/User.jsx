@@ -574,13 +574,13 @@ const OrdersHistory = ({ nav, orders }) => {
                   </span>
                 </td>
               </tr>
-              {orders.map(({ orderItmes, total }, index) => (
+              {orders.map(({ orderItems, total }, index) => (
                 <>
                   <tr className="border-b-1 border-gray-400/20" key={index}>
                     <td className="py-4 px-4 font-medium ">#12345</td>
                     <td className="py-4 px-4 text-gray-400">july 15, 2024</td>
                     <td className="py-4 px-4 text-gray-500 text-lg ">
-                      {orderItmes.length}
+                      {orderItems.length}
                     </td>
                     <td className="py-4 px-4 text-gray-500 text-lg ">
                       ${total.toFixed(2)}

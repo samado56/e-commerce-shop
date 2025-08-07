@@ -49,8 +49,7 @@ export default function OrderDetails() {
                 {cartItems.map(({ product, unitPrice }) => (
                   <li className="p-4 px-6 flex items-center gap-3 border-1 border-gray-400/40 rounded-md  mb-4 ">
                     <img
-                      src={product.image}
-                      alt=""
+                      src={`data:image/webp;base64,${product.thumbnail}`}
                       className="w-[80px] rounded-md"
                     />
                     <div className="flex-1 ">

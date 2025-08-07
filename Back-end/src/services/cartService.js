@@ -160,35 +160,49 @@ export const checkout = async ({ userId, adress }) => {
 
   const cart = await getActiveCartForUser({ userId });
 
-  const orderDetails = [];
-
-  for (const item of cart.item) {
-    const product = await productModel.findById(item.product);
-    if (!product) {
-      console.log("Product not found:", item.product);
-      continue;
+    if (!cart || Object.keys(cart).length === 0) {
+      return res.status(400).json({ error: "Cart is empty" });
     }
 
-    const orderItem = {
-      productTitle: product.title,
-      productImage: product.image,
-      quantity: item.quantity,
-      unitPrice: item.unitPrice,
-    };
+    const orderDetails = [];
 
-    orderDetails.push(orderItem);
-  }
+    for (const item of cart.item) {
+      const product = await productModel.findById(item.product);
+      if (!product) {
+        console.log("Product not found:", item.product);
+        continue;
+      }
 
-  if (orderDetails.length === 0) {
-    return { data: "No valid items in cart!", statusCode: 400 };
-  }
+      const orderItem = {
+        productTitle: product.title,
+        productImage: product.thumbnail,
+        quantity: item.quantity,
+        unitPrice: item.unitPrice,
+      };
 
-  const order = await orderModel.create({
-    orderItmes: orderDetails,
-    total: cart.totalAmount,
-    adress,
-    userId,
-  });
+      if (!orderItem) {
+        console.log("no order items!");
+      }
+
+      orderDetails.push(orderItem);
+    }
+
+    if (orderDetails.length === 0) {
+      return { data: "No valid items in cart!", statusCode: 400 };
+    }
+
+    let order;
+    try {
+      order = await orderModel.create({
+        orderItems: orderDetails,
+        total: cart.totalAmount,
+        adress,
+        userId,
+      });
+    } catch (err) {
+      console.error("Order creation failed:", err);
+      throw new Error("Order creation failed");
+    }
 
   cart.status = "completed";
   await cart.save();

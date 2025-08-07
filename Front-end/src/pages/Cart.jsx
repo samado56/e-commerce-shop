@@ -80,15 +80,19 @@ export default function Cart() {
 
               <div className="shopping-items">
                 {cartItems && cartItems.length ? (
-                  cartItems.map(({ product, quantity }) => (
-                    <div className="wraperr grid grid-cols-[minmax(180px,_1fr)_minmax(60px,_1fr)_minmax(50px,_1fr)_40px] md:grid-cols-[minmax(300px,_1fr)_minmax(200px,_1fr)_minmax(100px,_1fr)_100px] py-2 md:py-4 border-b-1 border-gray-400/20 ">
+                  cartItems.map(({ product, quantity }, index) => (
+                    <div
+                      key={index}
+                      className="wraperr grid grid-cols-[minmax(180px,_1fr)_minmax(60px,_1fr)_minmax(50px,_1fr)_40px] md:grid-cols-[minmax(300px,_1fr)_minmax(200px,_1fr)_minmax(100px,_1fr)_100px] py-2 md:py-4 border-b-1 border-gray-400/20 "
+                    >
                       <div className="flex items-center gap-2 md:gap-4 pl-2 ">
                         <img
-                          src={product.image}
+                          src={`data:image/webp;base64,${product?.thumbnail}`}
                           className="w-[40px] md:w-[80px]"
                         />
+
                         <div className="text-sm">
-                          <h4>{product.title}</h4>
+                          <h4>{product?.title}</h4>
                           <p>Color. Blue, Size: M</p>
                         </div>
                       </div>
@@ -114,7 +118,7 @@ export default function Cart() {
                         />
                       </div>
                       <div className=" my-auto ml-2 ">
-                        <span>${product.price}</span>
+                        <span>${product?.price}</span>
                       </div>
                       <div className="mx-auto  my-auto cursor-pointer text-lg md:text-4xl">
                         <MdDelete
@@ -133,7 +137,7 @@ export default function Cart() {
               <ul className="border-b-1 border-gray-600/20 py-2">
                 <li className="flex items-center justify-between text-lg font-medium text-gray-400 mb-2">
                   <span>Subtotal</span>
-                  <span>${totalAmount.toFixed(2)}</span>
+                  <span>${totalAmount?.toFixed(2)}</span>
                 </li>
                 <li className="flex items-center justify-between text-lg font-medium text-gray-400 mb-2">
                   <span>Tax</span>
@@ -150,7 +154,7 @@ export default function Cart() {
                   $
                   {totalAmount === 0
                     ? totalAmount
-                    :   Number(totalAmount +9.99).toFixed(2)  }
+                    : Number(totalAmount + 9.99).toFixed(2)}
                 </span>
               </div>
               <button

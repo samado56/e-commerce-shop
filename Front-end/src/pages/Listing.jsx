@@ -192,7 +192,7 @@ export default function Listing() {
                         />
                       )}
                     </span>
-                    <img src={`data:image/jpg;base64,${thumbnail}`} />
+                    <img src={`data:image/webp;base64,${thumbnail}`} />
                     <div className="p-2">
                       <h1 className="text-lg font-medium truncate ">{title}</h1>
                       <p className="text-gray-400 font-[500]">${price}</p>

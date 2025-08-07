@@ -38,7 +38,7 @@ const CartProvider = ({ children }) => {
 
   useEffect(() => {
     fetchCart();
-  }, [token]);
+  }, []);
 
   const addItemToCart = async (productId, quantity = 1) => {
     console.log(productId);

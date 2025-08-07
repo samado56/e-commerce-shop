@@ -54,6 +54,7 @@ router.delete("/items/:id", validateJWt, async (req, res) => {
     const deleteItem = await deleteItemFromCart({ userId, id });
     res.status(deleteItem.statusCode).send(deleteItem.data);
   } catch (err) {
+    console.log(err);
     res.status(500).send("somthing went wrong!");
   }
 });
@@ -74,10 +75,11 @@ router.post("/checkout", validateJWt, async (req, res) => {
   try {
     const userId = req.user._id;
     const { adress } = req.body;
-    const response = await checkout({ userId, adress });
-    res.status(response.statusCode).send(response.data);
+    const { statusCode, data } = await checkout({ userId, adress });
+    res.status(statusCode).send(data);
   } catch (err) {
-    res.status(500).sned("somthing went wrong!");
+    console.log("checkout error :", err.message);
+    res.status(500).json({ err: "somthing went wrong!" });
   }
 });
 
