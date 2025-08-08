@@ -240,7 +240,8 @@ const RecentOrders = () => {
 
 const TopSellingProducts = () => {
   const { products } = useContext(GlobalContext);
-  products.splice(4);
+  // products.splice(4);
+  console.log(products);
   return (
     <>
       <div className="grid-wrapper  text-center md:text-start">
@@ -252,7 +253,10 @@ const TopSellingProducts = () => {
                 className="product-card  relative shadow-md shadow-black/20 rounded-md whitespace-nowrap overflow-hidden text-ellipsis cursor-pointer"
                 // onClick={() => navigate("/product")}
               >
-                <img src={thumbnail} className="w-full" />
+                <img
+                  src={`data:image/webp;base64,${thumbnail}`}
+                  className="w-full"
+                />
                 <div className="p-4">
                   <h1 className="text-lg font-semibold truncate text-center md:text-start">
                     {title}

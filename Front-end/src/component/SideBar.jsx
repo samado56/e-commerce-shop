@@ -20,11 +20,11 @@ import { useNavigate, useLocation } from "react-router";
 
 export default function SideBar() {
   const navs = [
-    { page: "Dashboard", icon: <GoHomeFill size={25} /> },
-    { page: "Products", icon: <GoPackage size={25} /> },
-    { page: "Orders", icon: <BsClipboard2Check size={25} /> },
-    { page: "Customers", icon: <PiUsers size={25} /> },
-    { page: "Analytics", icon: <FaChartLine size={25} /> },
+    { page: "admin/Dashboard", icon: <GoHomeFill size={25} /> },
+    { page: "admin/Products", icon: <GoPackage size={25} /> },
+    { page: "admin/Orders", icon: <BsClipboard2Check size={25} /> },
+    { page: "admin/Customers", icon: <PiUsers size={25} /> },
+    { page: "admin/Analytics", icon: <FaChartLine size={25} /> },
   ];
 
   const style = { backgroundColor: "lightgray", fontWeight: "bold" };

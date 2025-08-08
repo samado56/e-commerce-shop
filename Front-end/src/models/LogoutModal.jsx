@@ -4,6 +4,7 @@ import { useRef, useEffect } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { GoAlert } from "react-icons/go";
 import { MdOutlineCancel } from "react-icons/md";
+import { MdLogout } from "react-icons/md";
 
 //component
 import Label from "../component/Label";
@@ -63,7 +64,7 @@ export default function LogoutModal({ closeModal, showModal }) {
                 }}
                 className="flex w-1/2 items-center justify-center gap-2 text-md font-semibold py-2 px-3 rounded-md bg-red-500 text-white cursor-pointer"
               >
-                <AiOutlineDelete size={20} />
+                <MdLogout size={20} />
                 Yes, Log Me Out
               </button>
             </div>

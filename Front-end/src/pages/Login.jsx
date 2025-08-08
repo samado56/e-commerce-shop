@@ -1,6 +1,7 @@
-import { useNavigate } from "react-router";
 import { useState } from "react";
 import { UseAuth } from "../context/Auth/AuthCntext";
+//routes
+import { useNavigate, useLocation } from "react-router";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -11,8 +12,9 @@ export default function Login() {
 
   const { login } = UseAuth();
 
-  console.log(email);
-  console.log(password);
+  const { pathname } = useLocation();
+
+  console.log(pathname);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -52,7 +54,7 @@ export default function Login() {
 
     console.log(token);
     login(email, token);
-    navigate("/shopping");
+    pathname === "/login" ? navigate("/shopping") : navigate("/Dashboard");
   };
 
   if (error) {
