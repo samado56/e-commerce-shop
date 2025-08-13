@@ -50,8 +50,11 @@ export default function SuccedOrder() {
                 Items Ordered
               </h4>
               <ul className="py-2  border-gray-400/20">
-                {cartItems.map(({ product, unitPrice }) => (
-                  <li className="p-4 px-6 flex items-center gap-3 border-1 border-gray-400/40 rounded-md  mb-4 ">
+                {cartItems.map(({ product, unitPrice }, index) => (
+                  <li
+                    key={index}
+                    className="p-4 px-6 flex items-center gap-3 border-1 border-gray-400/40 rounded-md  mb-4 "
+                  >
                     <img
                       src={`data:image/webp;base64,${product.thumbnail}`}
                       className="w-[80px] rounded-md"

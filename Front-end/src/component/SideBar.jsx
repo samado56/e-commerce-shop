@@ -14,9 +14,12 @@ import { MdLogout } from "react-icons/md";
 
 //hooks
 import { SideBarContext } from "../context/sideBarContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import useResopnsive from "../hooks/useResponsive";
 import { useNavigate, useLocation } from "react-router";
+
+//modals
+import LogoutModal from "../models/LogoutModal";
 
 export default function SideBar() {
   const navs = [
@@ -35,6 +38,8 @@ export default function SideBar() {
   const { shrinkSideBar, setShrinkSideBar } = useContext(SideBarContext);
   const { pathname } = useLocation();
   const navTitle = pathname.slice(1);
+
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   return (
     <>
@@ -90,7 +95,7 @@ export default function SideBar() {
               <IoSettingsOutline
                 size={25}
                 onClick={() => {
-                  navigate(`/Settings`);
+                  navigate(`/admin/Settings`);
                 }}
               />
             </div>
@@ -104,13 +109,18 @@ export default function SideBar() {
                 className=" cursor-pointer"
                 style={navTitle === "Login" ? style : null}
                 onClick={() => {
-                  navigate(`/Login`);
+                  setShowLogoutModal(true);
+                  // navigate(`/Login`);
                 }}
               />
             </div>
           </div>
         </div>
       </div>
+      <LogoutModal
+        showModal={showLogoutModal}
+        closeModal={() => setShowLogoutModal(false)}
+      />
     </>
   );
 }

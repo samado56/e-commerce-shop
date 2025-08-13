@@ -54,7 +54,9 @@ export default function Login() {
 
     console.log(token);
     login(email, token);
-    pathname === "/login" ? navigate("/shopping") : navigate("/Dashboard");
+    pathname === "/login"
+      ? navigate("/shopping")
+      : navigate("/admin/Dashboard");
   };
 
   if (error) {

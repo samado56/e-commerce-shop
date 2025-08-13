@@ -345,6 +345,14 @@ const AdressBook = () => {
 
 const Profile = () => {
   const [changePassword, setChangePassword] = useState(false);
+  const oldInfo = {
+    firstName: "adam",
+    lastName: "bod",
+    email: "ss@mail.com",
+    phone: "+1 565 9874 325",
+  };
+  const [userInfo, setUserInfo] = useState(oldInfo);
+  console.log(userInfo);
   return (
     <>
       <div className="w-full md:w-[900px] mt-6">
@@ -353,8 +361,8 @@ const Profile = () => {
         <div className="flex items-center gap-8">
           <div className="mt-4 flex-1/2">
             <label
-              for="firstname"
-              class="block text-sm font-medium text-gray-700"
+              htmlFor="firstname"
+              className="block text-sm font-medium text-gray-700"
             >
               First Name
             </label>
@@ -362,14 +370,17 @@ const Profile = () => {
               type="text"
               id="firstname"
               name="firstname"
-              // placeholder="you@example.com"
-              class="mt-1 w-full rounded-md border border-gray-300 px-4 py-3 shadow-sm focus:border-black focus:ring-black bg-white"
+              value={userInfo.firstName}
+              onChange={(e) =>
+                setUserInfo((prev) => ({ ...prev, firstName: e.target.value }))
+              }
+              className="mt-1 w-full rounded-md border border-gray-300 px-4 py-3 shadow-sm focus:border-black focus:ring-black bg-white"
             />
           </div>
           <div className="mt-4 flex-1/2">
             <label
-              for="lastname"
-              class="block text-sm font-medium text-gray-700"
+              htmlFor="lastname"
+              className="block text-sm font-medium text-gray-700"
             >
               Last Name
             </label>
@@ -377,33 +388,48 @@ const Profile = () => {
               type="text"
               id="lastname"
               name="lastname"
-              // placeholder="you@example.com"
-              class="mt-1 w-full rounded-md border border-gray-300 px-4 py-3 shadow-sm focus:border-black focus:ring-black bg-white"
+              value={userInfo.lastName}
+              onChange={(e) =>
+                setUserInfo((prev) => ({ ...prev, lastName: e.target.value }))
+              }
+              className="mt-1 w-full rounded-md border border-gray-300 px-4 py-3 shadow-sm focus:border-black focus:ring-black bg-white"
             />
           </div>
         </div>
         <div className="mt-4">
-          <label for="email" class="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium text-gray-700"
+          >
             Email
           </label>
           <input
             type="email"
             id="email"
             name="email"
-            // placeholder="you@example.com"
-            class="mt-1 w-full rounded-md border border-gray-300 px-4 py-3 shadow-sm focus:border-black focus:ring-black bg-white"
+            value={userInfo.email}
+            onChange={(e) =>
+              setUserInfo((prev) => ({ ...prev, email: e.target.value }))
+            }
+            className="mt-1 w-full rounded-md border border-gray-300 px-4 py-3 shadow-sm focus:border-black focus:ring-black bg-white"
           />
         </div>
         <div className="mt-4">
-          <label for="phone" class="block text-sm font-medium text-gray-700">
+          <label
+            htmlFor="phone"
+            className="block text-sm font-medium text-gray-700"
+          >
             Phone
           </label>
           <input
             type="phone"
             id="phone"
             name="phone"
-            // placeholder="you@example.com"
-            class="mt-1 w-full rounded-md border border-gray-300 px-4 py-3 shadow-sm focus:border-black focus:ring-black bg-white"
+            value={userInfo.phone}
+            onChange={(e) =>
+              setUserInfo((prev) => ({ ...prev, phone: e.target.value }))
+            }
+            className="mt-1 w-full rounded-md border border-gray-300 px-4 py-3 shadow-sm focus:border-black focus:ring-black bg-white"
           />
         </div>
 
@@ -421,8 +447,8 @@ const Profile = () => {
           <div>
             <div className="mt-4">
               <label
-                for="password"
-                class="block text-sm font-medium text-gray-700"
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700"
               >
                 New Password
               </label>
@@ -431,13 +457,13 @@ const Profile = () => {
                 id="password"
                 name="password"
                 // placeholder="you@example.com"
-                class="mt-1 w-full rounded-md border border-gray-300 px-4 py-3 shadow-sm focus:border-black focus:ring-black bg-white"
+                className="mt-1 w-full rounded-md border border-gray-300 px-4 py-3 shadow-sm focus:border-black focus:ring-black bg-white"
               />
             </div>{" "}
             <div className="mt-4">
               <label
-                for="c-password"
-                class="block text-sm font-medium text-gray-700"
+                htmlFor="c-password"
+                className="block text-sm font-medium text-gray-700"
               >
                 Confirm New Password
               </label>
@@ -446,7 +472,7 @@ const Profile = () => {
                 id="c-password"
                 name="c-password"
                 // placeholder="you@example.com"
-                class="mt-1 w-full rounded-md border border-gray-300 px-4 py-3 shadow-sm focus:border-black focus:ring-black bg-white"
+                className="mt-1 w-full rounded-md border border-gray-300 px-4 py-3 shadow-sm focus:border-black focus:ring-black bg-white"
               />
             </div>
           </div>

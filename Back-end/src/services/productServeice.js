@@ -116,20 +116,30 @@ export const listProduct = async ({ title, price, stock, images, thumbnail }) =>
 };
 
 export const deleteProduct = async ({ id }) => {
-  const products = await getAllProduct();
 
-  const findItem = products.find(({ _id }) => _id.toString() === id);
-  // console.log(findItem);
 
-  if (!findItem) {
-    return { data: "item not found !", statusCode: 400 };
-  }
+    try {
+      const products = await getAllProduct();
 
-  const deleteItem = await productModel.findByIdAndDelete(id);
+      const findItem = products.find(({ _id }) => _id.toString() === id);
+      // console.log(findItem);
 
-  // await deleteItem.save();
+      if (!findItem) {
+        return { data: "item not found !", statusCode: 400 };
+      }
 
-  return { data: "deleteItem", statusCode: 201 };
+      const deleteItem = await productModel.findByIdAndDelete(id);
+
+      // await deleteItem.save();
+
+      return {
+        data: " The product has been deleted succefully !",
+        statusCode: 200,
+      };
+    } catch (err) {
+      return { data: err, message: "somthing went wrong !" };
+    }
+
 };
 
 

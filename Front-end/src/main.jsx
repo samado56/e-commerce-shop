@@ -6,26 +6,26 @@ import "./index.css";
 import "./framework.css";
 
 import App from "./App.jsx";
-import GlobalState from "./context/GlobalContext.jsx";
 import SideBarProvider from "./context/SideBarContext.jsx";
 import AuthProvider from "./context/Auth/AuthProvider.jsx";
 import CartProvider from "./context/Cart/CartProvider.jsx";
 import OrdersProvider from "./context/Orders/OrdersProvider.jsx";
+import ProductState from "./context/ProductContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProvider>
-      <CartProvider>
-        <OrdersProvider>
-          <SideBarProvider>
-            <GlobalState>
+      <ProductState>
+        <CartProvider>
+          <OrdersProvider>
+            <SideBarProvider>
               <BrowserRouter>
                 <App />
               </BrowserRouter>
-            </GlobalState>
-          </SideBarProvider>
-        </OrdersProvider>
-      </CartProvider>
+            </SideBarProvider>
+          </OrdersProvider>
+        </CartProvider>
+      </ProductState>
     </AuthProvider>
   </StrictMode>
 );

@@ -21,6 +21,8 @@ import DeleteProductModal from "../models/DeleteProductModal";
 
 import prod from "../assets/imgs/product7.jpg";
 import sectionsPadding from "../styles/sectionsPadding";
+import { ProductContext } from "../context/productContext";
+
 export default function StoreProducts() {
   const { shrinkSideBar } = useContext(SideBarContext);
   const [activePage, setActivePage] = useState(1);
@@ -32,6 +34,15 @@ export default function StoreProducts() {
   let pagination = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   const isSmallScreen = width < 768;
+
+  const { products, deleteProduct, fetchProducts } = useContext(ProductContext);
+  const [delID, setDelID] = useState("");
+
+  const handleDeleteProduct = () => {
+    deleteProduct(delID);
+    setShowDeleteProductModal(false);
+    fetchProducts();
+  };
 
   return (
     <>
@@ -128,6 +139,7 @@ export default function StoreProducts() {
               </thead>
 
               <tbody className="text-center">
+                {/* ============ start hardCode ================== */}
                 <tr className="border-b-1 border-gray-400/20">
                   <td className="  py-2 px-4">
                     <input type="checkbox" />
@@ -224,6 +236,55 @@ export default function StoreProducts() {
                     />
                   </td>
                 </tr>
+                {/* ============ end hardCode ================== */}
+                <>
+                  {products && products.length ? (
+                    products.map(({ thumbnail, title, price, _id }) => (
+                      <tr key={_id} className="border-b-1 border-gray-400/20">
+                        <td className=" py-2 px-4">
+                          <input type="checkbox" />
+                        </td>
+                        <td className="py-4 px-4 text-gray-400">
+                          <img
+                            src={`data:image/webp;base64,${thumbnail}`}
+                            className="w-[40px] rounded-md mx-auto"
+                          />
+                        </td>
+                        <td className="py-4 px-4 row-text ">{title}</td>
+                        <td className="py-4 px-4 row-text">Apparel</td>
+                        <td className="py-4 px-4 row-text ">854</td>
+                        <td className="py-4 px-4 row-text">${price}</td>
+                        <td className="py-4 px-4">
+                          <Label label="Delivered" className="label-green" />
+                        </td>
+
+                        <td className="py-4 px-4">
+                          <Label label="Draft" className="label-gray" />
+                        </td>
+                        <td className="py-6 px-4 text-lg text-gray-600 font-medium flex items-center gap-4 my-auto ">
+                          <MdContentCopy size={20} />
+                          <MdOutlineEdit
+                            className="cursor-pointer"
+                            size={20}
+                            onClick={() => setShowEditProductModal(true)}
+                          />
+                          <AiOutlineDelete
+                            className="cursor-pointer"
+                            size={20}
+                            onClick={() => {
+                              setDelID(_id);
+                              setShowDeleteProductModal(true);
+                            }}
+                          />
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td>No products published</td>
+                    </tr>
+                  )}
+                </>
               </tbody>
             </table>
           </div>
@@ -274,6 +335,7 @@ export default function StoreProducts() {
       <DeleteProductModal
         showModal={showDeleteProductModal}
         closeModal={() => setShowDeleteProductModal(false)}
+        deleteProduct={handleDeleteProduct}
       />
     </>
   );

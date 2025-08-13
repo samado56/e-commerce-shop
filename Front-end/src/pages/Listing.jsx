@@ -1,5 +1,4 @@
 import { useContext, useState } from "react";
-import { GlobalContext } from "../context/globalContext";
 import useResopnsive from "../hooks/useResponsive";
 
 //icons
@@ -10,9 +9,10 @@ import { IoIosStar } from "react-icons/io";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { HiOutlineHeart, HiHeart } from "react-icons/hi2";
 import { useNavigate } from "react-router";
+import { ProductContext } from "../context/productContext";
 
 export default function Listing() {
-  const { products } = useContext(GlobalContext);
+  const { products } = useContext(ProductContext);
 
   const [showFilters, setShowFilters] = useState(false);
   const [activePage, setActivePage] = useState(1);
@@ -24,6 +24,10 @@ export default function Listing() {
   let pagination = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   width < 767 ? pagination.splice(5) : null;
+
+  function handleNavigateProduct(id) {
+    navigate(`/product/${id}`);
+  }
 
   return (
     <>
@@ -165,12 +169,12 @@ export default function Listing() {
           </div>
           <div className="wrapper grid grid-cols-[repeat(auto-fill,_minmax(150px,_1fr))] md:grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))] gap-4 mt-5">
             {products &&
-              products.map(({ title, _id, price, thumbnail }, index) => {
+              products.map(({ title, _id, price, thumbnail }) => {
                 return (
                   <div
-                    key={index}
+                    key={_id}
                     className="product-card  relative shadow-md shadow-black/20 rounded-md whitespace-nowrap overflow-hidden text-ellipsis cursor-pointer"
-                    onClick={() => navigate(`/product/${_id}`)}
+                    onClick={() => handleNavigateProduct(_id)}
                   >
                     <span className="absolute top-3 right-3">
                       {activeFavorite.includes(_id) ? (

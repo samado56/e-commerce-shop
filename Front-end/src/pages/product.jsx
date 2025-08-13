@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import pro from "../assets/imgs/product1.jpg";
 import avt from "../assets/imgs/r-avt2.jpg";
 
@@ -33,8 +33,7 @@ export default function Product() {
   const sizes = ["XS", "S", "M", "L", "XL"];
   const colors = ["red", "gold", "green"];
 
-  const { product } = useContext(ProductContext);
-  console.log(product);
+  const { oneProduct, getSingleProduct } = useContext(ProductContext);
 
   const handleQuantity = (productId, quantity) => {
     if (quantity <= 0) {
@@ -42,6 +41,10 @@ export default function Product() {
     }
     updateItemInCart(productId, quantity);
   };
+
+  useEffect(() => {
+    getSingleProduct(id);
+  }, [id]);
 
   return (
     <>
@@ -55,12 +58,12 @@ export default function Product() {
             <div className="imgs  w-full md:w-[400px]">
               <img
                 src={`data:image/webp;base64,${
-                  thumbnail === "" ? product.thumbnail : thumbnail
+                  thumbnail === "" ? oneProduct.thumbnail : thumbnail
                 }`}
                 className="w-full rounded-xl shadow-md shadow-black/20"
               />
               <div className="flex items-center  gap-5 mt-4 ">
-                {product?.images?.map((img, index) => (
+                {oneProduct?.images?.map((img, index) => (
                   <img
                     key={index}
                     src={`data:image/webp;base64,${img}`}
@@ -71,9 +74,9 @@ export default function Product() {
               </div>
             </div>
             <div className="description flex-1/2 ">
-              <h1 className="text-3xl font-bold">{product.title}</h1>
+              <h1 className="text-3xl font-bold">{oneProduct.title}</h1>
               <p>Item No. 12345</p>
-              <h1 className="text-2xl font-bold mt-6">${product.price}</h1>
+              <h1 className="text-2xl font-bold mt-6">${oneProduct.price}</h1>
               <p className="mt-10 text-xl">
                 A charming midi dress featuring a vibrant floral print, perfect
                 for any occasion. Made from lightweight, breathable fabric for
@@ -123,20 +126,21 @@ export default function Product() {
                   size={20}
                   className="cursor-pointer"
                   onClick={() =>
-                    handleQuantity(setQuantity((Prev) => Prev - 1))
+                    handleQuantity(setQuantity((Prev) => +Prev - 1))
                   }
                 />
                 <input
                   type="number"
                   min={1}
                   value={quantity}
-                  className="border-2 border-gray-400/30 py-2 px-4  rounded-md w-[80px] font-medium bg-white focus:border-black"
+                  onChange={(e) => setQuantity(e.target.value)}
+                  className="no-spinner border-2 border-gray-400/30 py-2 px-3  rounded-md w-[50px]  font-medium bg-white text-black focus:border-black"
                 />
                 <FaPlus
                   size={20}
                   className="cursor-pointer"
                   onClick={() =>
-                    handleQuantity(setQuantity((Prev) => Prev + 1))
+                    handleQuantity(setQuantity((Prev) => +Prev + 1))
                   }
                 />
               </div>

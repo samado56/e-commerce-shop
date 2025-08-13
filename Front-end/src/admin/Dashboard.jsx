@@ -1,6 +1,5 @@
 import { Box } from "@mui/material";
 import { useContext } from "react";
-import { GlobalContext } from "../context/globalContext";
 import { SideBarContext } from "../context/sideBarContext";
 
 //component
@@ -26,6 +25,7 @@ import {
 //map chart
 import MapChart from "../MapChart/MapChart";
 import useResopnsive from "../hooks/useResponsive";
+import { ProductContext } from "../context/productContext";
 
 const data = [
   { date: "Week 1", value: 10 },
@@ -239,7 +239,7 @@ const RecentOrders = () => {
 };
 
 const TopSellingProducts = () => {
-  const { products } = useContext(GlobalContext);
+  const { products } = useContext(ProductContext);
   // products.splice(4);
   console.log(products);
   return (

@@ -5,7 +5,12 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { GoAlert } from "react-icons/go";
 import { MdOutlineCancel } from "react-icons/md";
 
-export default function DeleteProductModal({ closeModal, showModal }) {
+
+export default function DeleteProductModal({
+  closeModal,
+  showModal,
+  deleteProduct,
+}) {
   const modalRef = useRef();
 
   useEffect(() => {
@@ -19,6 +24,7 @@ export default function DeleteProductModal({ closeModal, showModal }) {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [closeModal]);
+
   return (
     <>
       {showModal ? (
@@ -52,7 +58,10 @@ export default function DeleteProductModal({ closeModal, showModal }) {
                 <MdOutlineCancel size={20} />
                 Cancel
               </button>
-              <button className="flex w-1/2 items-center justify-center gap-2 text-md font-semibold py-2 px-3 rounded-md bg-red-500 text-white cursor-pointer">
+              <button
+                onClick={deleteProduct}
+                className="flex w-1/2 items-center justify-center gap-2 text-md font-semibold py-2 px-3 rounded-md bg-red-500 text-white cursor-pointer"
+              >
                 <AiOutlineDelete size={20} />
                 Yes, Delete
               </button>

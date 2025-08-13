@@ -80,10 +80,11 @@ router.post(
 
 //delete product
 router.delete("/:id", async (req, res) => {
+
   const { id } = req.params;
   const { statusCode, data } = await deleteProduct({ id });
 
-  res.status(statusCode).send(data);
+  res.status(statusCode).json(data);
 });
 
 export default router;
