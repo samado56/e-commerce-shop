@@ -35,7 +35,8 @@ export default function StoreProducts() {
 
   const isSmallScreen = width < 768;
 
-  const { products, deleteProduct, fetchProducts } = useContext(ProductContext);
+  const { products, deleteProduct, fetchProducts,  } =
+    useContext(ProductContext);
   const [delID, setDelID] = useState("");
 
   const handleDeleteProduct = () => {
@@ -326,6 +327,7 @@ export default function StoreProducts() {
       <AddProductModal
         showModal={showAddProductModal}
         closeModal={() => setShowAddProdutModal(false)}
+   
       />
 
       <EditProductModal

@@ -57,6 +57,23 @@ export default function ProductState({ children }) {
     }
   }
 
+  async function postProduct(body) {
+    const url = `http://localhost:5000/products`;
+
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        body,
+      });
+      const data = await res.json();
+
+      console.log(data);
+      fetchProducts();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
     <>
       <ProductContext.Provider
@@ -66,6 +83,7 @@ export default function ProductState({ children }) {
           deleteProduct,
           getSingleProduct,
           fetchProducts,
+          postProduct,
         }}
       >
         {children}

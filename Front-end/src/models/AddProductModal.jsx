@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState, useContext } from "react";
 
 //icons
 import { IoClose } from "react-icons/io5";
@@ -6,6 +6,8 @@ import { VscPackage } from "react-icons/vsc";
 import { CiSaveUp2 } from "react-icons/ci";
 import { IoMdCloudUpload } from "react-icons/io";
 import { MdOutlineCancel } from "react-icons/md";
+
+import { ProductContext } from "../context/productContext";
 
 export default function AddProductModal({ closeModal, showModal }) {
   const modalRef = useRef();
@@ -21,6 +23,54 @@ export default function AddProductModal({ closeModal, showModal }) {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [closeModal]);
+
+  //product info
+  const [title, setTitle] = useState("");
+  const [price, setPrice] = useState(0);
+  const [description, setDescription] = useState("");
+  const [images, setImages] = useState([]);
+  const [thumbnail, setThumbnail] = useState([]);
+  const [stock, setStock] = useState(100);
+
+  //images preview
+  const [previews, setPreviews] = useState([]);
+  const [thumbnailPreview, setThumbnailPreview] = useState(null);
+
+  console.log(previews);
+  const handleImageChange = (e) => {
+    const files = Array.from(e.target.files);
+    console.log("files lenght :", files.length);
+    const imagePreviews = files.map((file) => URL.createObjectURL(file));
+    setPreviews(imagePreviews);
+    setImages(files);
+  };
+  console.log(images);
+
+  const handleThumbnailChange = (e) => {
+    const thumb = e.target.files[0];
+    if (thumb) {
+      setThumbnailPreview(URL.createObjectURL(thumb)); // Create a temporary URL
+    }
+    setThumbnail(thumb);
+  };
+
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("thumbnail", thumbnail);
+  formData.append("price", price);
+  formData.append("description", description);
+  formData.append("stock", stock);
+
+  images.forEach((img) => formData.append("images", img));
+  // const handleSubmit = async () => {
+
+  //   await fetch("http://localhost:5000/products", {
+  //     method: "POST",
+  //     body: formData,
+  //   });
+  // };
+
+  const { postProduct } = useContext(ProductContext);
   return (
     <>
       {showModal ? (
@@ -54,6 +104,8 @@ export default function AddProductModal({ closeModal, showModal }) {
                     id="product-name"
                     name="product-name"
                     placeholder="e.g. Organic Cotton T-Shirt"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
                     className="mt-1 w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:border-black focus:ring-black"
                   />
                 </div>
@@ -68,6 +120,8 @@ export default function AddProductModal({ closeModal, showModal }) {
                     id="description"
                     name="description"
                     placeholder="e.g. Soft, breathable, and eco-friendly."
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
                     className="w-full h-[140px] p-4 border-2 border-gray-400/20 rounded-md  font-semibold text-md resize-none bg-white"
                   ></textarea>
                 </div>
@@ -103,6 +157,8 @@ export default function AddProductModal({ closeModal, showModal }) {
                       id="price"
                       name="price"
                       placeholder="$ 0.00"
+                      value={price}
+                      onChange={(e) => setPrice(e.target.value)}
                       className="mt-1 w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:border-black focus:ring-black"
                     />
                   </div>
@@ -118,40 +174,110 @@ export default function AddProductModal({ closeModal, showModal }) {
                     type="number"
                     id="stock"
                     name="stock"
-                    placeholder="e.g. 100"
+                    value={stock}
+                    onChange={(e) => setStock(e.target.value)}
                     className="mt-1 w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:border-black focus:ring-black"
                   />
                 </div>
-                <div className="w-full flex-1">
-                  <label
-                    htmlFor="stock"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Product Image
-                  </label>
-                  <div className="w-full mt-2">
+                <div className="flex items-center gap-8">
+                  <div className="w-full flex-1">
                     <label
-                      htmlFor="file-upload"
-                      className="flex flex-col items-center justify-center  h-40 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition"
+                      htmlFor="stock"
+                      className="block text-sm font-medium text-gray-700"
                     >
-                      <div className="flex flex-col items-center justify-center pt-5 pb-6 w-full ">
-                        <IoMdCloudUpload size={30} className="text-gray-400" />
-                        <p className="mb-2 text-sm text-gray-500">
-                          <span className="font-semibold text-yellow-500">
-                            Upload a file
-                          </span>{" "}
-                          or drag and drop
-                        </p>
-                        <p className="text-xs text-gray-400">
-                          PNG, JPG, GIF up to 10MB
-                        </p>
-                      </div>
-                      <input
-                        id="file-upload"
-                        type="file"
-                        className="hidden w-full "
-                      />
+                      Product Thumbnail
                     </label>
+                    <div className="w-full mt-2">
+                      <label
+                        htmlFor="file-upload"
+                        className="flex flex-col items-center justify-center  h-40 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition"
+                      >
+                        <div className="flex flex-col items-center justify-center pt-5 pb-6 w-full ">
+                          <IoMdCloudUpload
+                            size={30}
+                            className="text-gray-400"
+                          />
+                          <p className="mb-2 text-sm text-gray-500">
+                            <span className="font-semibold text-yellow-500">
+                              Upload a file
+                            </span>{" "}
+                            or drag and drop
+                          </p>
+                          <p className="text-xs text-gray-400">
+                            PNG, JPG, GIF up to 10MB
+                          </p>
+                        </div>
+
+                        <input
+                          id="file-upload"
+                          type="file"
+                          className="hidden w-full "
+                          multiple
+                          onChange={handleThumbnailChange}
+                          accept="image/*"
+                        />
+                      </label>
+                    </div>
+                    {thumbnailPreview && (
+                      <div className="flex items-center gap-2">
+                        <img
+                          src={thumbnailPreview}
+                          alt="Selected"
+                          className="w-[50px] rounded-lg"
+                        />
+                      </div>
+                    )}
+                  </div>
+                  <div className="w-full flex-1">
+                    <label
+                      htmlFor="images"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Product Images
+                    </label>
+                    <div className="w-full mt-2">
+                      <label
+                        htmlFor="images-upload"
+                        className="flex flex-col items-center justify-center  h-40 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition"
+                      >
+                        <div className="flex flex-col items-center justify-center pt-5 pb-6 w-full ">
+                          <IoMdCloudUpload
+                            size={30}
+                            className="text-gray-400"
+                          />
+                          <p className="mb-2 text-sm text-gray-500">
+                            <span className="font-semibold text-yellow-500">
+                              Upload a file
+                            </span>{" "}
+                            or drag and drop
+                          </p>
+                          <p className="text-xs text-gray-400">
+                            PNG, JPG, GIF up to 10MB
+                          </p>
+                        </div>
+
+                        <input
+                          id="images-upload"
+                          type="file"
+                          className="hidden w-full "
+                          multiple
+                          onChange={handleImageChange}
+                          accept="image/*"
+                        />
+                      </label>
+                    </div>
+                    {previews && (
+                      <div className="flex items-center gap-2">
+                        {previews.map((img) => (
+                          <img
+                            key={img}
+                            src={img}
+                            alt="Selected"
+                            className="w-[50px] rounded-lg"
+                          />
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               </form>
@@ -165,7 +291,13 @@ export default function AddProductModal({ closeModal, showModal }) {
                 <MdOutlineCancel size={20} />
                 Cancel
               </button>
-              <button className="flex items-center gap-2 text-md font-semibold py-2 px-3 rounded-md bg-black text-white cursor-pointer">
+              <button
+                onClick={() => {
+                  postProduct(formData);
+                  closeModal();
+                }}
+                className="flex items-center gap-2 text-md font-semibold py-2 px-3 rounded-md bg-black text-white cursor-pointer"
+              >
                 <CiSaveUp2 size={20} />
                 Save Product
               </button>
