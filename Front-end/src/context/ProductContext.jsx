@@ -4,10 +4,13 @@ import { ProductContext } from "./productContext.js";
 export default function ProductState({ children }) {
   const [oneProduct, setOneProduct] = useState({});
   const [products, setProducts] = useState([]);
+  const [loader, setLoader] = useState(false);
+  const [deletingLoader, setDeletingLoader] = useState(false);
 
   console.log("product context", oneProduct);
   async function fetchProducts() {
     const url = `http://localhost:5000/products`;
+
     try {
       const res = await fetch(url);
       const data = await res.json();
@@ -43,6 +46,7 @@ export default function ProductState({ children }) {
     const url = `http://localhost:5000/products/${delID}`;
 
     try {
+      setDeletingLoader(true);
       const res = await fetch(url, {
         method: "DELETE",
       });
@@ -50,17 +54,19 @@ export default function ProductState({ children }) {
       const data = await res.json();
       if (res.ok) {
         fetchProducts();
+        setDeletingLoader(false);
       }
       console.log(data);
     } catch (err) {
       console.log(err.message);
+      setDeletingLoader(false);
     }
   }
 
   async function postProduct(body) {
     const url = `http://localhost:5000/products`;
-
     try {
+      setLoader(true);
       const res = await fetch(url, {
         method: "POST",
         body,
@@ -68,9 +74,13 @@ export default function ProductState({ children }) {
       const data = await res.json();
 
       console.log(data);
-      fetchProducts();
+      if (res.ok) {
+        fetchProducts();
+        setLoader(false);
+      }
     } catch (err) {
       console.log(err);
+      setLoader(false);
     }
   }
 
@@ -84,6 +94,8 @@ export default function ProductState({ children }) {
           getSingleProduct,
           fetchProducts,
           postProduct,
+          loader,
+          deletingLoader,
         }}
       >
         {children}

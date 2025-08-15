@@ -10,9 +10,10 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { HiOutlineHeart, HiHeart } from "react-icons/hi2";
 import { useNavigate } from "react-router";
 import { ProductContext } from "../context/productContext";
+import Loader from "../component/Loader";
 
 export default function Listing() {
-  const { products } = useContext(ProductContext);
+  const { products, loader } = useContext(ProductContext);
 
   const [showFilters, setShowFilters] = useState(false);
   const [activePage, setActivePage] = useState(1);
@@ -167,50 +168,56 @@ export default function Listing() {
               <p className="text-lg font-medium">Sort</p>
             </div>
           </div>
-          <div className="wrapper grid grid-cols-[repeat(auto-fill,_minmax(150px,_1fr))] md:grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))] gap-4 mt-5">
-            {products &&
-              products.map(({ title, _id, price, thumbnail }) => {
-                return (
-                  <div
-                    key={_id}
-                    className="product-card  relative shadow-md shadow-black/20 rounded-md whitespace-nowrap overflow-hidden text-ellipsis cursor-pointer"
-                    onClick={() => handleNavigateProduct(_id)}
-                  >
-                    <span className="absolute top-3 right-3">
-                      {activeFavorite.includes(_id) ? (
-                        <HiHeart
-                          size={20}
-                          onClick={() => {
-                            const unFav = activeFavorite.filter(
-                              (fav) => fav !== _id
-                            );
-                            setActiveFavorite(unFav);
-                          }}
-                        />
-                      ) : (
-                        <HiOutlineHeart
-                          size={20}
-                          onClick={() =>
-                            setActiveFavorite([...activeFavorite, _id])
-                          }
-                        />
-                      )}
-                    </span>
-                    <img src={`data:image/webp;base64,${thumbnail}`} />
-                    <div className="p-2">
-                      <h1 className="text-lg font-medium truncate ">{title}</h1>
-                      <p className="text-gray-400 font-[500]">${price}</p>
-                      <span className="flex items-center gap-1">
-                        <IoIosStar size={20} color="gold" />
-                        <span className="text-gray-600">
-                          {/* {rating}({reviews.length}) */}
-                        </span>
+          {loader ? (
+            <Loader />
+          ) : (
+            <div className="wrapper grid grid-cols-[repeat(auto-fill,_minmax(150px,_1fr))] md:grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))] gap-4 mt-5">
+              {products &&
+                products.map(({ title, _id, price, thumbnail }) => {
+                  return (
+                    <div
+                      key={_id}
+                      className="product-card  relative shadow-md shadow-black/20 rounded-md whitespace-nowrap overflow-hidden text-ellipsis cursor-pointer"
+                      onClick={() => handleNavigateProduct(_id)}
+                    >
+                      <span className="absolute top-3 right-3">
+                        {activeFavorite.includes(_id) ? (
+                          <HiHeart
+                            size={20}
+                            onClick={() => {
+                              const unFav = activeFavorite.filter(
+                                (fav) => fav !== _id
+                              );
+                              setActiveFavorite(unFav);
+                            }}
+                          />
+                        ) : (
+                          <HiOutlineHeart
+                            size={20}
+                            onClick={() =>
+                              setActiveFavorite([...activeFavorite, _id])
+                            }
+                          />
+                        )}
                       </span>
+                      <img src={`data:image/webp;base64,${thumbnail}`} />
+                      <div className="p-2">
+                        <h1 className="text-lg font-medium truncate ">
+                          {title}
+                        </h1>
+                        <p className="text-gray-400 font-[500]">${price}</p>
+                        <span className="flex items-center gap-1">
+                          <IoIosStar size={20} color="gold" />
+                          <span className="text-gray-600">
+                            {/* {rating}({reviews.length}) */}
+                          </span>
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
-          </div>
+                  );
+                })}
+            </div>
+          )}
           <div className="pagination block">
             <ul className="flex justify-center items-center gap-2 py-8 text-lg font-[500] text-gray-400">
               <IoIosArrowBack

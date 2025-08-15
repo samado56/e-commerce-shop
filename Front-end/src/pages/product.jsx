@@ -19,6 +19,8 @@ import { ProductContext } from "../context/productContext";
 import { useCart } from "../context/Cart/CartContext";
 
 import { useParams } from "react-router";
+import { SkeletonCard } from "../component/Loader";
+import BlurImage from "../component/BlurImage";
 
 export default function Product() {
   const { id } = useParams();
@@ -56,18 +58,19 @@ export default function Product() {
 
           <div className="details flex flex-col md:flex-row items-start gap-10 mt-4 md:mt-8 md:px-10 pb-10  ">
             <div className="imgs  w-full md:w-[400px]">
-              <img
-                src={`data:image/webp;base64,${
-                  thumbnail === "" ? oneProduct.thumbnail : thumbnail
-                }`}
-                className="w-full rounded-xl shadow-md shadow-black/20"
+              <BlurImage
+                src={thumbnail === "" ? oneProduct.thumbnail : thumbnail}
+                className={
+                  "w-full rounded-xl shadow-md shadow-black/20 h-[600px]"
+                }
               />
+
               <div className="flex items-center  gap-5 mt-4 ">
                 {oneProduct?.images?.map((img, index) => (
-                  <img
+                  <BlurImage
+                    src={img}
                     key={index}
-                    src={`data:image/webp;base64,${img}`}
-                    className="w-[70px] md:w-[80px]"
+                    className={"w-[80px]"}
                     onClick={() => setThumbnail(img)}
                   />
                 ))}

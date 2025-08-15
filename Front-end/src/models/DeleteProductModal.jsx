@@ -1,10 +1,11 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useContext } from "react";
 
 //icons
 import { AiOutlineDelete } from "react-icons/ai";
 import { GoAlert } from "react-icons/go";
 import { MdOutlineCancel } from "react-icons/md";
-
+import { ProductContext } from "../context/productContext";
+import { LoadingButton } from "../component/Loader";
 
 export default function DeleteProductModal({
   closeModal,
@@ -25,6 +26,9 @@ export default function DeleteProductModal({
     };
   }, [closeModal]);
 
+  const { oneProduct, deletingLoader } = useContext(ProductContext);
+  const { title } = oneProduct;
+
   return (
     <>
       {showModal ? (
@@ -41,7 +45,7 @@ export default function DeleteProductModal({
               <p className="text-gray-500 text-md">
                 Are you sure you want to delete{" "}
                 <span className="text-black  font-medium">
-                  "Vintage Leather Jacket - SKU: VLJ001"
+                  "{title} - SKU: VLJ001"
                 </span>
                 ?
               </p>
@@ -58,13 +62,27 @@ export default function DeleteProductModal({
                 <MdOutlineCancel size={20} />
                 Cancel
               </button>
-              <button
+
+              <LoadingButton
+                onClick={deleteProduct}
+                loading={deletingLoader}
+                className="flex w-1/2 min-h-[40px] items-center justify-center gap-2 text-md font-semibold py-2 px-3 rounded-md bg-red-500 text-white cursor-pointer"
+              >
+                {!deletingLoader && (
+                  <>
+                    <AiOutlineDelete size={20} />
+                    Yes, Delete
+                  </>
+                )}
+              </LoadingButton>
+
+              {/* <button
                 onClick={deleteProduct}
                 className="flex w-1/2 items-center justify-center gap-2 text-md font-semibold py-2 px-3 rounded-md bg-red-500 text-white cursor-pointer"
               >
                 <AiOutlineDelete size={20} />
-                Yes, Delete
-              </button>
+                {deletingLoader ? "loading..." : "Yes, Delete"}
+              </button> */}
             </div>
           </div>
         </div>

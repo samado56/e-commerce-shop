@@ -35,12 +35,12 @@ export default function StoreProducts() {
 
   const isSmallScreen = width < 768;
 
-  const { products, deleteProduct, fetchProducts,  } =
+  const { products, deleteProduct, fetchProducts, getSingleProduct } =
     useContext(ProductContext);
-  const [delID, setDelID] = useState("");
+  const [productID, setProductID] = useState("");
 
-  const handleDeleteProduct = () => {
-    deleteProduct(delID);
+  const handleDeleteProduct = async() => {
+    await deleteProduct(productID);
     setShowDeleteProductModal(false);
     fetchProducts();
   };
@@ -273,7 +273,8 @@ export default function StoreProducts() {
                             className="cursor-pointer"
                             size={20}
                             onClick={() => {
-                              setDelID(_id);
+                              getSingleProduct(_id);
+                              setProductID(_id);
                               setShowDeleteProductModal(true);
                             }}
                           />
@@ -327,7 +328,6 @@ export default function StoreProducts() {
       <AddProductModal
         showModal={showAddProductModal}
         closeModal={() => setShowAddProdutModal(false)}
-   
       />
 
       <EditProductModal
