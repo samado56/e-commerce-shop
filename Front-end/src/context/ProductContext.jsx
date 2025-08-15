@@ -6,8 +6,10 @@ export default function ProductState({ children }) {
   const [products, setProducts] = useState([]);
   const [loader, setLoader] = useState(false);
   const [deletingLoader, setDeletingLoader] = useState(false);
+  //snak bar messags
+  const [snackBarMessage, setSnackBarMessage] = useState("");
+  const [statusCode, setStatusCode] = useState();
 
-  console.log("product context", oneProduct);
   async function fetchProducts() {
     const url = `http://localhost:5000/products`;
 
@@ -52,13 +54,17 @@ export default function ProductState({ children }) {
       });
 
       const data = await res.json();
+      setStatusCode(res.status);
+      console.log(res.status);
+
       if (res.ok) {
         fetchProducts();
         setDeletingLoader(false);
+        setSnackBarMessage(data);
       }
-      console.log(data);
     } catch (err) {
       console.log(err.message);
+
       setDeletingLoader(false);
     }
   }
@@ -71,15 +77,20 @@ export default function ProductState({ children }) {
         method: "POST",
         body,
       });
+      setStatusCode(res.status);
       const data = await res.json();
-
+      setSnackBarMessage(data);
       console.log(data);
       if (res.ok) {
         fetchProducts();
-        setLoader(false);
       }
+      // if(res.status!== 201){
+      //   setSnackBarMessage(data);
+
+      // }
+      setLoader(false);
     } catch (err) {
-      console.log(err);
+      console.log(err.message);
       setLoader(false);
     }
   }
@@ -96,6 +107,8 @@ export default function ProductState({ children }) {
           postProduct,
           loader,
           deletingLoader,
+          snackBarMessage,
+          statusCode,
         }}
       >
         {children}

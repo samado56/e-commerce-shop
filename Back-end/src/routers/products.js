@@ -70,7 +70,7 @@ router.post(
         images,
       });
 
-      res.status(statusCode).send(data);
+      res.status(statusCode).json(data);
     } catch (err) {
       console.log("upload error", err);
       res.status(500).json({ message: "Internal server error", err });

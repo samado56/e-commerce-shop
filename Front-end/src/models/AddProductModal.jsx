@@ -10,7 +10,11 @@ import { MdOutlineCancel } from "react-icons/md";
 import { ProductContext } from "../context/productContext";
 import { LoadingOverlay } from "../component/Loader";
 
-export default function AddProductModal({ closeModal, showModal }) {
+export default function AddProductModal({
+  closeModal,
+  showModal,
+  showSnackBar,
+}) {
   const modalRef = useRef();
 
   useEffect(() => {
@@ -37,15 +41,12 @@ export default function AddProductModal({ closeModal, showModal }) {
   const [previews, setPreviews] = useState([]);
   const [thumbnailPreview, setThumbnailPreview] = useState(null);
 
-  console.log(previews);
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
-    console.log("files lenght :", files.length);
     const imagePreviews = files.map((file) => URL.createObjectURL(file));
     setPreviews(imagePreviews);
     setImages(files);
   };
-  console.log(images);
 
   const handleThumbnailChange = (e) => {
     const thumb = e.target.files[0];
@@ -63,16 +64,8 @@ export default function AddProductModal({ closeModal, showModal }) {
   formData.append("stock", stock);
 
   images.forEach((img) => formData.append("images", img));
-  // const handleSubmit = async () => {
-
-  //   await fetch("http://localhost:5000/products", {
-  //     method: "POST",
-  //     body: formData,
-  //   });
-  // };
 
   const { postProduct, loader } = useContext(ProductContext);
-  console.log(loader);
   return (
     <>
       {showModal ? (
@@ -303,6 +296,7 @@ export default function AddProductModal({ closeModal, showModal }) {
                 onClick={async () => {
                   await postProduct(formData);
                   loader ? null : closeModal();
+                  showSnackBar();
                 }}
                 className="flex items-center gap-2 text-md font-semibold py-2 px-3 rounded-md bg-black text-white cursor-pointer"
               >

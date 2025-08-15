@@ -112,7 +112,7 @@ export const listProduct = async ({ title, price, stock, images, thumbnail }) =>
 
   await newProduct.save();
 
-  return { data: newProduct, statusCode: 201 };
+  return { data: "The product has been add successfully !", statusCode: 201 };
 };
 
 export const deleteProduct = async ({ id }) => {

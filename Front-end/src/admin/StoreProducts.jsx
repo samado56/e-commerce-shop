@@ -8,7 +8,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { MdOutlineEdit } from "react-icons/md";
 
 import { SideBarContext } from "../context/sideBarContext";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useResponsive from "../hooks/useResponsive";
 
 //components
@@ -22,6 +22,7 @@ import DeleteProductModal from "../models/DeleteProductModal";
 import prod from "../assets/imgs/product7.jpg";
 import sectionsPadding from "../styles/sectionsPadding";
 import { ProductContext } from "../context/productContext";
+import { SuccessBar, InfoBar, AlertBar, ErrorBar } from "../snackBars/Success";
 
 export default function StoreProducts() {
   const { shrinkSideBar } = useContext(SideBarContext);
@@ -35,15 +36,30 @@ export default function StoreProducts() {
 
   const isSmallScreen = width < 768;
 
-  const { products, deleteProduct, fetchProducts, getSingleProduct } =
-    useContext(ProductContext);
+  const {
+    products,
+    deleteProduct,
+    fetchProducts,
+    getSingleProduct,
+    snackBarMessage,
+    statusCode,
+  } = useContext(ProductContext);
+
   const [productID, setProductID] = useState("");
 
-  const handleDeleteProduct = async() => {
+  const handleDeleteProduct = async () => {
     await deleteProduct(productID);
     setShowDeleteProductModal(false);
     fetchProducts();
+    setShowSnackBar(true);
   };
+
+  const [showSnackBar, setShowSnackBar] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowSnackBar(false), 3000);
+    return () => clearTimeout(timer);
+  }, [showSnackBar]);
 
   return (
     <>
@@ -69,7 +85,7 @@ export default function StoreProducts() {
           <div className="grid grid-cols-[repeat(auto-fill,_minmax(300px,_1fr))] gap-6 text-center md:text-start mb-5">
             <div className="p-4 shadow-md shadow-black/10 rounded-md bg-white">
               <p className="text-gray-600 font-semibold mb-2">Total Products</p>
-              <h1 className="text-4xl font-bold mb-1">120</h1>
+              <h1 className="text-4xl font-bold mb-1">{products.length}</h1>
             </div>
             <div className="p-4 shadow-md shadow-black/10 rounded-md bg-white">
               <p className="text-gray-600 font-semibold mb-2">
@@ -267,7 +283,10 @@ export default function StoreProducts() {
                           <MdOutlineEdit
                             className="cursor-pointer"
                             size={20}
-                            onClick={() => setShowEditProductModal(true)}
+                            onClick={() => {
+                              getSingleProduct(_id);
+                              setShowEditProductModal(true);
+                            }}
                           />
                           <AiOutlineDelete
                             className="cursor-pointer"
@@ -328,6 +347,7 @@ export default function StoreProducts() {
       <AddProductModal
         showModal={showAddProductModal}
         closeModal={() => setShowAddProdutModal(false)}
+        showSnackBar={() => setShowSnackBar(true)}
       />
 
       <EditProductModal
@@ -339,6 +359,18 @@ export default function StoreProducts() {
         closeModal={() => setShowDeleteProductModal(false)}
         deleteProduct={handleDeleteProduct}
       />
+
+      {/* //snack Bars */}
+
+      {statusCode === 201 || statusCode === 200
+        ? showSnackBar && <SuccessBar msg={snackBarMessage} />
+        : showSnackBar && <ErrorBar msg={snackBarMessage} />}
+
+      {/* {showSnackBar && <SuccessBar msg={snackBarMessage} />}
+      {showSnackBar && <ErrorBar msg={snackBarMessage} />} */}
+      {/* <InfoBar /> */}
+      {/* <AlertBar /> */}
+      {/* <ErrorBar /> */}
     </>
   );
 }
