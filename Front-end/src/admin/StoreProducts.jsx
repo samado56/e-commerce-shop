@@ -40,12 +40,13 @@ export default function StoreProducts() {
     products,
     deleteProduct,
     fetchProducts,
-    getSingleProduct,
     snackBarMessage,
     statusCode,
   } = useContext(ProductContext);
 
   const [productID, setProductID] = useState("");
+  const [productInfo, setProductInfo] = useState({});
+  console.log(productInfo);
 
   const handleDeleteProduct = async () => {
     await deleteProduct(productID);
@@ -256,50 +257,53 @@ export default function StoreProducts() {
                 {/* ============ end hardCode ================== */}
                 <>
                   {products && products.length ? (
-                    products.map(({ thumbnail, title, price, _id }) => (
-                      <tr key={_id} className="border-b-1 border-gray-400/20">
-                        <td className=" py-2 px-4">
-                          <input type="checkbox" />
-                        </td>
-                        <td className="py-4 px-4 text-gray-400">
-                          <img
-                            src={`data:image/webp;base64,${thumbnail}`}
-                            className="w-[40px] rounded-md mx-auto"
-                          />
-                        </td>
-                        <td className="py-4 px-4 row-text ">{title}</td>
-                        <td className="py-4 px-4 row-text">Apparel</td>
-                        <td className="py-4 px-4 row-text ">854</td>
-                        <td className="py-4 px-4 row-text">${price}</td>
-                        <td className="py-4 px-4">
-                          <Label label="Delivered" className="label-green" />
-                        </td>
+                    products.map((product) => {
+                      const { _id, title, thumbnail, price } = product;
+                      return (
+                        <tr key={_id} className="border-b-1 border-gray-400/20">
+                          <td className=" py-2 px-4">
+                            <input type="checkbox" />
+                          </td>
+                          <td className="py-4 px-4 text-gray-400">
+                            <img
+                              src={`data:image/webp;base64,${thumbnail}`}
+                              className="w-[40px] rounded-md mx-auto"
+                            />
+                          </td>
+                          <td className="py-4 px-4 row-text ">{title}</td>
+                          <td className="py-4 px-4 row-text">Apparel</td>
+                          <td className="py-4 px-4 row-text ">854</td>
+                          <td className="py-4 px-4 row-text">${price}</td>
+                          <td className="py-4 px-4">
+                            <Label label="Delivered" className="label-green" />
+                          </td>
 
-                        <td className="py-4 px-4">
-                          <Label label="Draft" className="label-gray" />
-                        </td>
-                        <td className="py-6 px-4 text-lg text-gray-600 font-medium flex items-center gap-4 my-auto ">
-                          <MdContentCopy size={20} />
-                          <MdOutlineEdit
-                            className="cursor-pointer"
-                            size={20}
-                            onClick={() => {
-                              getSingleProduct(_id);
-                              setShowEditProductModal(true);
-                            }}
-                          />
-                          <AiOutlineDelete
-                            className="cursor-pointer"
-                            size={20}
-                            onClick={() => {
-                              getSingleProduct(_id);
-                              setProductID(_id);
-                              setShowDeleteProductModal(true);
-                            }}
-                          />
-                        </td>
-                      </tr>
-                    ))
+                          <td className="py-4 px-4">
+                            <Label label="Draft" className="label-gray" />
+                          </td>
+                          <td className="py-6 px-4 text-lg text-gray-600 font-medium flex items-center gap-4 my-auto ">
+                            <MdContentCopy size={20} />
+                            <MdOutlineEdit
+                              className="cursor-pointer"
+                              size={20}
+                              onClick={() => {
+                                setProductInfo(product);
+                                setShowEditProductModal(true);
+                              }}
+                            />
+                            <AiOutlineDelete
+                              className="cursor-pointer"
+                              size={20}
+                              onClick={() => {
+                                setProductInfo(product);
+                                setProductID(_id);
+                                setShowDeleteProductModal(true);
+                              }}
+                            />
+                          </td>
+                        </tr>
+                      );
+                    })
                   ) : (
                     <tr>
                       <td>No products published</td>
@@ -353,11 +357,14 @@ export default function StoreProducts() {
       <EditProductModal
         showModal={showEditProductModal}
         closeModal={() => setShowEditProductModal(false)}
+        showSnackBar={() => setShowSnackBar(true)}
+        productInfo={productInfo}
       />
       <DeleteProductModal
         showModal={showDeleteProductModal}
         closeModal={() => setShowDeleteProductModal(false)}
         deleteProduct={handleDeleteProduct}
+        productInfo={productInfo}
       />
 
       {/* //snack Bars */}

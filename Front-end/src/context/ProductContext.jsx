@@ -84,11 +84,31 @@ export default function ProductState({ children }) {
       if (res.ok) {
         fetchProducts();
       }
-      // if(res.status!== 201){
-      //   setSnackBarMessage(data);
 
-      // }
       setLoader(false);
+    } catch (err) {
+      console.log(err.message);
+      setLoader(false);
+    }
+  }
+
+  async function updateProduct(id, body) {
+    const url = `http://localhost:5000/products/${id}`;
+    try {
+      setLoader(true);
+      const res = await fetch(url, {
+        method: "PATCH",
+        body,
+      });
+
+      const data = await res.json();
+      console.log(data);
+      setSnackBarMessage(data);
+      if (res.ok) {
+        fetchProducts();
+
+        setLoader(false);
+      }
     } catch (err) {
       console.log(err.message);
       setLoader(false);
@@ -109,6 +129,7 @@ export default function ProductState({ children }) {
           deletingLoader,
           snackBarMessage,
           statusCode,
+          updateProduct,
         }}
       >
         {children}

@@ -13,8 +13,8 @@ export default function Loader() {
 // LoadingOverlay
 export function LoadingOverlay() {
   return (
-    <div className="absolute inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center ">
-      <div className="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin" />
+    <div className="absolute inset-0 z-50 bg-black/10 backdrop-blur-xs flex items-center justify-center ">
+      <div className="w-12 h-12 border-4 border-black border-t-transparent rounded-full animate-spin" />
       <span className="sr-only">Loading</span>
     </div>
   );

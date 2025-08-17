@@ -115,6 +115,34 @@ export const listProduct = async ({ title, price, stock, images, thumbnail }) =>
   return { data: "The product has been add successfully !", statusCode: 201 };
 };
 
+
+export const updateProduct = async ({
+  title,
+  price,
+  stock,
+  images,
+  thumbnail,
+  id,
+}) => {
+  const updatedProduct = await productModel.updateOne(
+    { _id: id },
+    { $set: { title, price, stock, images, thumbnail } }
+  );
+
+  // await productModel.findById(id);
+  // product.title = title;
+  // product.price = price;
+  // product.stock = stock;
+  // product.images = images;
+  // product.thumbnail = thumbnail;
+  // await updatedProduct.save();
+
+  return {
+    data: "The product has been updated successfully !",
+    statusCode: 201,
+  };
+};
+
 export const deleteProduct = async ({ id }) => {
 
 

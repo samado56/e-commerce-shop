@@ -5,6 +5,7 @@ import {
   getAllProduct,
   getOneProduct,
   listProduct,
+  updateProduct,
 } from "../services/productServeice.js";
 
 import multer from "multer";
@@ -68,6 +69,42 @@ router.post(
         stock,
         thumbnail,
         images,
+      });
+
+      res.status(statusCode).json(data);
+    } catch (err) {
+      console.log("upload error", err);
+      res.status(500).json({ message: "Internal server error", err });
+    }
+  }
+);
+
+router.patch(
+  "/:id",
+  upload.fields([
+    { name: "images", maxCount: 5 },
+    { name: "thumbnail", maxCount: 1 },
+  ]),
+  async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { title, price, stock } = req.body;
+      const images = req.files?.images?.map((file) =>
+        file.buffer.toString("base64")
+      );
+      const thumbnail = req.files.thumbnail?.[0]?.buffer.toString("base64");
+
+      // if (!req.files || !req.files.images) {
+      //   return res.status(400).json({ message: "No images uploaded" });
+      // }
+
+      const { statusCode, data } = await updateProduct({
+        title,
+        price,
+        stock,
+        thumbnail,
+        images,
+        id,
       });
 
       res.status(statusCode).json(data);

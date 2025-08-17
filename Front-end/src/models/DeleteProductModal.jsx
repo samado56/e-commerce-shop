@@ -11,6 +11,7 @@ export default function DeleteProductModal({
   closeModal,
   showModal,
   deleteProduct,
+  productInfo,
 }) {
   const modalRef = useRef();
 
@@ -26,8 +27,8 @@ export default function DeleteProductModal({
     };
   }, [closeModal]);
 
-  const { oneProduct, deletingLoader } = useContext(ProductContext);
-  const { title } = oneProduct;
+  const { deletingLoader } = useContext(ProductContext);
+  const { title } = productInfo;
 
   return (
     <>

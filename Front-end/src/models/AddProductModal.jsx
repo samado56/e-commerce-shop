@@ -87,200 +87,198 @@ export default function AddProductModal({
             </div>
             <div className="relative">
               <div className="px-8 py-4 h-[600px] overflow-y-scroll  ">
-                {loader ? (
-                  <LoadingOverlay />
-                ) : (
-                  <form className="space-y-5">
+                {loader && <LoadingOverlay />}
+
+                <form className="space-y-5">
+                  <div>
+                    <label
+                      htmlFor="product-name"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Product Name
+                    </label>
+                    <input
+                      type="text"
+                      id="product-name"
+                      name="product-name"
+                      placeholder="e.g. Organic Cotton T-Shirt"
+                      value={title}
+                      onChange={(e) => setTitle(e.target.value)}
+                      className="mt-1 w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:border-black focus:ring-black"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="description"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Description
+                    </label>
+                    <textarea
+                      id="description"
+                      name="description"
+                      placeholder="e.g. Soft, breathable, and eco-friendly."
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
+                      className="w-full h-[140px] p-4 border-2 border-gray-400/20 rounded-md  font-semibold text-md resize-none bg-white"
+                    ></textarea>
+                  </div>
+                  <div className="flex items-center justify-between">
                     <div>
                       <label
-                        htmlFor="product-name"
+                        htmlFor="category"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Product Name
+                        Category
+                      </label>
+
+                      <select
+                        id="category"
+                        name="category"
+                        className="mt-1 w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:border-black focus:ring-black"
+                      >
+                        <option>Select a Category</option>
+                        <option value="men">Men</option>
+                        <option value="men">women</option>
+                        <option value="men">kids</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="price"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Price
                       </label>
                       <input
-                        type="text"
-                        id="product-name"
-                        name="product-name"
-                        placeholder="e.g. Organic Cotton T-Shirt"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
+                        type="number"
+                        id="price"
+                        name="price"
+                        placeholder="$ 0.00"
+                        value={price}
+                        onChange={(e) => setPrice(e.target.value)}
                         className="mt-1 w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:border-black focus:ring-black"
                       />
                     </div>
-                    <div>
-                      <label
-                        htmlFor="description"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Description
-                      </label>
-                      <textarea
-                        id="description"
-                        name="description"
-                        placeholder="e.g. Soft, breathable, and eco-friendly."
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        className="w-full h-[140px] p-4 border-2 border-gray-400/20 rounded-md  font-semibold text-md resize-none bg-white"
-                      ></textarea>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <label
-                          htmlFor="category"
-                          className="block text-sm font-medium text-gray-700"
-                        >
-                          Category
-                        </label>
-
-                        <select
-                          id="category"
-                          name="category"
-                          className="mt-1 w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:border-black focus:ring-black"
-                        >
-                          <option>Select a Category</option>
-                          <option value="men">Men</option>
-                          <option value="men">women</option>
-                          <option value="men">kids</option>
-                        </select>
-                      </div>
-                      <div>
-                        <label
-                          htmlFor="price"
-                          className="block text-sm font-medium text-gray-700"
-                        >
-                          Price
-                        </label>
-                        <input
-                          type="number"
-                          id="price"
-                          name="price"
-                          placeholder="$ 0.00"
-                          value={price}
-                          onChange={(e) => setPrice(e.target.value)}
-                          className="mt-1 w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:border-black focus:ring-black"
-                        />
-                      </div>
-                    </div>
-                    <div>
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="stock"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Stock Quantity
+                    </label>
+                    <input
+                      type="number"
+                      id="stock"
+                      name="stock"
+                      value={stock}
+                      onChange={(e) => setStock(e.target.value)}
+                      className="mt-1 w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:border-black focus:ring-black"
+                    />
+                  </div>
+                  <div className="flex items-center gap-8">
+                    <div className="w-full flex-1">
                       <label
                         htmlFor="stock"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Stock Quantity
+                        Product Thumbnail
                       </label>
-                      <input
-                        type="number"
-                        id="stock"
-                        name="stock"
-                        value={stock}
-                        onChange={(e) => setStock(e.target.value)}
-                        className="mt-1 w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:border-black focus:ring-black"
-                      />
-                    </div>
-                    <div className="flex items-center gap-8">
-                      <div className="w-full flex-1">
+                      <div className="w-full mt-2">
                         <label
-                          htmlFor="stock"
-                          className="block text-sm font-medium text-gray-700"
+                          htmlFor="file-upload"
+                          className="flex flex-col items-center justify-center  h-40 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition"
                         >
-                          Product Thumbnail
-                        </label>
-                        <div className="w-full mt-2">
-                          <label
-                            htmlFor="file-upload"
-                            className="flex flex-col items-center justify-center  h-40 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition"
-                          >
-                            <div className="flex flex-col items-center justify-center pt-5 pb-6 w-full ">
-                              <IoMdCloudUpload
-                                size={30}
-                                className="text-gray-400"
-                              />
-                              <p className="mb-2 text-sm text-gray-500">
-                                <span className="font-semibold text-yellow-500">
-                                  Upload a file
-                                </span>{" "}
-                                or drag and drop
-                              </p>
-                              <p className="text-xs text-gray-400">
-                                PNG, JPG, GIF up to 10MB
-                              </p>
-                            </div>
-
-                            <input
-                              id="file-upload"
-                              type="file"
-                              className="hidden w-full "
-                              multiple
-                              onChange={handleThumbnailChange}
-                              accept="image/*"
+                          <div className="flex flex-col items-center justify-center pt-5 pb-6 w-full ">
+                            <IoMdCloudUpload
+                              size={30}
+                              className="text-gray-400"
                             />
-                          </label>
+                            <p className="mb-2 text-sm text-gray-500">
+                              <span className="font-semibold text-yellow-500">
+                                Upload a file
+                              </span>{" "}
+                              or drag and drop
+                            </p>
+                            <p className="text-xs text-gray-400">
+                              PNG, JPG, GIF up to 10MB
+                            </p>
+                          </div>
+
+                          <input
+                            id="file-upload"
+                            type="file"
+                            className="hidden w-full "
+                            multiple
+                            onChange={handleThumbnailChange}
+                            accept="image/*"
+                          />
+                        </label>
+                      </div>
+                      {thumbnailPreview && (
+                        <div className="flex items-center gap-2">
+                          <img
+                            src={thumbnailPreview}
+                            alt="Selected"
+                            className="w-[50px] rounded-lg"
+                          />
                         </div>
-                        {thumbnailPreview && (
-                          <div className="flex items-center gap-2">
+                      )}
+                    </div>
+                    <div className="w-full flex-1">
+                      <label
+                        htmlFor="images"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Product Images
+                      </label>
+                      <div className="w-full mt-2">
+                        <label
+                          htmlFor="images-upload"
+                          className="flex flex-col items-center justify-center  h-40 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition"
+                        >
+                          <div className="flex flex-col items-center justify-center pt-5 pb-6 w-full ">
+                            <IoMdCloudUpload
+                              size={30}
+                              className="text-gray-400"
+                            />
+                            <p className="mb-2 text-sm text-gray-500">
+                              <span className="font-semibold text-yellow-500">
+                                Upload a file
+                              </span>{" "}
+                              or drag and drop
+                            </p>
+                            <p className="text-xs text-gray-400">
+                              PNG, JPG, GIF up to 10MB
+                            </p>
+                          </div>
+
+                          <input
+                            id="images-upload"
+                            type="file"
+                            className="hidden w-full "
+                            multiple
+                            onChange={handleImageChange}
+                            accept="image/*"
+                          />
+                        </label>
+                      </div>
+                      {previews && (
+                        <div className="flex items-center gap-2">
+                          {previews.map((img) => (
                             <img
-                              src={thumbnailPreview}
+                              key={img}
+                              src={img}
                               alt="Selected"
                               className="w-[50px] rounded-lg"
                             />
-                          </div>
-                        )}
-                      </div>
-                      <div className="w-full flex-1">
-                        <label
-                          htmlFor="images"
-                          className="block text-sm font-medium text-gray-700"
-                        >
-                          Product Images
-                        </label>
-                        <div className="w-full mt-2">
-                          <label
-                            htmlFor="images-upload"
-                            className="flex flex-col items-center justify-center  h-40 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition"
-                          >
-                            <div className="flex flex-col items-center justify-center pt-5 pb-6 w-full ">
-                              <IoMdCloudUpload
-                                size={30}
-                                className="text-gray-400"
-                              />
-                              <p className="mb-2 text-sm text-gray-500">
-                                <span className="font-semibold text-yellow-500">
-                                  Upload a file
-                                </span>{" "}
-                                or drag and drop
-                              </p>
-                              <p className="text-xs text-gray-400">
-                                PNG, JPG, GIF up to 10MB
-                              </p>
-                            </div>
-
-                            <input
-                              id="images-upload"
-                              type="file"
-                              className="hidden w-full "
-                              multiple
-                              onChange={handleImageChange}
-                              accept="image/*"
-                            />
-                          </label>
+                          ))}
                         </div>
-                        {previews && (
-                          <div className="flex items-center gap-2">
-                            {previews.map((img) => (
-                              <img
-                                key={img}
-                                src={img}
-                                alt="Selected"
-                                className="w-[50px] rounded-lg"
-                              />
-                            ))}
-                          </div>
-                        )}
-                      </div>
+                      )}
                     </div>
-                  </form>
-                )}
+                  </div>
+                </form>
               </div>
             </div>
 
