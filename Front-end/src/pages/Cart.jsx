@@ -14,6 +14,9 @@ import EmptyCartModal from "../models/EmptyCartModal";
 //context
 import { useCart } from "../context/Cart/CartContext";
 
+//vector
+import emptyCart from '../assets/imgs/empty-cart.png'
+
 export default function Cart() {
   const navigate = useNavigate();
   const [cupon, setCupon] = useState(false);
@@ -128,7 +131,8 @@ export default function Cart() {
                     </div>
                   ))
                 ) : (
-                  <h1>No items to show</h1>
+                  // <h1>No items to show</h1>
+                  <img src={emptyCart} className="opacity-40 mx-auto" />
                 )}
               </div>
             </div>

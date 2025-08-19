@@ -22,6 +22,7 @@ import Label from "../component/Label";
 import ViewOrderDeatilsModal from "../models/ViewOrderDeatilsModal";
 import DeleteOrderModal from "../models/DeleteOrderModal";
 import EditOrderModal from "../models/EditOrderModal";
+import { OrdersContext } from "../context/Orders/OrdersContext";
 
 export default function Orders() {
   const { shrinkSideBar } = useContext(SideBarContext);
@@ -34,6 +35,16 @@ export default function Orders() {
   const [showViewOrderModal, setShowViewOrderModal] = useState(false);
   const [showDeleteOrderModal, setShowDeleteOrderModal] = useState(false);
   const [shoEditeOrderModal, setShowEditOrderModal] = useState(false);
+
+  const { allOrders } = useContext(OrdersContext);
+
+  const intialOrder = {
+    orderItem: [],
+    total: 120,
+  };
+  const [orderDetails, setOrderDetails] = useState(intialOrder);
+
+  console.log(orderDetails);
 
   return (
     <>
@@ -215,6 +226,52 @@ export default function Orders() {
                     />
                   </td>
                 </tr>
+                {allOrders &&
+                  allOrders.map((order) => {
+                    const { _id, total, orderItems } = order;
+                    return (
+                      <tr key={_id} className="border-b-1 border-gray-400/20">
+                        <td className="text-start  px-4">
+                          <input type="checkbox" />
+                        </td>
+                        <td className="text-start px-4 row-text">#12345</td>
+                        <td className="px-4 row-text ">Sophia Clark</td>
+                        <td className="px-4 row-text ">2024-07-26</td>
+                        <td className="px-4  row-text">${total}</td>
+                        <td className="px-4">
+                          <Label label="Pending" className="label-orange" />
+                        </td>
+                        <td className="px-4">
+                          <Label label="Processing" className="label-blue" />
+                        </td>
+
+                        <td className="py-4 px-4 text-lg text-gray-600 font-medium flex items-center justify-center gap-4  ">
+                          <BsEye
+                            size={20}
+                            className="cursor-pointer"
+                            onClick={() => {
+                              setOrderDetails({
+                                ...orderDetails,
+                                orderItem: orderItems,
+                                total: total,
+                              });
+                              setShowViewOrderModal(true);
+                            }}
+                          />
+                          <MdOutlineEdit
+                            onClick={() => setShowEditOrderModal(true)}
+                            size={20}
+                            className="cursor-pointer"
+                          />
+                          <AiOutlineDelete
+                            size={20}
+                            className="cursor-pointer text-red-400"
+                            onClick={() => setShowDeleteOrderModal(true)}
+                          />
+                        </td>
+                      </tr>
+                    );
+                  })}
               </tbody>
             </table>
           </div>
@@ -256,6 +313,7 @@ export default function Orders() {
       <ViewOrderDeatilsModal
         closeModal={() => setShowViewOrderModal(false)}
         showModal={showViewOrderModal}
+        orderDetails={orderDetails}
       />
       <DeleteOrderModal
         closeModal={() => setShowDeleteOrderModal(false)}

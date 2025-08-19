@@ -10,6 +10,7 @@ import cors from "cors";
 import userRouter from "./routers/users.js";
 import productRouter from "./routers/products.js";
 import cartRouter from "./routers/cart.js";
+import orderRouter from "./routers/orders.js";
 
 const app = express();
 
@@ -30,6 +31,7 @@ mongosse
 app.use("/user", userRouter);
 app.use("/products", productRouter);
 app.use("/cart", cartRouter);
+app.use("/orders", orderRouter);
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);

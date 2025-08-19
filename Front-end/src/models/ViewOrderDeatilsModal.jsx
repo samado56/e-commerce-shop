@@ -8,13 +8,15 @@ import { MdOutlineCancel } from "react-icons/md";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { IoMdRefresh } from "react-icons/io";
 
-// imgs
-import prd from "../assets/imgs/product7.jpg";
 
 //components
 import Label from "../component/Label";
 
-export default function ViewOrderDeatilsModal({ closeModal, showModal }) {
+export default function ViewOrderDeatilsModal({
+  closeModal,
+  showModal,
+  orderDetails,
+}) {
   const modalRef = useRef();
 
   useEffect(() => {
@@ -28,7 +30,7 @@ export default function ViewOrderDeatilsModal({ closeModal, showModal }) {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [closeModal]);
-
+  const { total, orderItem } = orderDetails;
   return (
     <>
       {showModal ? (
@@ -59,7 +61,7 @@ export default function ViewOrderDeatilsModal({ closeModal, showModal }) {
                   <p className="text-gray-600 font-semibold mb-2">
                     TOTAL AMOUNT
                   </p>
-                  <h1 className="text-3xl font-bold mb-1">$150.00</h1>
+                  <h1 className="text-3xl font-bold mb-1">${total}</h1>
                 </div>
                 <div className="shadow-sm shadow-black/10 rounded-md p-4">
                   <p className="text-gray-600 font-semibold mb-2">
@@ -115,17 +117,41 @@ export default function ViewOrderDeatilsModal({ closeModal, showModal }) {
                   </thead>
 
                   <tbody>
-                    <tr className="border-b-1 border-gray-400/20 row-hover">
-                      <td className="py-4 px-4 row-text ">
-                        <img src={prd} className="w-[30px]" />{" "}
-                      </td>
-                      <td className="py-4 px-4 row-text ">Classic T-Shirt</td>
-                      <td className="py-4 px-4 row-text ">SKU12345</td>
-                      <td className="py-4 px-4 row-text ">2</td>
-                      <td className="py-4 px-4 row-text ">$20.00</td>
-                      <td className="py-4 px-4 row-text ">$40.00</td>
-                    </tr>
-                    <tr className="border-b-1 border-gray-400/20 row-hover">
+                    {orderDetails &&
+                      orderItem.map(
+                        ({
+                          productImage,
+                          productTitle,
+                          quantity,
+                          unitPrice,
+                          _id,
+                        }) => (
+                          <tr
+                            key={_id}
+                            className="border-b-1 border-gray-400/20 row-hover"
+                          >
+                            <td className="py-4 px-4 row-text ">
+                              <img
+                                src={`data:image/webp;base64,${productImage}`}
+                                className="w-[30px]"
+                              />
+                            </td>
+                            <td className="py-4 px-4 row-text ">
+                              {productTitle}
+                            </td>
+                            <td className="py-4 px-4 row-text ">SKU12345</td>
+                            <td className="py-4 px-4 row-text ">{quantity}</td>
+                            <td className="py-4 px-4 row-text ">
+                              ${unitPrice}
+                            </td>
+                            <td className="py-4 px-4 row-text ">
+                              ${+unitPrice * +quantity}
+                            </td>
+                          </tr>
+                        )
+                      )}
+
+                    {/* <tr className="border-b-1 border-gray-400/20 row-hover">
                       <td className="py-4 px-4 row-text ">
                         <img src={prd} className="w-[30px]" />
                       </td>
@@ -134,7 +160,7 @@ export default function ViewOrderDeatilsModal({ closeModal, showModal }) {
                       <td className="py-4 px-4 row-text ">1</td>
                       <td className="py-4 px-4 row-text">$50.00</td>
                       <td className="py-4 px-4 row-text">$50.00</td>
-                    </tr>
+                    </tr> */}
                   </tbody>
                 </table>
               </div>
